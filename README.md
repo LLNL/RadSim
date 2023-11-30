@@ -21,26 +21,19 @@ Note!  You will need to have [JPype](https://jpype.readthedocs.io/en/latest/inst
 
 Building from Source
 --------------------
-For those doing development, to get started, 
-```
-	python build.py src
-```
-
-Doing so clones the required packages into a ``src`` subdirectory. 
-
-Afterwards, enter the command below to create the jars
+Once you have cloned the RadSim repository, enter the command below to create the jars
 ```
 	python build.py jar
 ```
 
-An example script on how to output a list of emissions and intesities for a given collections of sources and respective ages is provided in gov.llnl.rtk/py/api-test.py
+An example script on how to output a list of emissions and intesities for a given collections of sources and respective ages is provided in gov.llnl.rtk/py/ subdirectory. Run the api-test.py to obtain a sample list of emission energies and intensities.
 ```
 	python api-test.py
 ```
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
@@ -50,7 +43,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
 ## Acknowledgments
 
