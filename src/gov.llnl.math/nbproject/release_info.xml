@@ -1,0 +1,1325 @@
+<releaseInfo>
+  <name>${implementation.title}</name>
+  <version>2.0.0.0</version>
+  <class name="class gov.llnl.math.Constraint">
+    <ctor>public gov.llnl.math.Constraint(double)</ctor>
+    <method>public java.util.Iterator gov.llnl.math.Constraint.iterator()</method>
+    <method>public void gov.llnl.math.Constraint.add(int,double)</method>
+    <field>public double gov.llnl.math.Constraint.rhs_</field>
+    <field>public java.util.ArrayList gov.llnl.math.Constraint.points</field>
+  </class>
+  <class name="class gov.llnl.math.Constraint$ConstraintDatum">
+    <method>public double gov.llnl.math.Constraint$ConstraintDatum.getCoef()</method>
+    <method>public int gov.llnl.math.Constraint$ConstraintDatum.getId()</method>
+    <field>public double gov.llnl.math.Constraint$ConstraintDatum.coefficent</field>
+    <field>public int gov.llnl.math.Constraint$ConstraintDatum.regressorId</field>
+  </class>
+  <class name="class gov.llnl.math.CycleChecker">
+    <ctor>public gov.llnl.math.CycleChecker(int,int)</ctor>
+    <method>public boolean gov.llnl.math.CycleChecker.add(int)</method>
+    <method>public static void gov.llnl.math.CycleChecker.main(java.lang.String[])</method>
+    <method>public void gov.llnl.math.CycleChecker.clear()</method>
+  </class>
+  <class name="class gov.llnl.math.DoubleArray">
+    <ctor>public gov.llnl.math.DoubleArray()</ctor>
+    <method>public static boolean gov.llnl.math.DoubleArray.equals(double[],double[])</method>
+    <method>public static boolean gov.llnl.math.DoubleArray.isNaN(double[])</method>
+    <method>public static double gov.llnl.math.DoubleArray.computeInnerProduct(double[],double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double gov.llnl.math.DoubleArray.computeInnerProduct(double[],double[],int,int,int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double gov.llnl.math.DoubleArray.computeInnerProductInteger(int[],double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double gov.llnl.math.DoubleArray.computeInnerProductInteger(int[],double[],int,int,int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double gov.llnl.math.DoubleArray.findMaximum(double[])</method>
+    <method>public static double gov.llnl.math.DoubleArray.findMaximum(double[][])</method>
+    <method>public static double gov.llnl.math.DoubleArray.findMaximumAbsolute(double[])</method>
+    <method>public static double gov.llnl.math.DoubleArray.findMaximumRange(double[],int,int)</method>
+    <method>public static double gov.llnl.math.DoubleArray.findMedian(double[])</method>
+    <method>public static double gov.llnl.math.DoubleArray.findMinimum(double[])</method>
+    <method>public static double gov.llnl.math.DoubleArray.findMinimumRange(double[],int,int)</method>
+    <method>public static double gov.llnl.math.DoubleArray.sum(double[])</method>
+    <method>public static double gov.llnl.math.DoubleArray.sumRange(double[],int,int)</method>
+    <method>public static double gov.llnl.math.DoubleArray.sumSqr(double[])</method>
+    <method>public static double gov.llnl.math.DoubleArray.sumSqrRange(double[],int,int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double gov.llnl.math.DoubleArray.sumSqrWeighted(double[],double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.add(double[],double[],double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.addAssign(double[],double)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.addAssign(double[],double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.addAssignRange(double[],double,int,int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.addAssignRange(double[],double[],int,int,int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.addScaled(double[],double[],double[],double)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.assign(double[],double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.assignMaxOf(double[],int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.assignMinOf(double[],int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.assignRange(double[],double[],int,int,int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.assignSub(double[],double[],int[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.copyOf(double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.copyOfRange(double[],int,int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.divideAssign(double[],double)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.divideAssignRange(double[],double,int,int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.evaluate(java.lang.reflect.Method,double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.fromString(java.lang.String)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.getField(java.lang.Object[],java.lang.reflect.Field) throws java.lang.IllegalAccessException</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.getField(java.util.Collection,java.lang.reflect.Field) throws java.lang.IllegalAccessException</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.multiply(double[],double)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.multiplyAssign(double[],double)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.multiplyAssign(double[],double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.multiplyAssignRange(double[],double,int,int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.negate(double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.negateRange(double[],int,int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.normColumns1(double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.normColumns1Range(double[],int,int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.normColumns2(double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.normColumns2Range(double[],int,int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.subtract(double[],double[],double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.subtractAssign(double[],double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.subtractAssignRange(double[],double[],int,int,int)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.subtractAssignScaled(double[],double[],double)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.subtractScaled(double[],double[],double[],double)</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.toPrimatives(java.lang.Double[])</method>
+    <method>public static double[] gov.llnl.math.DoubleArray.toPrimatives(java.util.List)</method>
+    <method>public static int gov.llnl.math.DoubleArray.findIndexOfMaximum(double[])</method>
+    <method>public static int gov.llnl.math.DoubleArray.findIndexOfMaximumRange(double[],int,int)</method>
+    <method>public static int gov.llnl.math.DoubleArray.findIndexOfMinimum(double[])</method>
+    <method>public static int gov.llnl.math.DoubleArray.findIndexOfMinimumRange(double[],int,int)</method>
+    <method>public static java.lang.Double[] gov.llnl.math.DoubleArray.toObjects(double[])</method>
+    <method>public static java.lang.String gov.llnl.math.DoubleArray.toString(double[])</method>
+    <method>public static java.lang.String gov.llnl.math.DoubleArray.toString(double[],java.lang.String)</method>
+    <method>public static void gov.llnl.math.DoubleArray.accumulateProduct(double[],double[],double,int,int,int)</method>
+    <method>public static void gov.llnl.math.DoubleArray.addAssignScaled(double[],double[],double)</method>
+    <method>public static void gov.llnl.math.DoubleArray.computeVectorProduct(double[],double[],double[],int,int,int,int)</method>
+    <method>public static void gov.llnl.math.DoubleArray.fill(double[],double)</method>
+    <method>public static void gov.llnl.math.DoubleArray.fillRange(double[],double,int,int)</method>
+    <method>public static void gov.llnl.math.DoubleArray.sortPairs(double[],double[])</method>
+  </class>
+  <class name="class gov.llnl.math.DoubleMatrix">
+    <ctor>public gov.llnl.math.DoubleMatrix()</ctor>
+    <ctor>public gov.llnl.math.DoubleMatrix(double[],int,int) throws gov.llnl.math.Exceptions$SizeException</ctor>
+    <ctor>public gov.llnl.math.DoubleMatrix(double[][]) throws gov.llnl.math.Exceptions$SizeException</ctor>
+    <ctor>public gov.llnl.math.DoubleMatrix(int,int)</ctor>
+    <method>public boolean gov.llnl.math.DoubleMatrix.equals(gov.llnl.math.DoubleMatrix)</method>
+    <method>public double gov.llnl.math.DoubleMatrix.addElement(int,int,double)</method>
+    <method>public double gov.llnl.math.DoubleMatrix.get(int)</method>
+    <method>public double gov.llnl.math.DoubleMatrix.set(int,double)</method>
+    <method>public double gov.llnl.math.DoubleMatrix.sumOfElements()</method>
+    <method>public double gov.llnl.math.DoubleMatrix.sumSqrOfElements()</method>
+    <method>public double[] gov.llnl.math.DoubleMatrix.access()</method>
+    <method>public double[] gov.llnl.math.DoubleMatrix.copyColumn(int)</method>
+    <method>public double[] gov.llnl.math.DoubleMatrix.sumOfColumns()</method>
+    <method>public double[][] gov.llnl.math.DoubleMatrix.toArray()</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.addAssign(double)</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.addAssign(gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.assign(gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.copyOfColumns(int[])</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.copyOfRC(int[])</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.copyOfRowSet(int[])</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.copyRowSet(int[])</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.createTranspose()</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.divideAssign(double)</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.duplicate()</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.mean()</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.meanSelectRows(int,int)</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multipleAssignRows(double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyAssign(double)</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.negateAssign()</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.scaleAssign(double)</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.subtractAssign(gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.DoubleMatrixBase gov.llnl.math.DoubleMatrix.addAssign(double)</method>
+    <method>public gov.llnl.math.DoubleMatrixBase gov.llnl.math.DoubleMatrix.divideAssign(double)</method>
+    <method>public gov.llnl.math.DoubleMatrixBase gov.llnl.math.DoubleMatrix.multiplyAssign(double)</method>
+    <method>public gov.llnl.math.DoubleSubMatrix gov.llnl.math.DoubleMatrix.diagonal()</method>
+    <method>public gov.llnl.math.DoubleSubMatrix gov.llnl.math.DoubleMatrix.select(int,int,int,int)</method>
+    <method>public gov.llnl.math.DoubleSubMatrix gov.llnl.math.DoubleMatrix.selectColumn(int)</method>
+    <method>public gov.llnl.math.DoubleSubMatrix gov.llnl.math.DoubleMatrix.selectColumnRange(int,int)</method>
+    <method>public gov.llnl.math.DoubleSubMatrix gov.llnl.math.DoubleMatrix.selectRow(int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.DoubleSubMatrix gov.llnl.math.DoubleMatrix.selectRowRange(int,int)</method>
+    <method>public int gov.llnl.math.DoubleMatrix.address(int,int)</method>
+    <method>public int gov.llnl.math.DoubleMatrix.columns()</method>
+    <method>public int gov.llnl.math.DoubleMatrix.rows()</method>
+    <method>public int gov.llnl.math.DoubleMatrix.size()</method>
+    <method>public static double gov.llnl.math.DoubleMatrix.hermitianInnerProduct(double[],double[],gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double gov.llnl.math.DoubleMatrix.norm1(gov.llnl.math.DoubleMatrix)</method>
+    <method>public static double[] gov.llnl.math.DoubleMatrix.multiply(double[],double[],gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double[] gov.llnl.math.DoubleMatrix.multiply(double[],gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double[] gov.llnl.math.DoubleMatrix.multiply(double[],gov.llnl.math.DoubleMatrix,double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double[] gov.llnl.math.DoubleMatrix.multiply(gov.llnl.math.DoubleMatrix,double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double[] gov.llnl.math.DoubleMatrix.multiplyPartial(double[],double[],gov.llnl.math.DoubleMatrix,int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static double[] gov.llnl.math.DoubleMatrix.multiplyPartial(double[],gov.llnl.math.DoubleMatrix,double[],int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.add(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.add(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.copyOfColumnSet(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,int[]) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.copyOfRC(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,int[]) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.copyOfRowSet(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,int[]) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.copyRowSet(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,int[]) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.createFromArray(double[])</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.createFromArray(double[],int,int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.createFromArray(double[][],boolean) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.divideLeft(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.divideLeftSub(gov.llnl.math.DoubleMatrix,int[],gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$ResizeException,gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.invert(gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.invert(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiply(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiply(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyElements(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyElements(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplySub(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,int[],gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplySub(gov.llnl.math.DoubleMatrix,int[],gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyTranspose(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyTranspose(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyTranspose2(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyTranspose2(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyTransposeSub(gov.llnl.math.DoubleMatrix,int[],gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyTransposeSub(int[],gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyTransposeSubc(gov.llnl.math.DoubleMatrix,int[],gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$ResizeException,gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyTransposeSubc(int[],gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplyVectorTranspose2(double[],double[])</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplym(gov.llnl.math.DoubleMatrix)</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplym(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplymSubc(gov.llnl.math.DoubleMatrix,int[],gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.multiplymSubc(int[],gov.llnl.math.DoubleMatrix)</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.scale(double,gov.llnl.math.DoubleMatrix)</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.solveDestructiveMatlab(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.subtract(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.subtract(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.sumOfColumns(gov.llnl.math.DoubleMatrix)</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.wrapArray(double[])</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrix.wrapArray(double[],int,int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static int gov.llnl.math.DoubleMatrix.solveDestructive(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public void gov.llnl.math.DoubleMatrix.addAssignColumns(double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public void gov.llnl.math.DoubleMatrix.assignColumn(int,double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public void gov.llnl.math.DoubleMatrix.fill(double)</method>
+    <method>public void gov.llnl.math.DoubleMatrix.multiplyAssignColumns(double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public void gov.llnl.math.DoubleMatrix.normColumns1()</method>
+    <method>public void gov.llnl.math.DoubleMatrix.normColumns2()</method>
+    <method>public void gov.llnl.math.DoubleMatrix.reshape(int,int)</method>
+    <method>public void gov.llnl.math.DoubleMatrix.resize(int,int) throws gov.llnl.math.Exceptions$ResizeException</method>
+  </class>
+  <class name="class gov.llnl.math.DoubleMatrixBase">
+    <ctor>public gov.llnl.math.DoubleMatrixBase()</ctor>
+    <method>public abstract double gov.llnl.math.DoubleMatrixBase.sumOfElements()</method>
+    <method>public abstract double gov.llnl.math.DoubleMatrixBase.sumSqrOfElements()</method>
+    <method>public abstract gov.llnl.math.DoubleMatrixBase gov.llnl.math.DoubleMatrixBase.addAssign(double)</method>
+    <method>public abstract gov.llnl.math.DoubleMatrixBase gov.llnl.math.DoubleMatrixBase.divideAssign(double)</method>
+    <method>public abstract gov.llnl.math.DoubleMatrixBase gov.llnl.math.DoubleMatrixBase.multiplyAssign(double)</method>
+    <method>public abstract int gov.llnl.math.DoubleMatrixBase.address(int,int)</method>
+    <method>public abstract void gov.llnl.math.DoubleMatrixBase.fill(double)</method>
+    <method>public double gov.llnl.math.DoubleMatrixBase.get(int,int)</method>
+    <method>public double[] gov.llnl.math.DoubleMatrixBase.access()</method>
+    <method>public static boolean gov.llnl.math.DoubleMatrixBase.sizeCompare(gov.llnl.math.DoubleMatrixBase,gov.llnl.math.DoubleMatrixBase)</method>
+    <method>public void gov.llnl.math.DoubleMatrixBase.dump(java.io.PrintStream)</method>
+    <method>public void gov.llnl.math.DoubleMatrixBase.set(int,int,double)</method>
+  </class>
+  <class name="class gov.llnl.math.DoubleMatrixReader">
+    <ctor>public gov.llnl.math.DoubleMatrixReader()</ctor>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleMatrixReader.load(java.lang.String) throws java.io.IOException</method>
+    <method>public static void gov.llnl.math.DoubleMatrixReader.load(gov.llnl.math.DoubleMatrix,java.io.LineNumberReader) throws java.io.IOException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static void gov.llnl.math.DoubleMatrixReader.load(gov.llnl.math.DoubleMatrix,java.lang.String) throws java.io.IOException</method>
+  </class>
+  <class name="class gov.llnl.math.DoubleSubMatrix">
+    <ctor>public gov.llnl.math.DoubleSubMatrix(double[],int,int,int,int) throws java.lang.IndexOutOfBoundsException</ctor>
+    <method>public double gov.llnl.math.DoubleSubMatrix.sumOfElements()</method>
+    <method>public double gov.llnl.math.DoubleSubMatrix.sumSqrOfElements()</method>
+    <method>public gov.llnl.math.DoubleMatrix gov.llnl.math.DoubleSubMatrix.extract()</method>
+    <method>public gov.llnl.math.DoubleMatrixBase gov.llnl.math.DoubleSubMatrix.addAssign(double)</method>
+    <method>public gov.llnl.math.DoubleMatrixBase gov.llnl.math.DoubleSubMatrix.divideAssign(double)</method>
+    <method>public gov.llnl.math.DoubleMatrixBase gov.llnl.math.DoubleSubMatrix.multiplyAssign(double)</method>
+    <method>public gov.llnl.math.DoubleSubMatrix gov.llnl.math.DoubleSubMatrix.addAssign(double)</method>
+    <method>public gov.llnl.math.DoubleSubMatrix gov.llnl.math.DoubleSubMatrix.divideAssign(double)</method>
+    <method>public gov.llnl.math.DoubleSubMatrix gov.llnl.math.DoubleSubMatrix.multiplyAssign(double)</method>
+    <method>public int gov.llnl.math.DoubleSubMatrix.address(int,int)</method>
+    <method>public void gov.llnl.math.DoubleSubMatrix.assign(double[]) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public void gov.llnl.math.DoubleSubMatrix.assign(gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public void gov.llnl.math.DoubleSubMatrix.assign(gov.llnl.math.DoubleSubMatrix) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public void gov.llnl.math.DoubleSubMatrix.fill(double)</method>
+  </class>
+  <class name="class gov.llnl.math.DoubleUtilities">
+    <ctor>public gov.llnl.math.DoubleUtilities()</ctor>
+    <method>public static double gov.llnl.math.DoubleUtilities.cube(double)</method>
+    <method>public static double gov.llnl.math.DoubleUtilities.polyval(double,double[])</method>
+    <method>public static double gov.llnl.math.DoubleUtilities.sqr(double)</method>
+    <method>public static double[] gov.llnl.math.DoubleUtilities.solveDestructive(double[],double[],int)</method>
+    <method>public static int gov.llnl.math.DoubleUtilities.compare(double,double)</method>
+  </class>
+  <class name="class gov.llnl.math.Exceptions">
+    <ctor>public gov.llnl.math.Exceptions()</ctor>
+  </class>
+  <class name="class gov.llnl.math.Exceptions$ConvergenceException">
+    <ctor>public gov.llnl.math.Exceptions$ConvergenceException(java.lang.String)</ctor>
+  </class>
+  <class name="class gov.llnl.math.Exceptions$DomainException">
+    <ctor>public gov.llnl.math.Exceptions$DomainException(java.lang.String)</ctor>
+  </class>
+  <class name="class gov.llnl.math.Exceptions$MathException">
+    <ctor>public gov.llnl.math.Exceptions$MathException(java.lang.Exception)</ctor>
+    <ctor>public gov.llnl.math.Exceptions$MathException(java.lang.String)</ctor>
+  </class>
+  <class name="class gov.llnl.math.Exceptions$ResizeException">
+    <ctor>public gov.llnl.math.Exceptions$ResizeException(java.lang.String)</ctor>
+  </class>
+  <class name="class gov.llnl.math.Exceptions$SizeException">
+    <ctor>public gov.llnl.math.Exceptions$SizeException(java.lang.String)</ctor>
+  </class>
+  <class name="class gov.llnl.math.FloatArray">
+    <ctor>public gov.llnl.math.FloatArray()</ctor>
+    <method>public static float[] gov.llnl.math.FloatArray.add(float[],float[],float[])</method>
+    <method>public static float[] gov.llnl.math.FloatArray.addAssign(float[],float)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.addAssign(float[],float[])</method>
+    <method>public static float[] gov.llnl.math.FloatArray.addAssignRange(float[],float,int,int)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.addAssignRange(float[],float[],int,int,int)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.addScaled(float[],float[],float[],float)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.assign(float[],float[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static float[] gov.llnl.math.FloatArray.assignRange(float[],float[],int,int,int)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.assignSub(float[],float[],int[])</method>
+    <method>public static float[] gov.llnl.math.FloatArray.divideAssign(float[],float)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.divideAssignRange(float[],float,int,int)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.fromString(java.lang.String)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.multiplyAssignRange(float[],float,int,int)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.negate(float[])</method>
+    <method>public static float[] gov.llnl.math.FloatArray.negateRange(float[],int,int)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.subtract(float[],float[],float[])</method>
+    <method>public static float[] gov.llnl.math.FloatArray.subtractAssign(float[],float[])</method>
+    <method>public static float[] gov.llnl.math.FloatArray.subtractAssignRange(float[],float[],int,int,int)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.subtractAssignScaled(float[],float[],float)</method>
+    <method>public static float[] gov.llnl.math.FloatArray.subtractScaled(float[],float[],float[],float)</method>
+    <method>public static java.lang.String gov.llnl.math.FloatArray.toString(float[])</method>
+    <method>public static java.lang.String gov.llnl.math.FloatArray.toString(float[],java.lang.String)</method>
+    <method>public static void gov.llnl.math.FloatArray.fill(float[],float)</method>
+    <method>public static void gov.llnl.math.FloatArray.fillRange(float[],float,int,int)</method>
+  </class>
+  <class name="class gov.llnl.math.Fourier">
+    <ctor>public gov.llnl.math.Fourier()</ctor>
+    <method>public static double[] gov.llnl.math.Fourier.shuffle(double[])</method>
+    <method>public static gov.llnl.math.Fourier$Result gov.llnl.math.Fourier.fft(double[])</method>
+    <method>public static int gov.llnl.math.Fourier.binlog(int)</method>
+    <method>public static int gov.llnl.math.Fourier.bitswap(int,int)</method>
+    <method>public static void gov.llnl.math.Fourier.fft(gov.llnl.math.Fourier$Result,double[])</method>
+  </class>
+  <class name="class gov.llnl.math.Fourier$Result">
+    <ctor>public gov.llnl.math.Fourier$Result()</ctor>
+    <method>public double[] gov.llnl.math.Fourier$Result.getAbs()</method>
+    <method>public double[] gov.llnl.math.Fourier$Result.getImg()</method>
+    <method>public double[] gov.llnl.math.Fourier$Result.getReal()</method>
+    <method>public void gov.llnl.math.Fourier$Result.resize(int)</method>
+  </class>
+  <class name="class gov.llnl.math.GenericMatrix">
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.add(gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.addAssign(gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.assign(gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.copy()</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.copyR(int[])</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.divideAssign(gov.llnl.math.numbers.MutableNumber)</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiply(gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyAssign(gov.llnl.math.numbers.MutableNumber)</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyElements(gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyTranspose(gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.negateAssign()</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectC(int[])</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectR(int,int)</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectR(int[])</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectRC(int[])</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.subtract(gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.subtractAssign(gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public gov.llnl.math.numbers.MutableNumber gov.llnl.math.GenericMatrix.get(int)</method>
+    <method>public gov.llnl.math.numbers.MutableNumber gov.llnl.math.GenericMatrix.get(int,int)</method>
+    <method>public gov.llnl.math.numbers.MutableNumber gov.llnl.math.GenericMatrix.set(int,gov.llnl.math.numbers.MutableNumber)</method>
+    <method>public gov.llnl.math.numbers.MutableNumber gov.llnl.math.GenericMatrix.set(int,int,gov.llnl.math.numbers.MutableNumber)</method>
+    <method>public gov.llnl.math.numbers.MutableNumber[] gov.llnl.math.GenericMatrix.access()</method>
+    <method>public int gov.llnl.math.GenericMatrix.columns()</method>
+    <method>public int gov.llnl.math.GenericMatrix.rows()</method>
+    <method>public int gov.llnl.math.GenericMatrix.size()</method>
+    <method>public static boolean gov.llnl.math.GenericMatrix.sizeCompare(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix)</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.add(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.add(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.addAssign(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.assign(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.copyR(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,int[]) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.copyR(gov.llnl.math.GenericMatrix,int[])</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.createFromArray(gov.llnl.math.numbers.MutableNumber[])</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.createFromArray(gov.llnl.math.numbers.MutableNumber[],int,int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.divideAssign(gov.llnl.math.GenericMatrix,gov.llnl.math.numbers.MutableNumber)</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiply(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiply(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyAssign(gov.llnl.math.GenericMatrix,gov.llnl.math.numbers.MutableNumber)</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyElements(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyElements(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplySelf(gov.llnl.math.GenericMatrix)</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplySelf(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplySub(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,int[],gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplySub(gov.llnl.math.GenericMatrix,int[],gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyTranspose(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyTranspose(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyTransposeSub(gov.llnl.math.GenericMatrix,int[],gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyTransposeSub(int[],gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyTransposeSubc(gov.llnl.math.GenericMatrix,int[],gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$ResizeException,gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplyTransposeSubc(int[],gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplymSubc(gov.llnl.math.GenericMatrix,int[],gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.multiplymSubc(int[],gov.llnl.math.GenericMatrix)</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.negateAssign(gov.llnl.math.GenericMatrix)</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectC(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,int[]) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectC(gov.llnl.math.GenericMatrix,int[])</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectR(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,int,int) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectR(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,int[]) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectR(gov.llnl.math.GenericMatrix,int,int)</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectR(gov.llnl.math.GenericMatrix,int[])</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectRC(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,int[]) throws gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.selectRC(gov.llnl.math.GenericMatrix,int[])</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.subtract(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.subtract(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.subtractAssign(gov.llnl.math.GenericMatrix,gov.llnl.math.GenericMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.wrapArray(gov.llnl.math.numbers.MutableNumber[])</method>
+    <method>public static gov.llnl.math.GenericMatrix gov.llnl.math.GenericMatrix.wrapArray(gov.llnl.math.numbers.MutableNumber[],int,int) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public void gov.llnl.math.GenericMatrix.fill(gov.llnl.math.numbers.MutableNumber)</method>
+    <method>public void gov.llnl.math.GenericMatrix.fillValues(gov.llnl.math.numbers.MutableNumber[])</method>
+    <method>public void gov.llnl.math.GenericMatrix.fillZeros()</method>
+    <method>public void gov.llnl.math.GenericMatrix.resize(int,int) throws gov.llnl.math.Exceptions$ResizeException</method>
+  </class>
+  <class name="class gov.llnl.math.HashUtilities">
+    <ctor>public gov.llnl.math.HashUtilities()</ctor>
+    <method>public static int gov.llnl.math.HashUtilities.hash(int,byte)</method>
+    <method>public static int gov.llnl.math.HashUtilities.hash(int,byte[])</method>
+    <method>public static int gov.llnl.math.HashUtilities.hash(int,double)</method>
+    <method>public static int gov.llnl.math.HashUtilities.hash(int,double[],int)</method>
+    <method>public static int gov.llnl.math.HashUtilities.hash(int,int)</method>
+    <method>public static int gov.llnl.math.HashUtilities.hash(int,java.lang.Object[])</method>
+    <method>public static int gov.llnl.math.HashUtilities.hash(int,long)</method>
+    <field>public static int gov.llnl.math.HashUtilities.HASH_FUNCTION</field>
+    <field>public static int gov.llnl.math.HashUtilities.HASH_OFFSET</field>
+  </class>
+  <class name="class gov.llnl.math.IndexSet">
+    <ctor>public gov.llnl.math.IndexSet(int)</ctor>
+    <ctor>public gov.llnl.math.IndexSet(int[])</ctor>
+    <method>public final void gov.llnl.math.IndexSet.resize(int)</method>
+    <method>public gov.llnl.math.IndexSet gov.llnl.math.IndexSet.clone()</method>
+    <method>public int gov.llnl.math.IndexSet.get(int)</method>
+    <method>public int gov.llnl.math.IndexSet.size()</method>
+    <method>public java.lang.Object gov.llnl.math.IndexSet.clone() throws java.lang.CloneNotSupportedException</method>
+    <method>public static gov.llnl.math.IndexSet gov.llnl.math.IndexSet.createFilled(int)</method>
+    <method>public void gov.llnl.math.IndexSet.clear()</method>
+    <method>public void gov.llnl.math.IndexSet.erase(int)</method>
+    <method>public void gov.llnl.math.IndexSet.fill(int)</method>
+    <method>public void gov.llnl.math.IndexSet.insert(int)</method>
+    <method>public void gov.llnl.math.IndexSet.remove(int)</method>
+    <method>public void gov.llnl.math.IndexSet.set(int,int)</method>
+  </class>
+  <class name="class gov.llnl.math.IntegerArray">
+    <ctor>public gov.llnl.math.IntegerArray()</ctor>
+    <method>public static boolean gov.llnl.math.IntegerArray.anyEquals(int[],int)</method>
+    <method>public static double gov.llnl.math.IntegerArray.sum(int[],int[])</method>
+    <method>public static double[] gov.llnl.math.IntegerArray.promoteToDoubles(int[])</method>
+    <method>public static int gov.llnl.math.IntegerArray.findIndexOfMaximum(int[])</method>
+    <method>public static int gov.llnl.math.IntegerArray.findIndexOfMinimum(int[])</method>
+    <method>public static int gov.llnl.math.IntegerArray.findMaximum(int[])</method>
+    <method>public static int gov.llnl.math.IntegerArray.sum(int[])</method>
+    <method>public static int gov.llnl.math.IntegerArray.sumRange(int[],int,int)</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.add(int[],int[],int[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.addAssign(int[],int[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.copyOf(int[])</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.copyOfRange(int[],int,int)</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.fill(int[],int)</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.fillRange(int[],int,int,int)</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.filled(int)</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.fromString(java.lang.String)</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.subtractAssign(int[],int[])</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.toPrimatives(java.lang.Integer[])</method>
+    <method>public static int[] gov.llnl.math.IntegerArray.toPrimatives(java.util.List)</method>
+    <method>public static java.lang.Integer[] gov.llnl.math.IntegerArray.toObjects(int[])</method>
+    <method>public static java.lang.String gov.llnl.math.IntegerArray.toString(int[])</method>
+    <method>public static void gov.llnl.math.IntegerArray.assignRange(int[],int[],int,int,int)</method>
+  </class>
+  <class name="class gov.llnl.math.IntegerRebin">
+    <ctor>public gov.llnl.math.IntegerRebin()</ctor>
+    <method>public int[] gov.llnl.math.IntegerRebin.scale(int[],double)</method>
+    <field>public int gov.llnl.math.IntegerRebin.overflow</field>
+    <field>public int gov.llnl.math.IntegerRebin.underflowBins</field>
+  </class>
+  <class name="class gov.llnl.math.IntegerUtilities">
+    <ctor>public gov.llnl.math.IntegerUtilities()</ctor>
+    <method>public static int gov.llnl.math.IntegerUtilities.compare(int,int)</method>
+  </class>
+  <class name="class gov.llnl.math.Interpolate">
+    <ctor>public gov.llnl.math.Interpolate()</ctor>
+    <method>public static double[] gov.llnl.math.Interpolate.interpLinear1(double[],double[],double[]) throws java.lang.Exception</method>
+    <method>public static int gov.llnl.math.Interpolate.search(double[],double)</method>
+  </class>
+  <class name="class gov.llnl.math.Jordan">
+    <ctor>public gov.llnl.math.Jordan()</ctor>
+    <method>public static void gov.llnl.math.Jordan.evaluate(gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,gov.llnl.math.DoubleMatrix,double[]) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ResizeException</method>
+  </class>
+  <class name="class gov.llnl.math.MatlabReader">
+    <ctor>public gov.llnl.math.MatlabReader()</ctor>
+    <method>public java.lang.Object gov.llnl.math.MatlabReader.get(java.lang.String)</method>
+    <method>public void gov.llnl.math.MatlabReader.load(java.io.File) throws gov.llnl.math.MatlabReader$MatlabReaderException,java.io.FileNotFoundException,java.io.IOException,java.util.zip.DataFormatException</method>
+  </class>
+  <class name="class gov.llnl.math.MatlabReader$Element">
+    <ctor>public gov.llnl.math.MatlabReader$Element()</ctor>
+    <field>public byte[] gov.llnl.math.MatlabReader$Element.contentInt8</field>
+    <field>public double[] gov.llnl.math.MatlabReader$Element.contentDouble</field>
+    <field>public float[] gov.llnl.math.MatlabReader$Element.contentSingle</field>
+    <field>public int[] gov.llnl.math.MatlabReader$Element.contentInt32</field>
+    <field>public short[] gov.llnl.math.MatlabReader$Element.contentInt16</field>
+  </class>
+  <class name="class gov.llnl.math.MatlabReader$MatlabReaderException">
+    <ctor>public gov.llnl.math.MatlabReader$MatlabReaderException(java.lang.String)</ctor>
+  </class>
+  <class name="class gov.llnl.math.MatlabReader$Variable">
+  </class>
+  <class name="class gov.llnl.math.Nnlsq">
+    <ctor>public gov.llnl.math.Nnlsq()</ctor>
+    <method>public double gov.llnl.math.Nnlsq.getMSE()</method>
+    <method>public double[] gov.llnl.math.Nnlsq.getCoefficientVector()</method>
+    <method>public double[] gov.llnl.math.Nnlsq.getProjection()</method>
+    <method>public void gov.llnl.math.Nnlsq.initialize(gov.llnl.math.Nnlsq$Input) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public void gov.llnl.math.Nnlsq.setOptions(boolean,boolean,boolean,boolean)</method>
+    <method>public void gov.llnl.math.Nnlsq.solve() throws gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public void gov.llnl.math.Nnlsq.solve(gov.llnl.math.Nnlsq$Input) throws gov.llnl.math.Exceptions$ConvergenceException,gov.llnl.math.Exceptions$SizeException</method>
+    <field>public boolean gov.llnl.math.Nnlsq.useCache</field>
+    <field>public boolean gov.llnl.math.Nnlsq.useConstraints</field>
+    <field>public boolean gov.llnl.math.Nnlsq.useDeferred</field>
+    <field>public boolean gov.llnl.math.Nnlsq.useScaleDemand</field>
+    <field>public boolean gov.llnl.math.Nnlsq.useUnitize</field>
+    <field>public double gov.llnl.math.Nnlsq.regressandLength</field>
+    <field>public double gov.llnl.math.Nnlsq.regressandScale</field>
+    <field>public double gov.llnl.math.Nnlsq.toleranceDemand</field>
+    <field>public double[] gov.llnl.math.Nnlsq.beta</field>
+    <field>public double[] gov.llnl.math.Nnlsq.coefficients</field>
+    <field>public double[] gov.llnl.math.Nnlsq.demand</field>
+    <field>public double[] gov.llnl.math.Nnlsq.regressand</field>
+    <field>public double[] gov.llnl.math.Nnlsq.regressandProjection</field>
+    <field>public double[] gov.llnl.math.Nnlsq.regressandWeighted</field>
+    <field>public double[] gov.llnl.math.Nnlsq.regressorsScale</field>
+    <field>public double[] gov.llnl.math.Nnlsq.zp</field>
+    <field>public gov.llnl.math.DoubleMatrix gov.llnl.math.Nnlsq.productMatrix</field>
+    <field>public gov.llnl.math.DoubleMatrix gov.llnl.math.Nnlsq.productMatrixCache</field>
+    <field>public gov.llnl.math.IndexSet gov.llnl.math.Nnlsq.setCycled</field>
+    <field>public gov.llnl.math.IndexSet gov.llnl.math.Nnlsq.setDeferred</field>
+    <field>public gov.llnl.math.IndexSet gov.llnl.math.Nnlsq.setIn</field>
+    <field>public gov.llnl.math.IndexSet gov.llnl.math.Nnlsq.setOut</field>
+    <field>public gov.llnl.math.Nnlsq$Input gov.llnl.math.Nnlsq.input</field>
+    <field>public gov.llnl.math.parallel.NnlsqOperations gov.llnl.math.Nnlsq.processor</field>
+    <field>public int[] gov.llnl.math.Nnlsq.constrainTag</field>
+    <field>public int[] gov.llnl.math.Nnlsq.convergenceTag</field>
+    <field>public long gov.llnl.math.Nnlsq.cost</field>
+  </class>
+  <class name="class gov.llnl.math.Nnlsq$Input">
+    <ctor>public gov.llnl.math.Nnlsq$Input()</ctor>
+    <method>public abstract double[] gov.llnl.math.Nnlsq$Input.getRegressand()</method>
+    <method>public abstract double[] gov.llnl.math.Nnlsq$Input.getRegressandWeighted()</method>
+    <method>public abstract double[] gov.llnl.math.Nnlsq$Input.getRegressor(int)</method>
+    <method>public abstract double[] gov.llnl.math.Nnlsq$Input.getRegressorWeighted(int)</method>
+    <method>public abstract int gov.llnl.math.Nnlsq$Input.getNumRegressors()</method>
+    <method>public abstract int gov.llnl.math.Nnlsq$Input.getNumVariables()</method>
+    <method>public abstract int gov.llnl.math.Nnlsq$Input.getRegressorOffset(int)</method>
+    <method>public abstract int[] gov.llnl.math.Nnlsq$Input.getRegressorSet()</method>
+    <method>public abstract void gov.llnl.math.Nnlsq$Input.initialize()</method>
+    <field>public java.util.Collection gov.llnl.math.Nnlsq$Input.constraints</field>
+  </class>
+  <class name="class gov.llnl.math.Nnlsq$InputArrays">
+    <ctor>public gov.llnl.math.Nnlsq$InputArrays()</ctor>
+    <method>public double[] gov.llnl.math.Nnlsq$InputArrays.getRegressand()</method>
+    <method>public double[] gov.llnl.math.Nnlsq$InputArrays.getRegressandWeighted()</method>
+    <method>public double[] gov.llnl.math.Nnlsq$InputArrays.getRegressor(int)</method>
+    <method>public double[] gov.llnl.math.Nnlsq$InputArrays.getRegressorWeighted(int)</method>
+    <method>public int gov.llnl.math.Nnlsq$InputArrays.getNumRegressors()</method>
+    <method>public int gov.llnl.math.Nnlsq$InputArrays.getNumVariables()</method>
+    <method>public int gov.llnl.math.Nnlsq$InputArrays.getRegressorOffset(int)</method>
+    <method>public int[] gov.llnl.math.Nnlsq$InputArrays.getRegressorSet()</method>
+    <method>public void gov.llnl.math.Nnlsq$InputArrays.clearWeighted()</method>
+    <method>public void gov.llnl.math.Nnlsq$InputArrays.initialize()</method>
+    <field>public double[] gov.llnl.math.Nnlsq$InputArrays.regressand</field>
+    <field>public double[] gov.llnl.math.Nnlsq$InputArrays.regressandWeighted</field>
+    <field>public double[][] gov.llnl.math.Nnlsq$InputArrays.regressors</field>
+    <field>public double[][] gov.llnl.math.Nnlsq$InputArrays.regressorsWeighted</field>
+    <field>public int[] gov.llnl.math.Nnlsq$InputArrays.use</field>
+    <field>public java.util.Collection gov.llnl.math.Nnlsq$Input.constraints</field>
+  </class>
+  <class name="class gov.llnl.math.Nnlsq$InputDoubleMatrix">
+    <ctor>public gov.llnl.math.Nnlsq$InputDoubleMatrix()</ctor>
+    <method>public double[] gov.llnl.math.Nnlsq$InputDoubleMatrix.getRegressand()</method>
+    <method>public double[] gov.llnl.math.Nnlsq$InputDoubleMatrix.getRegressandWeighted()</method>
+    <method>public double[] gov.llnl.math.Nnlsq$InputDoubleMatrix.getRegressor(int)</method>
+    <method>public double[] gov.llnl.math.Nnlsq$InputDoubleMatrix.getRegressorWeighted(int)</method>
+    <method>public int gov.llnl.math.Nnlsq$InputDoubleMatrix.getNumRegressors()</method>
+    <method>public int gov.llnl.math.Nnlsq$InputDoubleMatrix.getNumVariables()</method>
+    <method>public int gov.llnl.math.Nnlsq$InputDoubleMatrix.getRegressorOffset(int)</method>
+    <method>public int[] gov.llnl.math.Nnlsq$InputDoubleMatrix.getRegressorSet()</method>
+    <method>public void gov.llnl.math.Nnlsq$InputDoubleMatrix.clearWeighted()</method>
+    <method>public void gov.llnl.math.Nnlsq$InputDoubleMatrix.initialize()</method>
+    <field>public double[] gov.llnl.math.Nnlsq$InputDoubleMatrix.regressand</field>
+    <field>public double[] gov.llnl.math.Nnlsq$InputDoubleMatrix.regressandWeighted</field>
+    <field>public double[] gov.llnl.math.Nnlsq$InputDoubleMatrix.weight</field>
+    <field>public gov.llnl.math.DoubleMatrix gov.llnl.math.Nnlsq$InputDoubleMatrix.regressors</field>
+    <field>public gov.llnl.math.DoubleMatrix gov.llnl.math.Nnlsq$InputDoubleMatrix.regressorsWeighted</field>
+    <field>public int[] gov.llnl.math.Nnlsq$InputDoubleMatrix.use</field>
+    <field>public java.util.Collection gov.llnl.math.Nnlsq$Input.constraints</field>
+  </class>
+  <class name="class gov.llnl.math.NnlsqFactory">
+    <ctor>public gov.llnl.math.NnlsqFactory()</ctor>
+    <method>public boolean gov.llnl.math.NnlsqFactory.getUseCache()</method>
+    <method>public boolean gov.llnl.math.NnlsqFactory.getUseDeferred()</method>
+    <method>public boolean gov.llnl.math.NnlsqFactory.getUseScaleDemand()</method>
+    <method>public boolean gov.llnl.math.NnlsqFactory.getUseUnitize()</method>
+    <method>public double[] gov.llnl.math.NnlsqFactory.solve(double[][],double[]) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public double[] gov.llnl.math.NnlsqFactory.solve(gov.llnl.math.DoubleMatrix,double[]) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public double[] gov.llnl.math.NnlsqFactory.solve(gov.llnl.math.DoubleMatrix,double[],double[]) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public double[] gov.llnl.math.NnlsqFactory.solve(gov.llnl.math.DoubleMatrix,double[],double[],int[]) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public double[] gov.llnl.math.NnlsqFactory.solve(gov.llnl.math.DoubleMatrix,double[],gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public double[] gov.llnl.math.NnlsqFactory.solve(gov.llnl.math.DoubleMatrix,double[],gov.llnl.math.DoubleMatrix,int[]) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public double[] gov.llnl.math.NnlsqFactory.solve(gov.llnl.math.DoubleMatrix,double[],int[]) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public gov.llnl.math.Nnlsq gov.llnl.math.NnlsqFactory.create()</method>
+    <method>public gov.llnl.math.Nnlsq gov.llnl.math.NnlsqFactory.solve(gov.llnl.math.Nnlsq$Input) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public void gov.llnl.math.NnlsqFactory.dispose()</method>
+    <method>public void gov.llnl.math.NnlsqFactory.setParallel(boolean)</method>
+    <method>public void gov.llnl.math.NnlsqFactory.setUseCache(boolean)</method>
+    <method>public void gov.llnl.math.NnlsqFactory.setUseDeferred(boolean)</method>
+    <method>public void gov.llnl.math.NnlsqFactory.setUseScaleDemand(boolean)</method>
+    <method>public void gov.llnl.math.NnlsqFactory.setUseUnitize(boolean)</method>
+    <method>public void gov.llnl.math.NnlsqFactory.solve(double[],gov.llnl.math.DoubleMatrix,double[],double[],int[],gov.llnl.math.Nnlsq) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public void gov.llnl.math.NnlsqFactory.solve(double[],gov.llnl.math.DoubleMatrix,double[],gov.llnl.math.DoubleMatrix,int[],gov.llnl.math.Nnlsq) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <method>public void gov.llnl.math.NnlsqFactory.solve(double[],gov.llnl.math.DoubleMatrix,double[],int[],gov.llnl.math.Nnlsq) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <field>public gov.llnl.math.Nnlsq gov.llnl.math.NnlsqFactory.workspace</field>
+    <field>public gov.llnl.math.parallel.ParallelProcessor gov.llnl.math.NnlsqFactory.processor</field>
+  </class>
+  <class name="class gov.llnl.math.QRDecomposition">
+    <ctor>public gov.llnl.math.QRDecomposition()</ctor>
+    <method>public void gov.llnl.math.QRDecomposition.compute(gov.llnl.math.DoubleMatrix)</method>
+    <method>public void gov.llnl.math.QRDecomposition.compute(gov.llnl.math.DoubleMatrix,int)</method>
+    <field>public double gov.llnl.math.QRDecomposition.epsilon</field>
+    <field>public gov.llnl.math.DoubleMatrix gov.llnl.math.QRDecomposition.q</field>
+    <field>public gov.llnl.math.DoubleMatrix gov.llnl.math.QRDecomposition.r</field>
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities">
+    <ctor>public gov.llnl.math.RebinUtilities()</ctor>
+    <method>public static double[] gov.llnl.math.RebinUtilities.collect(double[],int[])</method>
+    <method>public static double[] gov.llnl.math.RebinUtilities.rebin(double[],double[],double[]) throws gov.llnl.math.RebinUtilities$RebinException</method>
+    <method>public static double[] gov.llnl.math.RebinUtilities.rescale(double[],int) throws gov.llnl.math.RebinUtilities$RebinException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.RebinUtilities.collect(gov.llnl.math.DoubleMatrix,int[])</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.RebinUtilities.rebin(gov.llnl.math.DoubleMatrix,double[],double[]) throws gov.llnl.math.RebinUtilities$RebinException</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.RebinUtilities.rescale(gov.llnl.math.DoubleMatrix,int) throws gov.llnl.math.RebinUtilities$RebinException</method>
+    <method>public static int[] gov.llnl.math.RebinUtilities.collect(int[],int[])</method>
+    <method>public static void gov.llnl.math.RebinUtilities.execute(gov.llnl.math.RebinUtilities$OutputWrapper,gov.llnl.math.RebinUtilities$InputWrapper,gov.llnl.math.RebinUtilities$BinEdges,gov.llnl.math.RebinUtilities$BinEdges) throws gov.llnl.math.RebinUtilities$RebinException</method>
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities$ArrayBinEdges">
+    <ctor>public gov.llnl.math.RebinUtilities$ArrayBinEdges(double[])</ctor>
+    <method>public double gov.llnl.math.RebinUtilities$ArrayBinEdges.get(int)</method>
+    <method>public int gov.llnl.math.RebinUtilities$ArrayBinEdges.size()</method>
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities$DoubleArrayInputWrapper">
+    <ctor>public gov.llnl.math.RebinUtilities$DoubleArrayInputWrapper(double[])</ctor>
+    <method>public double gov.llnl.math.RebinUtilities$DoubleArrayInputWrapper.get(int,int)</method>
+    <method>public int gov.llnl.math.RebinUtilities$DoubleArrayInputWrapper.getColumns()</method>
+    <method>public int gov.llnl.math.RebinUtilities$DoubleArrayInputWrapper.size()</method>
+    <method>public void gov.llnl.math.RebinUtilities$DoubleArrayInputWrapper.verifyDimensions(int) throws gov.llnl.math.RebinUtilities$RebinException</method>
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities$DoubleArrayOutputWrapper">
+    <ctor>public gov.llnl.math.RebinUtilities$DoubleArrayOutputWrapper(double[])</ctor>
+    <method>public int gov.llnl.math.RebinUtilities$DoubleArrayOutputWrapper.size()</method>
+    <method>public void gov.llnl.math.RebinUtilities$DoubleArrayOutputWrapper.accumulate(gov.llnl.math.RebinUtilities$InputWrapper,int)</method>
+    <method>public void gov.llnl.math.RebinUtilities$DoubleArrayOutputWrapper.apply(int)</method>
+    <method>public void gov.llnl.math.RebinUtilities$DoubleArrayOutputWrapper.initialize(double,gov.llnl.math.RebinUtilities$InputWrapper,int)</method>
+    <method>public void gov.llnl.math.RebinUtilities$DoubleArrayOutputWrapper.take()</method>
+    <method>public void gov.llnl.math.RebinUtilities$DoubleArrayOutputWrapper.take(double)</method>
+    <method>public void gov.llnl.math.RebinUtilities$DoubleArrayOutputWrapper.verifyDimensions(int,int) throws gov.llnl.math.RebinUtilities$RebinException</method>
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities$IntegerArrayInputWrapper">
+    <ctor>public gov.llnl.math.RebinUtilities$IntegerArrayInputWrapper(int[])</ctor>
+    <method>public double gov.llnl.math.RebinUtilities$IntegerArrayInputWrapper.get(int,int)</method>
+    <method>public int gov.llnl.math.RebinUtilities$IntegerArrayInputWrapper.getColumns()</method>
+    <method>public int gov.llnl.math.RebinUtilities$IntegerArrayInputWrapper.size()</method>
+    <method>public void gov.llnl.math.RebinUtilities$IntegerArrayInputWrapper.verifyDimensions(int) throws gov.llnl.math.RebinUtilities$RebinException</method>
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities$MatrixInputWrapper">
+    <ctor>public gov.llnl.math.RebinUtilities$MatrixInputWrapper(gov.llnl.math.DoubleMatrix)</ctor>
+    <method>public double gov.llnl.math.RebinUtilities$MatrixInputWrapper.get(int,int)</method>
+    <method>public int gov.llnl.math.RebinUtilities$MatrixInputWrapper.getColumns()</method>
+    <method>public int gov.llnl.math.RebinUtilities$MatrixInputWrapper.size()</method>
+    <method>public void gov.llnl.math.RebinUtilities$MatrixInputWrapper.verifyDimensions(int) throws gov.llnl.math.RebinUtilities$RebinException</method>
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities$MatrixOutputWrapper">
+    <ctor>public gov.llnl.math.RebinUtilities$MatrixOutputWrapper(gov.llnl.math.DoubleMatrix)</ctor>
+    <method>public int gov.llnl.math.RebinUtilities$MatrixOutputWrapper.size()</method>
+    <method>public void gov.llnl.math.RebinUtilities$MatrixOutputWrapper.accumulate(gov.llnl.math.RebinUtilities$InputWrapper,int)</method>
+    <method>public void gov.llnl.math.RebinUtilities$MatrixOutputWrapper.apply(int)</method>
+    <method>public void gov.llnl.math.RebinUtilities$MatrixOutputWrapper.initialize(double,gov.llnl.math.RebinUtilities$InputWrapper,int)</method>
+    <method>public void gov.llnl.math.RebinUtilities$MatrixOutputWrapper.take()</method>
+    <method>public void gov.llnl.math.RebinUtilities$MatrixOutputWrapper.take(double)</method>
+    <method>public void gov.llnl.math.RebinUtilities$MatrixOutputWrapper.verifyDimensions(int,int) throws gov.llnl.math.RebinUtilities$RebinException</method>
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities$RebinException">
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities$ScaledArrayBinEdges">
+    <ctor>public gov.llnl.math.RebinUtilities$ScaledArrayBinEdges(double[],double)</ctor>
+    <method>public double gov.llnl.math.RebinUtilities$ScaledArrayBinEdges.get(int)</method>
+    <method>public int gov.llnl.math.RebinUtilities$ScaledArrayBinEdges.size()</method>
+  </class>
+  <class name="class gov.llnl.math.RebinUtilities$StepBinEdges">
+    <ctor>public gov.llnl.math.RebinUtilities$StepBinEdges(double,double,int)</ctor>
+    <method>public double gov.llnl.math.RebinUtilities$StepBinEdges.get(int)</method>
+    <method>public int gov.llnl.math.RebinUtilities$StepBinEdges.size()</method>
+    <method>public static gov.llnl.math.RebinUtilities$StepBinEdges gov.llnl.math.RebinUtilities$StepBinEdges.createLinear(double,double,int)</method>
+  </class>
+  <class name="class gov.llnl.math.RegularizedGammaFunction">
+    <ctor>public gov.llnl.math.RegularizedGammaFunction()</ctor>
+    <method>public boolean gov.llnl.math.RegularizedGammaFunction.evaluate(double,double)</method>
+    <method>public boolean gov.llnl.math.RegularizedGammaFunction.evaluateContinuedFraction1(double,double,int)</method>
+    <method>public boolean gov.llnl.math.RegularizedGammaFunction.evaluateContinuedFraction2(double,double,int)</method>
+    <method>public boolean gov.llnl.math.RegularizedGammaFunction.evaluatePowerSeries(double,double,int)</method>
+    <method>public boolean gov.llnl.math.RegularizedGammaFunction.evaluateUniformAsymptoticExpansions(double,double)</method>
+    <method>public double gov.llnl.math.RegularizedGammaFunction.getP()</method>
+    <method>public double gov.llnl.math.RegularizedGammaFunction.getQ()</method>
+  </class>
+  <class name="class gov.llnl.math.Smoothing">
+    <ctor>public gov.llnl.math.Smoothing()</ctor>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.Smoothing.smooth(gov.llnl.math.DoubleMatrix,double)</method>
+  </class>
+  <class name="class gov.llnl.math.SolverUtilities">
+    <ctor>public gov.llnl.math.SolverUtilities()</ctor>
+    <method>public static double gov.llnl.math.SolverUtilities.computeResidue(gov.llnl.math.DoubleMatrix,double[],double[]) throws java.lang.Exception</method>
+    <method>public static double gov.llnl.math.SolverUtilities.maximumDiagonal(gov.llnl.math.DoubleMatrix)</method>
+    <method>public static double[] gov.llnl.math.SolverUtilities.backSubstituteLower(double[],gov.llnl.math.DoubleMatrix)</method>
+    <method>public static double[] gov.llnl.math.SolverUtilities.backSubstituteUpperFixed(double[],gov.llnl.math.DoubleMatrix,double)</method>
+    <method>public static double[] gov.llnl.math.SolverUtilities.solveCholesky(double[],gov.llnl.math.DoubleMatrix)</method>
+    <method>public static double[] gov.llnl.math.SolverUtilities.solveCholesky2(double[],gov.llnl.math.DoubleMatrix)</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.SolverUtilities.decomposeCholeskyLR(gov.llnl.math.DoubleMatrix)</method>
+    <method>public static gov.llnl.math.DoubleMatrix gov.llnl.math.SolverUtilities.filter(gov.llnl.math.DoubleMatrix,double[])</method>
+    <method>public static int gov.llnl.math.SolverUtilities.computeCholeskyInverse(double[],gov.llnl.math.DoubleMatrix,int)</method>
+    <method>public static void gov.llnl.math.SolverUtilities.computeMaxValue(gov.llnl.math.SolverUtilities$MaxResult,double[],int)</method>
+    <method>public static void gov.llnl.math.SolverUtilities.speedTest(double[],gov.llnl.math.DoubleMatrix)</method>
+    <method>public static void gov.llnl.math.SolverUtilities.speedTest2(double[],gov.llnl.math.DoubleMatrix)</method>
+  </class>
+  <class name="class gov.llnl.math.SolverUtilities$MaxResult">
+    <ctor>public gov.llnl.math.SolverUtilities$MaxResult()</ctor>
+    <field>public double gov.llnl.math.SolverUtilities$MaxResult.max</field>
+    <field>public int gov.llnl.math.SolverUtilities$MaxResult.index</field>
+  </class>
+  <class name="class gov.llnl.math.SpecialFunctions">
+    <ctor>public gov.llnl.math.SpecialFunctions()</ctor>
+    <method>public static double gov.llnl.math.SpecialFunctions.atanh(double)</method>
+    <method>public static double gov.llnl.math.SpecialFunctions.erf(double)</method>
+    <method>public static double gov.llnl.math.SpecialFunctions.erfc(double)</method>
+    <method>public static double gov.llnl.math.SpecialFunctions.erfcinv(double)</method>
+    <method>public static double gov.llnl.math.SpecialFunctions.erfinv(double)</method>
+    <method>public static double gov.llnl.math.SpecialFunctions.gammaP(double,double)</method>
+    <method>public static double gov.llnl.math.SpecialFunctions.gammaQ(double,double)</method>
+    <method>public static double gov.llnl.math.SpecialFunctions.gammaln(double)</method>
+    <method>public static double gov.llnl.math.SpecialFunctions.positiveAsymptotic(double)</method>
+    <method>public static java.lang.reflect.Method gov.llnl.math.SpecialFunctions.getFunction(java.lang.String)</method>
+  </class>
+  <class name="class gov.llnl.math.StatisticalUtilities">
+    <ctor>public gov.llnl.math.StatisticalUtilities()</ctor>
+    <method>public static double gov.llnl.math.StatisticalUtilities.binomialAnscombeTransform(double)</method>
+    <method>public static double gov.llnl.math.StatisticalUtilities.boxCoxTransform1(double,double)</method>
+    <method>public static double gov.llnl.math.StatisticalUtilities.chiSquaredTransform(double,double)</method>
+    <method>public static double gov.llnl.math.StatisticalUtilities.gammaTransform(double,double,double)</method>
+    <method>public static double gov.llnl.math.StatisticalUtilities.poissonAnscombeTransform(double)</method>
+    <method>public static double gov.llnl.math.StatisticalUtilities.poissonFreemanTukeyTransform(double)</method>
+    <method>public static double[] gov.llnl.math.StatisticalUtilities.chiSquaredTransformArray(double[],double)</method>
+    <method>public static double[] gov.llnl.math.StatisticalUtilities.gammaTransformArray(double[],double,double)</method>
+  </class>
+  <class name="class gov.llnl.math.cluster.kmeans">
+    <ctor>public gov.llnl.math.cluster.kmeans()</ctor>
+  </class>
+  <class name="class gov.llnl.math.cluster.kmeans$DotProductMetric">
+    <ctor>public gov.llnl.math.cluster.kmeans$DotProductMetric()</ctor>
+    <method>public double gov.llnl.math.cluster.kmeans$DotProductMetric.compare(double[],double[])</method>
+  </class>
+  <class name="class gov.llnl.math.distribution.ChiSquaredDistribution">
+    <ctor>public gov.llnl.math.distribution.ChiSquaredDistribution(double)</ctor>
+    <method>public double gov.llnl.math.distribution.ChiSquaredDistribution.ccdf(double)</method>
+    <method>public double gov.llnl.math.distribution.ChiSquaredDistribution.cdf(double)</method>
+    <method>public double gov.llnl.math.distribution.ChiSquaredDistribution.cdfinv(double)</method>
+    <method>public double gov.llnl.math.distribution.ChiSquaredDistribution.pdf(double)</method>
+    <method>public java.lang.String gov.llnl.math.distribution.ChiSquaredDistribution.toString()</method>
+  </class>
+  <class name="class gov.llnl.math.distribution.DistributionFactory">
+    <ctor>public gov.llnl.math.distribution.DistributionFactory(gov.llnl.utility.ReaderContext)</ctor>
+    <method>public gov.llnl.math.distribution.Distribution gov.llnl.math.distribution.DistributionFactory.createFromXML(org.w3c.dom.Element) throws gov.llnl.utility.ReaderException</method>
+    <method>public java.lang.Object gov.llnl.math.distribution.DistributionFactory.createFromXML(org.w3c.dom.Element) throws gov.llnl.utility.ReaderException</method>
+  </class>
+  <class name="class gov.llnl.math.distribution.GammaDistribution">
+    <ctor>public gov.llnl.math.distribution.GammaDistribution(double,double)</ctor>
+    <method>public double gov.llnl.math.distribution.GammaDistribution.ccdf(double)</method>
+    <method>public double gov.llnl.math.distribution.GammaDistribution.cdf(double)</method>
+    <method>public double gov.llnl.math.distribution.GammaDistribution.cdfinv(double)</method>
+    <method>public double gov.llnl.math.distribution.GammaDistribution.pdf(double)</method>
+    <method>public java.lang.String gov.llnl.math.distribution.GammaDistribution.toString()</method>
+  </class>
+  <class name="class gov.llnl.math.distribution.GumbelDistribution">
+    <ctor>public gov.llnl.math.distribution.GumbelDistribution(double,double)</ctor>
+    <method>public double gov.llnl.math.distribution.GumbelDistribution.ccdf(double)</method>
+    <method>public double gov.llnl.math.distribution.GumbelDistribution.cdf(double)</method>
+    <method>public double gov.llnl.math.distribution.GumbelDistribution.cdfinv(double)</method>
+    <method>public double gov.llnl.math.distribution.GumbelDistribution.convertToNormal(double)</method>
+    <method>public double gov.llnl.math.distribution.GumbelDistribution.pdf(double)</method>
+    <method>public double gov.llnl.math.distribution.GumbelDistribution.significance(double)</method>
+    <method>public double[] gov.llnl.math.distribution.GumbelDistribution.significance(double[])</method>
+    <method>public java.lang.String gov.llnl.math.distribution.GumbelDistribution.toString()</method>
+    <method>public static gov.llnl.math.distribution.GumbelDistribution gov.llnl.math.distribution.GumbelDistribution.fit(double[],double,double)</method>
+    <field>public double gov.llnl.math.distribution.GumbelDistribution.beta</field>
+    <field>public double gov.llnl.math.distribution.GumbelDistribution.mu</field>
+  </class>
+  <class name="class gov.llnl.math.distribution.NormalDistribution">
+    <ctor>public gov.llnl.math.distribution.NormalDistribution()</ctor>
+    <ctor>public gov.llnl.math.distribution.NormalDistribution(double,double)</ctor>
+    <method>public double gov.llnl.math.distribution.NormalDistribution.ccdf(double)</method>
+    <method>public double gov.llnl.math.distribution.NormalDistribution.cdf(double)</method>
+    <method>public double gov.llnl.math.distribution.NormalDistribution.cdfinv(double)</method>
+    <method>public double gov.llnl.math.distribution.NormalDistribution.pdf(double)</method>
+    <method>public java.lang.String gov.llnl.math.distribution.NormalDistribution.toString()</method>
+  </class>
+  <class name="class gov.llnl.math.distribution.PoissonDistribution">
+    <ctor>public gov.llnl.math.distribution.PoissonDistribution(double)</ctor>
+    <method>public double gov.llnl.math.distribution.PoissonDistribution.ccdf(double)</method>
+    <method>public double gov.llnl.math.distribution.PoissonDistribution.cdf(double)</method>
+    <method>public double gov.llnl.math.distribution.PoissonDistribution.cdfinv(double)</method>
+    <method>public double gov.llnl.math.distribution.PoissonDistribution.pdf(double)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.BayesianNetwork">
+    <ctor>public gov.llnl.math.graph.BayesianNetwork()</ctor>
+    <method>public double gov.llnl.math.graph.BayesianNetwork.getProbability(gov.llnl.math.graph.GraphQuery)</method>
+    <method>public gov.llnl.math.graph.BayesianNetworkEdge gov.llnl.math.graph.BayesianNetwork.allocateEdge()</method>
+    <method>public gov.llnl.math.graph.BayesianNetworkNode gov.llnl.math.graph.BayesianNetwork.allocateNode()</method>
+    <method>public gov.llnl.math.graph.primatives.EdgeBase gov.llnl.math.graph.BayesianNetwork.allocateEdge()</method>
+    <method>public gov.llnl.math.graph.primatives.NodeBase gov.llnl.math.graph.BayesianNetwork.allocateNode()</method>
+    <method>public void gov.llnl.math.graph.BayesianNetwork.dispose()</method>
+    <method>public void gov.llnl.math.graph.BayesianNetwork.dump(java.io.PrintStream)</method>
+    <method>public void gov.llnl.math.graph.BayesianNetwork.initializeQuery(gov.llnl.math.graph.GraphQuery)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.BayesianNetworkEdge">
+    <ctor>public gov.llnl.math.graph.BayesianNetworkEdge()</ctor>
+  </class>
+  <class name="class gov.llnl.math.graph.BayesianNetworkNode">
+    <ctor>public gov.llnl.math.graph.BayesianNetworkNode()</ctor>
+    <method>public double gov.llnl.math.graph.BayesianNetworkNode.getProbability(gov.llnl.math.graph.GraphQuery)</method>
+    <method>public double gov.llnl.math.graph.BayesianNetworkNode.getProbabilityTable(int)</method>
+    <method>public int gov.llnl.math.graph.BayesianNetworkNode.getProbabilityTableSize()</method>
+    <method>public int gov.llnl.math.graph.BayesianNetworkNode.getQueryId()</method>
+    <method>public void gov.llnl.math.graph.BayesianNetworkNode.allocateProbabilityTable()</method>
+    <method>public void gov.llnl.math.graph.BayesianNetworkNode.dispose()</method>
+    <method>public void gov.llnl.math.graph.BayesianNetworkNode.setProbability(int,double)</method>
+    <method>public void gov.llnl.math.graph.BayesianNetworkNode.setQueryId(int)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.BayesianNetworkReader">
+    <ctor>public gov.llnl.math.graph.BayesianNetworkReader()</ctor>
+    <method>public boolean gov.llnl.math.graph.BayesianNetworkReader.apply(gov.llnl.math.graph.BayesianNetwork,org.w3c.dom.Document)</method>
+    <method>public boolean gov.llnl.math.graph.BayesianNetworkReader.load(gov.llnl.math.graph.BayesianNetwork,java.io.File)</method>
+    <method>public int gov.llnl.math.graph.BayesianNetworkReader.getQueryId(java.lang.String)</method>
+    <method>public void gov.llnl.math.graph.BayesianNetworkReader.dispose()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.GraphQuery">
+    <ctor>public gov.llnl.math.graph.GraphQuery()</ctor>
+    <ctor>public gov.llnl.math.graph.GraphQuery(int)</ctor>
+    <method>public boolean gov.llnl.math.graph.GraphQuery.hasPartials()</method>
+    <method>public boolean gov.llnl.math.graph.GraphQuery.isFalse(int)</method>
+    <method>public boolean gov.llnl.math.graph.GraphQuery.isPartial(int)</method>
+    <method>public boolean gov.llnl.math.graph.GraphQuery.isTrue(int)</method>
+    <method>public boolean gov.llnl.math.graph.GraphQuery.isUnknown(int)</method>
+    <method>public byte gov.llnl.math.graph.GraphQuery.get(int)</method>
+    <method>public double gov.llnl.math.graph.GraphQuery.getPartial(int)</method>
+    <method>public gov.llnl.math.graph.GraphQuery gov.llnl.math.graph.GraphQuery.clone() throws java.lang.CloneNotSupportedException</method>
+    <method>public int gov.llnl.math.graph.GraphQuery.size()</method>
+    <method>public java.lang.Object gov.llnl.math.graph.GraphQuery.clone() throws java.lang.CloneNotSupportedException</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.clear()</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.dispose()</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.dump(java.io.PrintStream)</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.next()</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.resize(int)</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.set(int,byte)</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.setAll(byte)</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.setAllFalse()</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.setAllTrue()</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.setAllUnknown()</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.setFalse(int)</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.setPartial(int,double)</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.setTrue(int)</method>
+    <method>public void gov.llnl.math.graph.GraphQuery.setUnknown(int)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.GraphQuery$PartialDatum">
+    <ctor>public gov.llnl.math.graph.GraphQuery$PartialDatum(int,double)</ctor>
+    <field>public double gov.llnl.math.graph.GraphQuery$PartialDatum.value</field>
+    <field>public int gov.llnl.math.graph.GraphQuery$PartialDatum.id</field>
+  </class>
+  <class name="class gov.llnl.math.graph.ProbabilityGraph">
+    <ctor>public gov.llnl.math.graph.ProbabilityGraph()</ctor>
+    <method>public double gov.llnl.math.graph.ProbabilityGraph.computeProbability(gov.llnl.math.graph.GraphQuery)</method>
+    <method>public gov.llnl.math.graph.GraphQuery gov.llnl.math.graph.ProbabilityGraph.allocateQuery()</method>
+    <method>public gov.llnl.math.graph.ProbabilityGraphEdge gov.llnl.math.graph.ProbabilityGraph.allocateEdge()</method>
+    <method>public gov.llnl.math.graph.ProbabilityGraphNode gov.llnl.math.graph.ProbabilityGraph.allocateNode()</method>
+    <method>public gov.llnl.math.graph.primatives.EdgeBase gov.llnl.math.graph.ProbabilityGraph.allocateEdge()</method>
+    <method>public gov.llnl.math.graph.primatives.NodeBase gov.llnl.math.graph.ProbabilityGraph.allocateNode()</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraph.dump(java.io.PrintStream)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.ProbabilityGraphEdge">
+    <ctor>public gov.llnl.math.graph.ProbabilityGraphEdge()</ctor>
+  </class>
+  <class name="class gov.llnl.math.graph.ProbabilityGraphNode">
+    <ctor>public gov.llnl.math.graph.ProbabilityGraphNode()</ctor>
+    <method>public boolean gov.llnl.math.graph.ProbabilityGraphNode.hasFactorTable()</method>
+    <method>public boolean gov.llnl.math.graph.ProbabilityGraphNode.isFactorNode()</method>
+    <method>public boolean gov.llnl.math.graph.ProbabilityGraphNode.isVariableNode()</method>
+    <method>public double gov.llnl.math.graph.ProbabilityGraphNode.getFactor(int)</method>
+    <method>public gov.llnl.math.graph.ProbabilityGraphNode$NodeType gov.llnl.math.graph.ProbabilityGraphNode.getType()</method>
+    <method>public int gov.llnl.math.graph.ProbabilityGraphNode.compareTo(gov.llnl.math.graph.ProbabilityGraphNode)</method>
+    <method>public int gov.llnl.math.graph.ProbabilityGraphNode.compareTo(java.lang.Object)</method>
+    <method>public int gov.llnl.math.graph.ProbabilityGraphNode.getFactorTableSize()</method>
+    <method>public int gov.llnl.math.graph.ProbabilityGraphNode.getQueryId()</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphNode.dispose()</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphNode.setAsFactorNode()</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphNode.setAsVariableNode()</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphNode.setFactor(int,double)</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphNode.setQueryId(int)</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphNode.setType(gov.llnl.math.graph.ProbabilityGraphNode$NodeType)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.ProbabilityGraphNode$NodeType">
+    <method>public java.lang.String gov.llnl.math.graph.ProbabilityGraphNode$NodeType.toString()</method>
+    <method>public static gov.llnl.math.graph.ProbabilityGraphNode$NodeType gov.llnl.math.graph.ProbabilityGraphNode$NodeType.valueOf(java.lang.String)</method>
+    <method>public static gov.llnl.math.graph.ProbabilityGraphNode$NodeType[] gov.llnl.math.graph.ProbabilityGraphNode$NodeType.values()</method>
+    <field>public static final gov.llnl.math.graph.ProbabilityGraphNode$NodeType gov.llnl.math.graph.ProbabilityGraphNode$NodeType.INTERCONNECTION</field>
+    <field>public static final gov.llnl.math.graph.ProbabilityGraphNode$NodeType gov.llnl.math.graph.ProbabilityGraphNode$NodeType.UNDEFINED</field>
+    <field>public static final gov.llnl.math.graph.ProbabilityGraphNode$NodeType gov.llnl.math.graph.ProbabilityGraphNode$NodeType.VARIABLE</field>
+  </class>
+  <class name="class gov.llnl.math.graph.ProbabilityGraphNormalizer">
+    <ctor>public gov.llnl.math.graph.ProbabilityGraphNormalizer()</ctor>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphNormalizer.dispose()</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphNormalizer.process(gov.llnl.math.graph.ProbabilityGraph)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.ProbabilityGraphNormalizer$Datum">
+    <ctor>public gov.llnl.math.graph.ProbabilityGraphNormalizer$Datum()</ctor>
+  </class>
+  <class name="class gov.llnl.math.graph.ProbabilityGraphReader">
+    <ctor>public gov.llnl.math.graph.ProbabilityGraphReader()</ctor>
+    <method>public boolean gov.llnl.math.graph.ProbabilityGraphReader.apply(gov.llnl.math.graph.ProbabilityGraph,org.w3c.dom.Document)</method>
+    <method>public boolean gov.llnl.math.graph.ProbabilityGraphReader.apply(gov.llnl.math.graph.ProbabilityGraph,org.w3c.dom.Element)</method>
+    <method>public boolean gov.llnl.math.graph.ProbabilityGraphReader.load(gov.llnl.math.graph.ProbabilityGraph,java.io.File)</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphReader.dispose()</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphReader.setDefaultQueryLookup()</method>
+    <method>public void gov.llnl.math.graph.ProbabilityGraphReader.setQueryLookup(gov.llnl.math.graph.ProbabilityGraphReader$QueryLookupInterface)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.ProbabilityGraphReader$DefaultQueryLookup">
+    <ctor>public gov.llnl.math.graph.ProbabilityGraphReader$DefaultQueryLookup()</ctor>
+    <method>public int gov.llnl.math.graph.ProbabilityGraphReader$DefaultQueryLookup.lookup(java.lang.String)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.ProbabilityGraphReader$QueryLookupInterface">
+    <ctor>public gov.llnl.math.graph.ProbabilityGraphReader$QueryLookupInterface()</ctor>
+    <method>public abstract int gov.llnl.math.graph.ProbabilityGraphReader$QueryLookupInterface.lookup(java.lang.String)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.ViterbiProbabilityGraph">
+    <ctor>public gov.llnl.math.graph.ViterbiProbabilityGraph()</ctor>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.assignOrder(gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.calculateStateRatios(gov.llnl.math.graph.ViterbiProbabilityGraph$Output,gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.collectEvidence(gov.llnl.math.graph.ViterbiProbabilityGraph$Output,gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace,gov.llnl.math.graph.GraphQuery)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.distrubuteDecisions(gov.llnl.math.graph.ViterbiProbabilityGraph$Output,gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.distrubuteEvidence(gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace,gov.llnl.math.graph.GraphQuery)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.execute(gov.llnl.math.graph.ViterbiProbabilityGraph$Output,gov.llnl.math.graph.ProbabilityGraph,gov.llnl.math.graph.GraphQuery)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.execute(gov.llnl.math.graph.ViterbiProbabilityGraph$Output,gov.llnl.math.graph.ProbabilityGraph,gov.llnl.math.graph.GraphQuery,gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.initialize(gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace,gov.llnl.math.graph.ProbabilityGraph)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.propogate(gov.llnl.math.graph.ViterbiProbabilityGraph$Output,gov.llnl.math.graph.ProbabilityGraph,gov.llnl.math.graph.GraphQuery)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph.propogate(gov.llnl.math.graph.ViterbiProbabilityGraph$Output,gov.llnl.math.graph.ProbabilityGraph,gov.llnl.math.graph.GraphQuery,gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.ViterbiProbabilityGraph$Datum">
+    <ctor>public gov.llnl.math.graph.ViterbiProbabilityGraph$Datum()</ctor>
+    <method>public final void gov.llnl.math.graph.ViterbiProbabilityGraph$Datum.clear()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.ViterbiProbabilityGraph$Output">
+    <ctor>public gov.llnl.math.graph.ViterbiProbabilityGraph$Output()</ctor>
+    <field>public double gov.llnl.math.graph.ViterbiProbabilityGraph$Output.maxProbability</field>
+    <field>public double gov.llnl.math.graph.ViterbiProbabilityGraph$Output.pivotRatio</field>
+    <field>public double gov.llnl.math.graph.ViterbiProbabilityGraph$Output.totalProbability</field>
+    <field>public gov.llnl.math.graph.GraphQuery gov.llnl.math.graph.ViterbiProbabilityGraph$Output.state</field>
+    <field>public int gov.llnl.math.graph.ViterbiProbabilityGraph$Output.pivot</field>
+  </class>
+  <class name="class gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace">
+    <ctor>public gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace()</ctor>
+    <method>public gov.llnl.math.graph.ViterbiProbabilityGraph$Datum gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.getAssociatedData(gov.llnl.math.graph.ProbabilityGraphNode)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.composeMessageForwardFactorNode(gov.llnl.math.graph.ViterbiProbabilityGraph$Datum)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.composeMessageForwardVariableNode(gov.llnl.math.graph.ViterbiProbabilityGraph$Datum,gov.llnl.math.graph.GraphQuery)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.composeMessageReverseFactorNode(gov.llnl.math.graph.ViterbiProbabilityGraph$Datum)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.composeMessageReverseVariableNode(gov.llnl.math.graph.ViterbiProbabilityGraph$Datum,gov.llnl.math.graph.GraphQuery)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.dispose()</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.distributeDecisionFactorNode(gov.llnl.math.graph.ViterbiProbabilityGraph$Datum)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.distributeDecisionVariableNode(gov.llnl.math.graph.ViterbiProbabilityGraph$Datum)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.dump(java.io.PrintStream)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.enqueue(gov.llnl.math.graph.ViterbiProbabilityGraph$Datum)</method>
+    <method>public void gov.llnl.math.graph.ViterbiProbabilityGraph$Workspace.initialize(gov.llnl.math.graph.ProbabilityGraph)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.Connection">
+    <ctor>public gov.llnl.math.graph.primatives.Connection()</ctor>
+    <method>public gov.llnl.math.graph.primatives.Connection gov.llnl.math.graph.primatives.Connection.getNext()</method>
+    <method>public gov.llnl.math.graph.primatives.ConnectionBase gov.llnl.math.graph.primatives.Connection.getNext()</method>
+    <method>public gov.llnl.math.graph.primatives.EdgeBase gov.llnl.math.graph.primatives.Connection.getEdge()</method>
+    <method>public gov.llnl.math.graph.primatives.NodeBase gov.llnl.math.graph.primatives.Connection.getNode()</method>
+    <method>public int gov.llnl.math.graph.primatives.Connection.getId()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.ConnectionBase">
+    <ctor>public gov.llnl.math.graph.primatives.ConnectionBase()</ctor>
+    <method>public gov.llnl.math.graph.primatives.ConnectionBase gov.llnl.math.graph.primatives.ConnectionBase.getNext()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.Digraph">
+    <ctor>public gov.llnl.math.graph.primatives.Digraph()</ctor>
+    <method>public gov.llnl.math.graph.primatives.EdgeBase gov.llnl.math.graph.primatives.Digraph.link(gov.llnl.math.graph.primatives.DigraphNode,gov.llnl.math.graph.primatives.DigraphNode)</method>
+    <method>public gov.llnl.math.graph.primatives.EdgeBase gov.llnl.math.graph.primatives.Digraph.link(gov.llnl.math.graph.primatives.NodeBase,gov.llnl.math.graph.primatives.NodeBase)</method>
+    <method>public void gov.llnl.math.graph.primatives.Digraph.dispose()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.DigraphNode">
+    <ctor>public gov.llnl.math.graph.primatives.DigraphNode()</ctor>
+    <method>public gov.llnl.math.graph.primatives.NodeEdgeList gov.llnl.math.graph.primatives.DigraphNode.getChildren()</method>
+    <method>public gov.llnl.math.graph.primatives.NodeEdgeList gov.llnl.math.graph.primatives.DigraphNode.getParents()</method>
+    <method>public int gov.llnl.math.graph.primatives.DigraphNode.getNumChildren()</method>
+    <method>public int gov.llnl.math.graph.primatives.DigraphNode.getNumEdges()</method>
+    <method>public int gov.llnl.math.graph.primatives.DigraphNode.getNumParents()</method>
+    <method>public void gov.llnl.math.graph.primatives.DigraphNode.appendChild(gov.llnl.math.graph.primatives.EdgeBase)</method>
+    <method>public void gov.llnl.math.graph.primatives.DigraphNode.appendParent(gov.llnl.math.graph.primatives.EdgeBase)</method>
+    <method>public void gov.llnl.math.graph.primatives.DigraphNode.dispose()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.Edge">
+    <ctor>public gov.llnl.math.graph.primatives.Edge()</ctor>
+    <method>public gov.llnl.math.graph.primatives.Connection gov.llnl.math.graph.primatives.Edge.getConnection(boolean)</method>
+    <method>public gov.llnl.math.graph.primatives.Connection gov.llnl.math.graph.primatives.Edge.getConnectionFrom(gov.llnl.math.graph.primatives.NodeBase)</method>
+    <method>public gov.llnl.math.graph.primatives.ConnectionBase gov.llnl.math.graph.primatives.Edge.getConnection(boolean)</method>
+    <method>public gov.llnl.math.graph.primatives.ConnectionBase gov.llnl.math.graph.primatives.Edge.getConnectionFrom(gov.llnl.math.graph.primatives.NodeBase)</method>
+    <method>public gov.llnl.math.graph.primatives.NodeBase gov.llnl.math.graph.primatives.Edge.getNode(boolean)</method>
+    <method>public gov.llnl.math.graph.primatives.NodeBase gov.llnl.math.graph.primatives.Edge.getNodeFrom(gov.llnl.math.graph.primatives.ConnectionBase)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.EdgeBase">
+    <ctor>public gov.llnl.math.graph.primatives.EdgeBase()</ctor>
+    <method>public gov.llnl.math.graph.primatives.ConnectionBase gov.llnl.math.graph.primatives.EdgeBase.getConnection(boolean)</method>
+    <method>public gov.llnl.math.graph.primatives.ConnectionBase gov.llnl.math.graph.primatives.EdgeBase.getConnectionFrom(gov.llnl.math.graph.primatives.NodeBase)</method>
+    <method>public gov.llnl.math.graph.primatives.NodeBase gov.llnl.math.graph.primatives.EdgeBase.getNodeFrom(gov.llnl.math.graph.primatives.ConnectionBase)</method>
+    <method>public int gov.llnl.math.graph.primatives.EdgeBase.getId()</method>
+    <method>public void gov.llnl.math.graph.primatives.EdgeBase.setId(int)</method>
+    <method>public void gov.llnl.math.graph.primatives.EdgeBase.setNode(gov.llnl.math.graph.primatives.NodeBase,boolean)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.Graph">
+    <ctor>public gov.llnl.math.graph.primatives.Graph()</ctor>
+    <method>public gov.llnl.math.graph.primatives.EdgeBase gov.llnl.math.graph.primatives.Graph.link(gov.llnl.math.graph.primatives.GraphNode,gov.llnl.math.graph.primatives.GraphNode)</method>
+    <method>public gov.llnl.math.graph.primatives.EdgeBase gov.llnl.math.graph.primatives.Graph.link(gov.llnl.math.graph.primatives.NodeBase,gov.llnl.math.graph.primatives.NodeBase)</method>
+    <method>public void gov.llnl.math.graph.primatives.Graph.dispose()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.GraphBase">
+    <ctor>public gov.llnl.math.graph.primatives.GraphBase()</ctor>
+    <method>public abstract gov.llnl.math.graph.primatives.EdgeBase gov.llnl.math.graph.primatives.GraphBase.allocateEdge()</method>
+    <method>public abstract gov.llnl.math.graph.primatives.NodeBase gov.llnl.math.graph.primatives.GraphBase.allocateNode()</method>
+    <method>public int gov.llnl.math.graph.primatives.GraphBase.getNumEdges()</method>
+    <method>public int gov.llnl.math.graph.primatives.GraphBase.getNumNodes()</method>
+    <method>public java.util.LinkedList gov.llnl.math.graph.primatives.GraphBase.edges()</method>
+    <method>public java.util.LinkedList gov.llnl.math.graph.primatives.GraphBase.nodes()</method>
+    <method>public void gov.llnl.math.graph.primatives.GraphBase.clear()</method>
+    <method>public void gov.llnl.math.graph.primatives.GraphBase.dispose()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.GraphNode">
+    <ctor>public gov.llnl.math.graph.primatives.GraphNode()</ctor>
+    <method>public gov.llnl.math.graph.primatives.NodeEdgeList gov.llnl.math.graph.primatives.GraphNode.getEdges()</method>
+    <method>public int gov.llnl.math.graph.primatives.GraphNode.getNumEdges()</method>
+    <method>public void gov.llnl.math.graph.primatives.GraphNode.appendEdge(gov.llnl.math.graph.primatives.EdgeBase)</method>
+    <method>public void gov.llnl.math.graph.primatives.GraphNode.dispose()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.NodeBase">
+    <ctor>public gov.llnl.math.graph.primatives.NodeBase()</ctor>
+    <method>public int gov.llnl.math.graph.primatives.NodeBase.getId()</method>
+    <method>public void gov.llnl.math.graph.primatives.NodeBase.setId(int)</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.NodeEdgeList">
+    <ctor>public gov.llnl.math.graph.primatives.NodeEdgeList()</ctor>
+    <method>public gov.llnl.math.graph.primatives.NodeEdgeList$Iterator gov.llnl.math.graph.primatives.NodeEdgeList.iterator()</method>
+    <method>public java.util.Iterator gov.llnl.math.graph.primatives.NodeEdgeList.iterator()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.NodeEdgeList$Iterator">
+    <ctor>public gov.llnl.math.graph.primatives.NodeEdgeList$Iterator(gov.llnl.math.graph.primatives.NodeEdgeList,gov.llnl.math.graph.primatives.ConnectionBase)</ctor>
+    <method>public boolean gov.llnl.math.graph.primatives.NodeEdgeList$Iterator.hasNext()</method>
+    <method>public gov.llnl.math.graph.primatives.Connection gov.llnl.math.graph.primatives.NodeEdgeList$Iterator.next()</method>
+    <method>public java.lang.Object gov.llnl.math.graph.primatives.NodeEdgeList$Iterator.next()</method>
+    <method>public void gov.llnl.math.graph.primatives.NodeEdgeList$Iterator.remove()</method>
+  </class>
+  <class name="class gov.llnl.math.graph.primatives.NodeEdgeListBase">
+    <ctor>public gov.llnl.math.graph.primatives.NodeEdgeListBase()</ctor>
+    <method>public int gov.llnl.math.graph.primatives.NodeEdgeListBase.size()</method>
+    <method>public void gov.llnl.math.graph.primatives.NodeEdgeListBase.append(gov.llnl.math.graph.primatives.ConnectionBase)</method>
+  </class>
+  <class name="class gov.llnl.math.numbers.MutableDouble">
+    <ctor>public gov.llnl.math.numbers.MutableDouble()</ctor>
+    <ctor>public gov.llnl.math.numbers.MutableDouble(double)</ctor>
+    <method>public boolean gov.llnl.math.numbers.MutableDouble.isZero()</method>
+    <method>public double gov.llnl.math.numbers.MutableDouble.get()</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.add(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.addAssign(gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.assign(gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.copy()</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.createForCopy()</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.divide(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.divideAssign(gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.multiply(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.multiplyAssign(gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.negateAssign(gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.subtract(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.subtractAssign(gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.zero()</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.add(java.lang.Object,java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.addAssign(java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.assign(java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.copy()</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.createForCopy()</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.divide(java.lang.Object,java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.divideAssign(java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.multiply(java.lang.Object,java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.multiplyAssign(java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.negateAssign(java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.subtract(java.lang.Object,java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.subtractAssign(java.lang.Object)</method>
+    <method>public java.lang.Object gov.llnl.math.numbers.MutableDouble.zero()</method>
+    <method>public static gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.add(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public static gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.addAssign(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public static gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.divide(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public static gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.divideAssign(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public static gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.multiply(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public static gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.multiplyAssign(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public static gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.negate(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public static gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.subtract(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public static gov.llnl.math.numbers.MutableDouble gov.llnl.math.numbers.MutableDouble.subtractAssign(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public void gov.llnl.math.numbers.MutableDouble.copyTo(gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public void gov.llnl.math.numbers.MutableDouble.copyTo(java.lang.Object)</method>
+    <method>public void gov.llnl.math.numbers.MutableDouble.productSum(gov.llnl.math.numbers.MutableDouble,gov.llnl.math.numbers.MutableDouble)</method>
+    <method>public void gov.llnl.math.numbers.MutableDouble.productSum(java.lang.Object,java.lang.Object)</method>
+    <method>public void gov.llnl.math.numbers.MutableDouble.set(double)</method>
+  </class>
+  <class name="class gov.llnl.math.parallel.DoubleMatrixOperations">
+    <ctor>public gov.llnl.math.parallel.DoubleMatrixOperations()</ctor>
+    <ctor>public gov.llnl.math.parallel.DoubleMatrixOperations(gov.llnl.math.parallel.ParallelProcessor)</ctor>
+    <method>public double[] gov.llnl.math.parallel.DoubleMatrixOperations.multiply(double[],double[],gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public double[] gov.llnl.math.parallel.DoubleMatrixOperations.multiply(double[],gov.llnl.math.DoubleMatrix) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public double[] gov.llnl.math.parallel.DoubleMatrixOperations.multiply(double[],gov.llnl.math.DoubleMatrix,double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <method>public double[] gov.llnl.math.parallel.DoubleMatrixOperations.multiply(gov.llnl.math.DoubleMatrix,double[]) throws gov.llnl.math.Exceptions$SizeException</method>
+    <field>public gov.llnl.math.parallel.ParallelProcessor gov.llnl.math.parallel.DoubleMatrixOperations.processor</field>
+  </class>
+  <class name="class gov.llnl.math.parallel.NnlsqOperations">
+    <ctor>public gov.llnl.math.parallel.NnlsqOperations()</ctor>
+    <ctor>public gov.llnl.math.parallel.NnlsqOperations(gov.llnl.math.parallel.ParallelProcessor)</ctor>
+    <method>public void gov.llnl.math.parallel.NnlsqOperations.projectDemands(double[],double[],gov.llnl.math.Nnlsq$Input,gov.llnl.math.IndexSet)</method>
+    <field>public gov.llnl.math.parallel.ParallelProcessor gov.llnl.math.parallel.NnlsqOperations.processor</field>
+  </class>
+  <class name="class gov.llnl.math.parallel.ParallelProcessor">
+    <ctor>public gov.llnl.math.parallel.ParallelProcessor()</ctor>
+    <ctor>public gov.llnl.math.parallel.ParallelProcessor(int)</ctor>
+    <method>public gov.llnl.math.parallel.ParallelProcessor$Action gov.llnl.math.parallel.ParallelProcessor.delegate(int,gov.llnl.math.parallel.ParallelProcessor$Action)</method>
+    <method>public int gov.llnl.math.parallel.ParallelProcessor.size()</method>
+    <method>public void gov.llnl.math.parallel.ParallelProcessor.dispose()</method>
+    <method>public void gov.llnl.math.parallel.ParallelProcessor.waitForComplete()</method>
+  </class>
+  <class name="class gov.llnl.math.parallel.ParallelProcessor$Action">
+    <ctor>public gov.llnl.math.parallel.ParallelProcessor$Action()</ctor>
+    <method>public abstract void gov.llnl.math.parallel.ParallelProcessor$Action.execute()</method>
+    <method>public boolean gov.llnl.math.parallel.ParallelProcessor$Action.waitOnComplete()</method>
+    <method>public void gov.llnl.math.parallel.ParallelProcessor$Action.complete()</method>
+  </class>
+  <class name="class gov.llnl.math.parallel.ParallelProcessor$Worker">
+    <ctor>public gov.llnl.math.parallel.ParallelProcessor$Worker()</ctor>
+    <method>public void gov.llnl.math.parallel.ParallelProcessor$Worker.delegate(gov.llnl.math.parallel.ParallelProcessor$Action)</method>
+    <method>public void gov.llnl.math.parallel.ParallelProcessor$Worker.quit()</method>
+    <method>public void gov.llnl.math.parallel.ParallelProcessor$Worker.run()</method>
+    <field>public static final int java.lang.Thread.MAX_PRIORITY</field>
+    <field>public static final int java.lang.Thread.MIN_PRIORITY</field>
+    <field>public static final int java.lang.Thread.NORM_PRIORITY</field>
+  </class>
+  <class name="class gov.llnl.math.random.BinomialRandom">
+    <ctor>public gov.llnl.math.random.BinomialRandom()</ctor>
+    <ctor>public gov.llnl.math.random.BinomialRandom(int,double)</ctor>
+    <ctor>public gov.llnl.math.random.BinomialRandom(int,double,gov.llnl.math.random.RandomGenerator)</ctor>
+    <method>public int gov.llnl.math.random.BinomialRandom.draw()</method>
+    <method>public int[] gov.llnl.math.random.BinomialRandom.draw(int)</method>
+    <method>public void gov.llnl.math.random.BinomialRandom.set(int,double)</method>
+  </class>
+  <class name="class gov.llnl.math.random.GammaRandom">
+    <ctor>public gov.llnl.math.random.GammaRandom()</ctor>
+    <ctor>public gov.llnl.math.random.GammaRandom(gov.llnl.math.random.RandomGenerator)</ctor>
+    <method>public double gov.llnl.math.random.GammaRandom.draw(double,double)</method>
+    <method>public double[] gov.llnl.math.random.GammaRandom.drawArray(double,double,int)</method>
+  </class>
+  <class name="class gov.llnl.math.random.NormalRandom">
+    <ctor>public gov.llnl.math.random.NormalRandom()</ctor>
+    <ctor>public gov.llnl.math.random.NormalRandom(gov.llnl.math.random.RandomGenerator)</ctor>
+    <method>public double gov.llnl.math.random.NormalRandom.draw()</method>
+    <method>public double gov.llnl.math.random.NormalRandom.draw(double,double)</method>
+    <method>public double[] gov.llnl.math.random.NormalRandom.drawArray(int)</method>
+  </class>
+  <class name="class gov.llnl.math.random.PoissonRandom">
+    <ctor>public gov.llnl.math.random.PoissonRandom()</ctor>
+    <method>public int gov.llnl.math.random.PoissonRandom.draw(double)</method>
+    <method>public int gov.llnl.math.random.PoissonRandom.drawCumulativePoisson(double)</method>
+    <method>public int gov.llnl.math.random.PoissonRandom.drawHormannPoisson(double)</method>
+    <method>public int[] gov.llnl.math.random.PoissonRandom.draw(double[])</method>
+  </class>
+  <class name="class gov.llnl.math.random.Random48">
+    <ctor>public gov.llnl.math.random.Random48()</ctor>
+    <ctor>public gov.llnl.math.random.Random48(long)</ctor>
+    <ctor>public gov.llnl.math.random.Random48(long,long,long)</ctor>
+    <method>public double gov.llnl.math.random.Random48.nextDouble()</method>
+    <method>public int gov.llnl.math.random.Random48.nextInt()</method>
+    <method>public int gov.llnl.math.random.Random48.nextUnsignedInt()</method>
+    <method>public void gov.llnl.math.random.Random48.setCongruential(long,long,long)</method>
+    <method>public void gov.llnl.math.random.Random48.setSeed(long)</method>
+  </class>
+  <class name="class gov.llnl.math.random.RandomDistribution">
+    <ctor>public gov.llnl.math.random.RandomDistribution(gov.llnl.math.random.RandomGenerator)</ctor>
+    <method>public gov.llnl.math.random.RandomGenerator gov.llnl.math.random.RandomDistribution.getGenerator()</method>
+    <method>public static gov.llnl.math.random.RandomGenerator gov.llnl.math.random.RandomDistribution.getDefaultGenerator()</method>
+    <method>public void gov.llnl.math.random.RandomDistribution.setSeed(long)</method>
+  </class>
+  <class name="class gov.llnl.math.spline.AreaMatchedSplineCalculator">
+    <ctor>public gov.llnl.math.spline.AreaMatchedSplineCalculator()</ctor>
+    <method>public double[] gov.llnl.math.spline.AreaMatchedSplineCalculator.EqualCountBinDensity()</method>
+    <method>public double[] gov.llnl.math.spline.AreaMatchedSplineCalculator.EqualCountBinEdges()</method>
+    <method>public static gov.llnl.math.spline.CubicAreaHermiteSpline gov.llnl.math.spline.AreaMatchedSplineCalculator.create(double[],double[]) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$MathException</method>
+    <method>public void gov.llnl.math.spline.AreaMatchedSplineCalculator.backSolveNewBins(gov.llnl.math.spline.CubicAreaHermiteSpline,int)</method>
+  </class>
+  <class name="class gov.llnl.math.spline.CubicAreaHermiteSpline">
+    <ctor>public gov.llnl.math.spline.CubicAreaHermiteSpline()</ctor>
+    <method>public boolean gov.llnl.math.spline.CubicAreaHermiteSpline.contains(double)</method>
+    <method>public double gov.llnl.math.spline.CubicAreaHermiteSpline.getDY(int)</method>
+    <method>public double gov.llnl.math.spline.CubicAreaHermiteSpline.getS(int)</method>
+    <method>public double gov.llnl.math.spline.CubicAreaHermiteSpline.getX(int)</method>
+    <method>public double gov.llnl.math.spline.CubicAreaHermiteSpline.getY(int)</method>
+    <method>public double gov.llnl.math.spline.CubicAreaHermiteSpline.interpolate(double) throws gov.llnl.math.Exceptions$DomainException</method>
+    <method>public double[] gov.llnl.math.spline.CubicAreaHermiteSpline.interpolateRangeOrdered(double[],int,int) throws gov.llnl.math.Exceptions$DomainException</method>
+    <method>public gov.llnl.math.spline.CubicAreaHermiteSpline$ControlPoint gov.llnl.math.spline.CubicAreaHermiteSpline.get(int)</method>
+    <method>public gov.llnl.math.spline.SplineUtilities$ControlPoint gov.llnl.math.spline.CubicAreaHermiteSpline.get(int)</method>
+    <method>public int gov.llnl.math.spline.CubicAreaHermiteSpline.getNumControlPoints()</method>
+    <method>public int gov.llnl.math.spline.CubicAreaHermiteSpline.size()</method>
+    <method>public static gov.llnl.math.spline.CubicAreaHermiteSpline gov.llnl.math.spline.CubicAreaHermiteSpline.allocate(int)</method>
+    <method>public void gov.llnl.math.spline.CubicAreaHermiteSpline.areaSumUpdate()</method>
+    <method>public void gov.llnl.math.spline.CubicAreaHermiteSpline.setControlDY(int,double)</method>
+    <method>public void gov.llnl.math.spline.CubicAreaHermiteSpline.setControlS(int,double)</method>
+    <method>public void gov.llnl.math.spline.CubicAreaHermiteSpline.setControlX(int,double)</method>
+    <method>public void gov.llnl.math.spline.CubicAreaHermiteSpline.setControlY(int,double)</method>
+    <field>public gov.llnl.math.spline.CubicAreaHermiteSpline$ControlPoint[] gov.llnl.math.spline.CubicAreaHermiteSpline.control</field>
+  </class>
+  <class name="class gov.llnl.math.spline.CubicAreaHermiteSpline$ControlPoint">
+    <ctor>public gov.llnl.math.spline.CubicAreaHermiteSpline$ControlPoint(double,double)</ctor>
+    <field>public double gov.llnl.math.spline.CubicAreaHermiteSpline$ControlPoint.dy</field>
+    <field>public double gov.llnl.math.spline.CubicAreaHermiteSpline$ControlPoint.s</field>
+    <field>public double gov.llnl.math.spline.SplineUtilities$ControlPoint.x</field>
+    <field>public double gov.llnl.math.spline.SplineUtilities$ControlPoint.y</field>
+  </class>
+  <class name="class gov.llnl.math.spline.CubicHermiteSpline">
+    <method>public boolean gov.llnl.math.spline.CubicHermiteSpline.contains(double)</method>
+    <method>public boolean gov.llnl.math.spline.CubicHermiteSpline.equals(java.lang.Object)</method>
+    <method>public double gov.llnl.math.spline.CubicHermiteSpline.getControlX(int)</method>
+    <method>public double gov.llnl.math.spline.CubicHermiteSpline.getControlY(int)</method>
+    <method>public double gov.llnl.math.spline.CubicHermiteSpline.interpolate(double) throws gov.llnl.math.Exceptions$DomainException</method>
+    <method>public double[] gov.llnl.math.spline.CubicHermiteSpline.getControlX()</method>
+    <method>public double[] gov.llnl.math.spline.CubicHermiteSpline.getControlY()</method>
+    <method>public double[] gov.llnl.math.spline.CubicHermiteSpline.getSlopes()</method>
+    <method>public double[] gov.llnl.math.spline.CubicHermiteSpline.interpolateRangeOrdered(double[],int,int) throws gov.llnl.math.Exceptions$DomainException</method>
+    <method>public gov.llnl.math.spline.CubicHermiteSpline gov.llnl.math.spline.CubicHermiteSpline.clone() throws java.lang.CloneNotSupportedException</method>
+    <method>public gov.llnl.math.spline.CubicHermiteSpline$ControlPoint gov.llnl.math.spline.CubicHermiteSpline.get(int)</method>
+    <method>public gov.llnl.math.spline.SplineUtilities$ControlPoint gov.llnl.math.spline.CubicHermiteSpline.get(int)</method>
+    <method>public int gov.llnl.math.spline.CubicHermiteSpline.hashCode()</method>
+    <method>public int gov.llnl.math.spline.CubicHermiteSpline.size()</method>
+    <method>public java.lang.Object gov.llnl.math.spline.CubicHermiteSpline.clone() throws java.lang.CloneNotSupportedException</method>
+    <method>public static gov.llnl.math.spline.CubicHermiteSpline gov.llnl.math.spline.CubicHermiteSpline.create(double[],double[],double[])</method>
+    <method>public static gov.llnl.math.spline.CubicHermiteSpline gov.llnl.math.spline.CubicHermiteSpline.createMonotonic(double[],double[])</method>
+    <method>public static gov.llnl.math.spline.CubicHermiteSpline gov.llnl.math.spline.CubicHermiteSpline.createMonotonic2(double[],double[])</method>
+    <method>public static gov.llnl.math.spline.CubicHermiteSpline gov.llnl.math.spline.CubicHermiteSpline.createNatural(double[],double[])</method>
+    <method>public static gov.llnl.math.spline.CubicHermiteSpline gov.llnl.math.spline.CubicHermiteSpline.createNaturalMonotonic(double[],double[])</method>
+    <field>public gov.llnl.math.spline.CubicHermiteSpline$ControlPoint[] gov.llnl.math.spline.CubicHermiteSpline.control</field>
+    <field>public static double[] gov.llnl.math.spline.CubicHermiteSpline.monocheck</field>
+    <field>public static gov.llnl.math.spline.TriDiagonal gov.llnl.math.spline.CubicHermiteSpline.td</field>
+  </class>
+  <class name="class gov.llnl.math.spline.CubicHermiteSpline$ControlPoint">
+    <ctor>public gov.llnl.math.spline.CubicHermiteSpline$ControlPoint(double,double,double)</ctor>
+    <method>public boolean gov.llnl.math.spline.CubicHermiteSpline$ControlPoint.equals(java.lang.Object)</method>
+    <method>public int gov.llnl.math.spline.CubicHermiteSpline$ControlPoint.hashCode()</method>
+    <field>public double gov.llnl.math.spline.CubicHermiteSpline$ControlPoint.m</field>
+    <field>public double gov.llnl.math.spline.SplineUtilities$ControlPoint.x</field>
+    <field>public double gov.llnl.math.spline.SplineUtilities$ControlPoint.y</field>
+  </class>
+  <class name="class gov.llnl.math.spline.EndBehavior">
+    <method>public static gov.llnl.math.spline.EndBehavior gov.llnl.math.spline.EndBehavior.valueOf(java.lang.String)</method>
+    <method>public static gov.llnl.math.spline.EndBehavior[] gov.llnl.math.spline.EndBehavior.values()</method>
+    <field>public static final gov.llnl.math.spline.EndBehavior gov.llnl.math.spline.EndBehavior.CLAMP</field>
+    <field>public static final gov.llnl.math.spline.EndBehavior gov.llnl.math.spline.EndBehavior.CUBIC</field>
+    <field>public static final gov.llnl.math.spline.EndBehavior gov.llnl.math.spline.EndBehavior.LINEAR</field>
+  </class>
+  <class name="class gov.llnl.math.spline.Spline">
+    <ctor>public gov.llnl.math.spline.Spline()</ctor>
+    <method>public abstract boolean gov.llnl.math.spline.Spline.contains(double)</method>
+    <method>public abstract double gov.llnl.math.spline.Spline.interpolate(double) throws gov.llnl.math.Exceptions$DomainException</method>
+    <method>public abstract double[] gov.llnl.math.spline.Spline.interpolateRangeOrdered(double[],int,int) throws gov.llnl.math.Exceptions$DomainException</method>
+    <method>public abstract gov.llnl.math.spline.SplineUtilities$ControlPoint gov.llnl.math.spline.Spline.get(int)</method>
+    <method>public abstract int gov.llnl.math.spline.Spline.size()</method>
+    <method>public double[] gov.llnl.math.spline.Spline.interpolate(double[]) throws gov.llnl.math.Exceptions$DomainException</method>
+    <method>public gov.llnl.math.spline.EndBehavior gov.llnl.math.spline.Spline.getEndBehavior()</method>
+    <method>public void gov.llnl.math.spline.Spline.setEndBehavior(gov.llnl.math.spline.EndBehavior)</method>
+  </class>
+  <class name="class gov.llnl.math.spline.SplineUtilities">
+    <ctor>public gov.llnl.math.spline.SplineUtilities()</ctor>
+    <method>public static double[] gov.llnl.math.spline.SplineUtilities.extractControlX(gov.llnl.math.spline.Spline)</method>
+    <method>public static double[] gov.llnl.math.spline.SplineUtilities.extractControlY(gov.llnl.math.spline.Spline)</method>
+    <method>public static int gov.llnl.math.spline.SplineUtilities.binarysearch(gov.llnl.math.spline.SplineUtilities$ControlPoint[],double)</method>
+    <method>public static void gov.llnl.math.spline.SplineUtilities.sort(gov.llnl.math.spline.SplineUtilities$ControlPoint[])</method>
+  </class>
+  <class name="class gov.llnl.math.spline.SplineUtilities$ControlPoint">
+    <ctor>public gov.llnl.math.spline.SplineUtilities$ControlPoint()</ctor>
+    <field>public double gov.llnl.math.spline.SplineUtilities$ControlPoint.x</field>
+    <field>public double gov.llnl.math.spline.SplineUtilities$ControlPoint.y</field>
+  </class>
+  <class name="class gov.llnl.math.spline.TriDiagonal">
+    <ctor>public gov.llnl.math.spline.TriDiagonal(double[],double[],double[]) throws gov.llnl.math.Exceptions$SizeException</ctor>
+    <method>public double[] gov.llnl.math.spline.TriDiagonal.solve(double[]) throws gov.llnl.math.Exceptions$SizeException,gov.llnl.math.Exceptions$ConvergenceException</method>
+    <field>public double[] gov.llnl.math.spline.TriDiagonal.D2</field>
+    <field>public double[] gov.llnl.math.spline.TriDiagonal.X</field>
+    <field>public double[] gov.llnl.math.spline.TriDiagonal.diagonal</field>
+    <field>public double[] gov.llnl.math.spline.TriDiagonal.lower</field>
+    <field>public double[] gov.llnl.math.spline.TriDiagonal.upper</field>
+  </class>
+  <class name="interface gov.llnl.math.RebinUtilities$BinEdges">
+    <method>public abstract double gov.llnl.math.RebinUtilities$BinEdges.get(int)</method>
+    <method>public abstract int gov.llnl.math.RebinUtilities$BinEdges.size()</method>
+  </class>
+  <class name="interface gov.llnl.math.RebinUtilities$InputWrapper">
+    <method>public abstract double gov.llnl.math.RebinUtilities$InputWrapper.get(int,int)</method>
+    <method>public abstract int gov.llnl.math.RebinUtilities$InputWrapper.getColumns()</method>
+    <method>public abstract int gov.llnl.math.RebinUtilities$InputWrapper.size()</method>
+    <method>public abstract void gov.llnl.math.RebinUtilities$InputWrapper.verifyDimensions(int) throws gov.llnl.math.RebinUtilities$RebinException</method>
+  </class>
+  <class name="interface gov.llnl.math.RebinUtilities$OutputWrapper">
+    <method>public abstract int gov.llnl.math.RebinUtilities$OutputWrapper.size()</method>
+    <method>public abstract void gov.llnl.math.RebinUtilities$OutputWrapper.accumulate(gov.llnl.math.RebinUtilities$InputWrapper,int)</method>
+    <method>public abstract void gov.llnl.math.RebinUtilities$OutputWrapper.apply(int)</method>
+    <method>public abstract void gov.llnl.math.RebinUtilities$OutputWrapper.initialize(double,gov.llnl.math.RebinUtilities$InputWrapper,int)</method>
+    <method>public abstract void gov.llnl.math.RebinUtilities$OutputWrapper.take()</method>
+    <method>public abstract void gov.llnl.math.RebinUtilities$OutputWrapper.take(double)</method>
+    <method>public abstract void gov.llnl.math.RebinUtilities$OutputWrapper.verifyDimensions(int,int) throws gov.llnl.math.RebinUtilities$RebinException</method>
+  </class>
+  <class name="interface gov.llnl.math.cluster.kmeans$DistanceMetric">
+    <method>public abstract double gov.llnl.math.cluster.kmeans$DistanceMetric.compare(double[],double[])</method>
+  </class>
+  <class name="interface gov.llnl.math.distribution.Distribution">
+    <method>public abstract double gov.llnl.math.distribution.Distribution.ccdf(double)</method>
+    <method>public abstract double gov.llnl.math.distribution.Distribution.cdf(double)</method>
+    <method>public abstract double gov.llnl.math.distribution.Distribution.cdfinv(double)</method>
+    <method>public abstract double gov.llnl.math.distribution.Distribution.pdf(double)</method>
+  </class>
+  <class name="interface gov.llnl.math.numbers.Assignable">
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.Assignable.assign(java.lang.Object)</method>
+  </class>
+  <class name="interface gov.llnl.math.numbers.Copyable">
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.Copyable.copy()</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.Copyable.createForCopy()</method>
+    <method>public abstract void gov.llnl.math.numbers.Copyable.copyTo(java.lang.Object)</method>
+  </class>
+  <class name="interface gov.llnl.math.numbers.MutableNumber">
+    <method>public abstract boolean gov.llnl.math.numbers.MutableNumber.isZero()</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.add(java.lang.Object,java.lang.Object)</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.addAssign(java.lang.Object)</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.divide(java.lang.Object,java.lang.Object)</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.divideAssign(java.lang.Object)</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.multiply(java.lang.Object,java.lang.Object)</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.multiplyAssign(java.lang.Object)</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.negateAssign(java.lang.Object)</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.subtract(java.lang.Object,java.lang.Object)</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.subtractAssign(java.lang.Object)</method>
+    <method>public abstract java.lang.Object gov.llnl.math.numbers.MutableNumber.zero()</method>
+    <method>public abstract void gov.llnl.math.numbers.MutableNumber.productSum(java.lang.Object,java.lang.Object)</method>
+  </class>
+  <class name="interface gov.llnl.math.random.RandomGenerator">
+    <method>public abstract double gov.llnl.math.random.RandomGenerator.nextDouble()</method>
+    <method>public abstract int gov.llnl.math.random.RandomGenerator.nextInt()</method>
+    <method>public abstract void gov.llnl.math.random.RandomGenerator.setSeed(long)</method>
+  </class>
+</releaseInfo>

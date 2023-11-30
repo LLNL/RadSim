@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><RadInstrumentData xmlns="http://physics.nist.gov/N42/2011/N42" n42DocUUID="8dff474b-b706-45c8-a76b-55ccbd643b22" xmlns:flir="https://www.detectionsupport.com/radiation/xml">
+    <RadInstrumentInformation id="instrumentInformation">
+        <RadInstrumentManufacturerName>FLIR Systems</RadInstrumentManufacturerName>
+        <RadInstrumentIdentifier>102430004119</RadInstrumentIdentifier>
+        <RadInstrumentModelName>identiFINDER R500 ULCS-NG</RadInstrumentModelName>
+        <RadInstrumentClassCode>Radionuclide Identifier</RadInstrumentClassCode>
+        <RadInstrumentVersion>
+            <RadInstrumentComponentName>Software</RadInstrumentComponentName>
+            <RadInstrumentComponentVersion>2017.1</RadInstrumentComponentVersion>
+        </RadInstrumentVersion>
+        <RadInstrumentCharacteristics>
+            <CharacteristicGroup>
+                <CharacteristicGroupName>Reachback Information</CharacteristicGroupName>
+            </CharacteristicGroup>
+            <Characteristic>
+                <CharacteristicName>Source of intrinsic activity</CharacteristicName>
+                <CharacteristicValue>Cesium137</CharacteristicValue>
+                <CharacteristicValueUnits>unit-less</CharacteristicValueUnits>
+                <CharacteristicValueDataClassCode>string</CharacteristicValueDataClassCode>
+            </Characteristic>
+        </RadInstrumentCharacteristics>
+    </RadInstrumentInformation>
+    <RadDetectorInformation id="spectra">
+        <RadDetectorCategoryCode>Gamma</RadDetectorCategoryCode>
+        <RadDetectorKindCode>NaI</RadDetectorKindCode>
+        <RadDetectorLengthValue>0.019</RadDetectorLengthValue>
+        <RadDetectorDiameterValue>0.100</RadDetectorDiameterValue>
+    </RadDetectorInformation>
+    <RadDetectorInformation id="maximumDoserate">
+        <Remark>This detector samples the dose rate once every second. The measurement value represents the maximal dose rate recorded while acquiring the spectrum.</Remark>
+        <RadDetectorCategoryCode>Gamma</RadDetectorCategoryCode>
+        <RadDetectorKindCode>NaI</RadDetectorKindCode>
+    </RadDetectorInformation>
+    <RadDetectorInformation id="averageDoserate">
+        <Remark>This detector samples the dose rate once every second. The measurement value represents the average dose rate recorded while acquiring the spectrum.</Remark>
+        <RadDetectorCategoryCode>Gamma</RadDetectorCategoryCode>
+        <RadDetectorKindCode>NaI</RadDetectorKindCode>
+    </RadDetectorInformation>
+    <RadDetectorInformation id="minimumDoserate">
+        <Remark>This detector samples the dose rate once every second. The measurement value represents the minimal dose rate recorded while acquiring the spectrum.</Remark>
+        <RadDetectorCategoryCode>Gamma</RadDetectorCategoryCode>
+        <RadDetectorKindCode>NaI</RadDetectorKindCode>
+    </RadDetectorInformation>
+    <EnergyCalibration id="energyCalibration">
+        <CoefficientValues>0 3 0</CoefficientValues>
+    </EnergyCalibration>
+    <RadMeasurementGroup id="measurementGroup3962"/>
+    <RadMeasurement id="measurementGroup3962ForegroundMeasurement" radMeasurementGroupReferences="measurementGroup3962">
+        <MeasurementClassCode>Foreground</MeasurementClassCode>
+        <StartDateTime>2018-03-15T10:22:05-07:00</StartDateTime>
+        <RealTimeDuration>PT2M1S</RealTimeDuration>
+        <Spectrum energyCalibrationReference="energyCalibration" id="measurementGroup3962ForegroundMeasurementSpectrum" radDetectorInformationReference="spectra">
+            <LiveTimeDuration>PT2M0.88S</LiveTimeDuration>
+            <ChannelData>0 0 0 0 0 2 48 49 73 108 135 101 84 100 108 114 127 143 160 168 193 210 238 257 255 288 274 291 304 292 303 284 281 313 327 333 321 273 296 305 285 255 297 293 297 290 274 301 280 265 243 269 243 257 252 245 206 245 205 232 269 202 219 236 209 232 240 214 199 190 184 214 194 195 209 202 169 181 175 169 168 169 143 149 140 122 127 125 112 113 111 100 132 109 100 116 106 115 95 99 92 102 88 100 93 82 93 82 69 81 82 62 82 76 77 74 85 85 91 92 84 69 76 67 63 68 59 65 51 61 73 58 66 68 59 58 60 60 46 66 47 64 53 55 62 56 41 46 47 49 49 44 56 47 40 43 42 42 50 41 36 43 41 37 46 35 38 52 26 36 34 37 28 37 42 31 21 29 31 33 30 37 35 36 37 30 37 37 42 36 31 40 33 35 27 34 35 39 35 40 34 33 31 40 50 55 56 54 53 63 71 92 85 105 88 106 105 118 122 106 109 104 109 100 104 78 69 66 63 47 41 29 34 30 25 22 19 24 21 26 18 18 20 16 13 22 13 14 17 23 12 13 24 18 12 17 15 18 16 19 20 18 16 21 18 20 19 21 23 21 16 21 15 19 16 21 17 17 19 10 16 22 14 16 18 19 13 13 12 11 18 18 12 17 15 16 19 16 24 18 28 22 12 13 17 17 27 19 19 23 12 20 18 11 26 19 14 11 15 15 13 18 17 13 12 13 14 14 16 8 11 7 10 14 11 9 11 16 12 16 11 12 11 10 10 9 11 9 16 13 11 13 9 13 15 11 7 18 9 10 14 15 15 14 14 12 9 11 11 17 15 15 20 19 24 23 26 16 20 25 30 26 32 30 24 32 31 29 31 26 30 27 34 18 22 25 15 13 18 20 9 10 16 8 10 8 7 7 6 2 9 5 2 5 2 4 3 5 7 8 8 2 10 12 14 10 13 9 11 13 19 11 21 25 18 20 18 23 25 22 18 20 22 19 18 15 22 17 16 13 16 14 12 8 5 11 7 10 7 4 6 6 5 4 7 7 5 7 4 3 6 5 7 5 2 2 2 4 6 5 3 5 4 5 7 7 6 6 4 2 4 4 8 3 3 3 7 2 2 4 6 2 1 2 2 1 1 3 1 0 1 0 0 3 1 1 0 3 2 3 0 1 0 2 3 0 0 2 0 1 2 1 1 2 3 2 2 0 2 0 0 0 0 2 0 2 2 3 0 1 0 0 1 1 2 2 0 1 1 1 1 0 0 1 0 0 1 1 0 1 2 0 0 0 1 0 0 2 1 2 0 1 0 0 0 1 1 0 0 1 1 0 0 0 1 1 2 2 1 0 2 0 0 0 0 1 0 0 0 0 2 1 0 0 1 0 0 3 0 1 1 0 2 2 0 0 0 1 0 1 1 1 0 0 0 0 2 0 0 0 1 2 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 0 1 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 2 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 0 1 0 2 0 0 0 2 1 1 0 0 0 1 2 0 0 0 0 0 0 1 0 0 1 0 0 2 1 1 1 1 0 0 1 0 2 1 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 1 0 1 0 0 1 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 2 0 0 0 0 1 0 1 0 1 0 0 0 0 0 0 1 1 0 2 1 0 0 1 2 1 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0</ChannelData>
+        </Spectrum>
+        <DoseRate id="measurementGroup3962ForegroundMeasurementMaximumDoseRate" radDetectorInformationReference="maximumDoserate">
+            <DoseRateValue>0.155287936</DoseRateValue>
+        </DoseRate>
+        <DoseRate id="measurementGroup3962ForegroundMeasurementAverageDoseRate" radDetectorInformationReference="averageDoserate">
+            <DoseRateValue>0.123469487</DoseRateValue>
+        </DoseRate>
+        <DoseRate id="measurementGroup3962ForegroundMeasurementMinimumDoseRate" radDetectorInformationReference="minimumDoserate">
+            <DoseRateValue>0.08564333</DoseRateValue>
+        </DoseRate>
+        <RadInstrumentState>
+            <StateVector>
+                <GeographicPoint/>
+            </StateVector>
+        </RadInstrumentState>
+    </RadMeasurement>
+    <RadMeasurement id="measurementGroup3962IntrinsicActivityMeasurement" radMeasurementGroupReferences="measurementGroup3962">
+        <Remark>This measurement was done in a factory-controlled environment.</Remark>
+        <MeasurementClassCode>IntrinsicActivity</MeasurementClassCode>
+        <StartDateTime>2017-09-18T08:23:38-04:00</StartDateTime>
+        <RealTimeDuration>PT16M44S</RealTimeDuration>
+        <Spectrum energyCalibrationReference="energyCalibration" id="measurementGroup3962IntrinsicActivityMeasurementSpectrum" radDetectorInformationReference="spectra">
+            <LiveTimeDuration>PT16M43.52S</LiveTimeDuration>
+            <ChannelData>0 0 0 0 0 0 107 172 212 336 444 401 297 258 253 256 248 268 235 272 283 261 281 302 281 249 280 285 322 288 266 327 310 312 338 363 343 366 336 339 359 341 343 373 341 386 334 354 382 327 348 332 362 345 373 370 410 386 380 397 497 462 486 478 525 507 481 467 473 430 429 399 385 371 360 352 379 370 360 346 294 305 312 283 262 293 277 281 266 234 259 252 253 231 224 239 253 239 249 231 174 211 200 203 202 193 216 219 214 210 216 191 210 203 199 205 200 199 213 212 191 209 200 189 166 183 183 181 197 218 200 187 213 177 197 210 218 203 179 193 199 173 183 200 183 187 192 189 164 192 160 172 138 161 148 139 132 138 126 123 97 105 114 104 114 98 103 99 88 80 83 75 85 72 80 68 57 86 74 60 78 67 64 79 69 67 78 77 75 81 72 85 60 71 68 55 67 67 71 77 77 82 98 85 112 126 162 173 210 202 298 354 399 459 516 585 662 657 724 799 767 786 752 750 679 627 562 500 437 413 313 244 231 165 133 92 79 51 34 35 14 13 15 9 7 1 5 5 5 6 7 4 5 2 2 2 2 4 0 2 3 5 5 6 2 6 5 2 4 7 4 1 4 4 1 3 2 6 6 2 5 3 4 3 3 4 6 2 2 4 4 5 3 2 2 4 2 0 6 0 1 4 2 4 4 2 4 5 3 1 4 4 5 2 3 2 1 6 2 2 3 1 3 5 2 1 4 0 1 2 4 1 1 1 0 2 3 3 0 2 5 1 1 2 3 3 5 0 2 2 3 1 3 2 2 3 1 1 2 3 2 2 0 1 2 3 1 3 3 2 2 1 3 2 1 5 3 4 3 2 2 2 3 4 4 3 6 2 1 1 2 4 2 4 4 1 0 2 3 1 2 1 2 4 2 1 5 0 2 1 2 0 1 0 3 1 1 2 0 1 0 1 2 2 1 0 4 0 0 1 2 2 2 2 0 3 2 1 1 1 2 4 4 0 1 0 2 0 0 2 0 0 0 0 3 3 2 2 1 2 2 1 1 2 1 1 0 4 5 3 2 2 0 1 5 1 2 1 2 1 3 2 2 0 4 5 1 1 0 2 3 1 2 2 1 1 3 1 3 1 2 3 2 2 5 4 3 6 2 1 3 0 2 1 1 0 0 1 1 1 1 0 0 2 0 1 1 0 2 0 1 1 1 1 0 0 0 0 0 0 0 0 2 1 2 0 2 1 1 1 1 2 2 0 2 0 1 0 0 0 0 0 1 0 3 0 1 1 1 0 1 1 1 1 2 0 0 1 0 1 0 1 4 1 0 0 1 0 0 1 0 1 1 1 3 1 0 0 0 1 0 1 1 0 0 0 1 0 0 2 0 1 1 1 1 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 1 0 0 1 0 1 2 1 0 2 1 1 0 0 2 2 0 0 0 1 1 1 0 0 0 1 0 1 1 0 0 0 0 0 1 0 0 0 1 0 1 1 0 1 0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 1 0 0 0 1 1 0 1 0 0 1 1 0 0 1 0 2 0 1 0 1 0 1 0 3 0 1 2 0 1 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 2 1 0 0 0 2 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 1 0 0 0 0 1 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 1 1 1 0 0 0 0 0 0 1 1 0 1 0 1 0 0 0 1 0 0 0 0 0 3 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 1 0 0 0 1 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 0 1 0 1 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0</ChannelData>
+        </Spectrum>
+    </RadMeasurement>
+</RadInstrumentData>

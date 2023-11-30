@@ -1,0 +1,275 @@
+<releaseInfo>
+  <name>${implementation.title}</name>
+  <version>2.0.0.0</version>
+  <class name="class gov.llnl.utility.ArrayCollection">
+    <ctor>public gov.llnl.utility.ArrayCollection(java.lang.Object[])</ctor>
+    <method>public boolean gov.llnl.utility.ArrayCollection.add(java.lang.Object)</method>
+    <method>public boolean gov.llnl.utility.ArrayCollection.addAll(java.util.Collection)</method>
+    <method>public boolean gov.llnl.utility.ArrayCollection.contains(java.lang.Object)</method>
+    <method>public boolean gov.llnl.utility.ArrayCollection.containsAll(java.util.Collection)</method>
+    <method>public boolean gov.llnl.utility.ArrayCollection.isEmpty()</method>
+    <method>public boolean gov.llnl.utility.ArrayCollection.remove(java.lang.Object)</method>
+    <method>public boolean gov.llnl.utility.ArrayCollection.removeAll(java.util.Collection)</method>
+    <method>public boolean gov.llnl.utility.ArrayCollection.retainAll(java.util.Collection)</method>
+    <method>public int gov.llnl.utility.ArrayCollection.size()</method>
+    <method>public java.lang.Object[] gov.llnl.utility.ArrayCollection.toArray()</method>
+    <method>public java.lang.Object[] gov.llnl.utility.ArrayCollection.toArray(java.lang.Object[])</method>
+    <method>public java.util.Iterator gov.llnl.utility.ArrayCollection.iterator()</method>
+    <method>public void gov.llnl.utility.ArrayCollection.clear()</method>
+  </class>
+  <class name="class gov.llnl.utility.ArrayIterator">
+    <ctor>public gov.llnl.utility.ArrayIterator(java.lang.Object[])</ctor>
+    <method>public boolean gov.llnl.utility.ArrayIterator.hasNext()</method>
+    <method>public java.lang.Object gov.llnl.utility.ArrayIterator.next()</method>
+    <method>public void gov.llnl.utility.ArrayIterator.remove()</method>
+  </class>
+  <class name="class gov.llnl.utility.AttributeImplementation">
+    <ctor>public gov.llnl.utility.AttributeImplementation()</ctor>
+    <ctor>public gov.llnl.utility.AttributeImplementation(gov.llnl.utility.AttributeInterface)</ctor>
+    <method>public boolean gov.llnl.utility.AttributeImplementation.hasAttribute(java.lang.String)</method>
+    <method>public final void gov.llnl.utility.AttributeImplementation.copyAttributes(gov.llnl.utility.AttributeInterface)</method>
+    <method>public java.lang.Object gov.llnl.utility.AttributeImplementation.getAttribute(java.lang.String)</method>
+    <method>public java.lang.Object gov.llnl.utility.AttributeImplementation.getAttribute(java.lang.String,java.lang.Class) throws java.lang.InstantiationException</method>
+    <method>public java.util.Collection gov.llnl.utility.AttributeImplementation.getAttributeKeys()</method>
+    <method>public void gov.llnl.utility.AttributeImplementation.clearAttribute(java.lang.String)</method>
+    <method>public void gov.llnl.utility.AttributeImplementation.clearAttributes()</method>
+    <method>public void gov.llnl.utility.AttributeImplementation.setAttribute(java.lang.String,java.io.Serializable)</method>
+  </class>
+  <class name="class gov.llnl.utility.CastableIterator">
+    <method>public boolean gov.llnl.utility.CastableIterator.hasNext()</method>
+    <method>public java.lang.Object gov.llnl.utility.CastableIterator.next()</method>
+    <method>public void gov.llnl.utility.CastableIterator.remove()</method>
+  </class>
+  <class name="class gov.llnl.utility.DateUtilities">
+    <ctor>public gov.llnl.utility.DateUtilities()</ctor>
+    <method>public static java.lang.String gov.llnl.utility.DateUtilities.getIso8601(java.util.Date)</method>
+    <method>public static java.lang.String gov.llnl.utility.DateUtilities.toStringTimeZone(java.util.Date,java.lang.String)</method>
+    <method>public static java.util.Date gov.llnl.utility.DateUtilities.convert(java.lang.String) throws java.text.ParseException</method>
+    <method>public static void gov.llnl.utility.DateUtilities.main(java.lang.String[]) throws java.text.ParseException</method>
+  </class>
+  <class name="class gov.llnl.utility.DirectoryUtilities">
+    <ctor>public gov.llnl.utility.DirectoryUtilities()</ctor>
+    <method>public static java.io.File[] gov.llnl.utility.DirectoryUtilities.getFilesWithExtension(java.io.File,java.lang.String)</method>
+  </class>
+  <class name="class gov.llnl.utility.Encoding">
+    <ctor>public gov.llnl.utility.Encoding()</ctor>
+    <method>public static byte[] gov.llnl.utility.Encoding.base64Decode(java.lang.String)</method>
+    <method>public static byte[] gov.llnl.utility.Encoding.deflate(byte[])</method>
+    <method>public static byte[] gov.llnl.utility.Encoding.inflate(byte[])</method>
+    <method>public static double[] gov.llnl.utility.Encoding.decodeDoubles(java.lang.String) throws java.util.zip.DataFormatException</method>
+    <method>public static int[] gov.llnl.utility.Encoding.decodeIntegers(java.lang.String) throws java.util.zip.DataFormatException</method>
+    <method>public static java.lang.String gov.llnl.utility.Encoding.base64Encode(byte[],int,int)</method>
+    <method>public static java.lang.String gov.llnl.utility.Encoding.encodeDoubles(double[],int)</method>
+    <method>public static java.lang.String gov.llnl.utility.Encoding.encodeIntegers(int[],int)</method>
+    <field>public static final int gov.llnl.utility.Encoding.COMPRESSED</field>
+    <field>public static final int gov.llnl.utility.Encoding.DOUBLES</field>
+    <field>public static final int gov.llnl.utility.Encoding.FLOATS</field>
+  </class>
+  <class name="class gov.llnl.utility.FileUtilities">
+    <ctor>public gov.llnl.utility.FileUtilities()</ctor>
+    <method>public static byte[] gov.llnl.utility.FileUtilities.readFileContents(java.io.File) throws java.io.IOException</method>
+    <method>public static final java.lang.String gov.llnl.utility.FileUtilities.getFileExtension(java.io.File)</method>
+    <method>public static java.lang.String gov.llnl.utility.FileUtilities.md5Checksum(java.io.File) throws java.io.FileNotFoundException,java.io.IOException</method>
+    <method>public static java.lang.String gov.llnl.utility.FileUtilities.md5Checksum(java.io.InputStream) throws java.io.IOException</method>
+    <method>public static java.util.List gov.llnl.utility.FileUtilities.findIn(java.nio.file.Path,java.lang.String) throws java.io.IOException</method>
+    <method>public static void gov.llnl.utility.FileUtilities.main(java.lang.String[])</method>
+  </class>
+  <class name="class gov.llnl.utility.InitializeException">
+    <ctor>public gov.llnl.utility.InitializeException(java.lang.String)</ctor>
+  </class>
+  <class name="class gov.llnl.utility.Iterators">
+    <ctor>public gov.llnl.utility.Iterators()</ctor>
+    <method>public static java.util.Iterator gov.llnl.utility.Iterators.array(java.lang.Object[])</method>
+    <method>public static java.util.Iterator gov.llnl.utility.Iterators.cast(java.util.Iterator,java.lang.Class)</method>
+  </class>
+  <class name="class gov.llnl.utility.ListUtilities">
+    <ctor>public gov.llnl.utility.ListUtilities()</ctor>
+    <method>public static final gov.llnl.utility.ListUtilities$Reversed gov.llnl.utility.ListUtilities.reverse(java.util.List)</method>
+  </class>
+  <class name="class gov.llnl.utility.ListUtilities$Reversed">
+    <method>public java.util.Iterator gov.llnl.utility.ListUtilities$Reversed.iterator()</method>
+  </class>
+  <class name="class gov.llnl.utility.Options">
+    <ctor>public gov.llnl.utility.Options()</ctor>
+    <method>public boolean gov.llnl.utility.Options.isOptionSpecified(java.lang.String)</method>
+    <method>public boolean gov.llnl.utility.Options.parse(java.lang.String[])</method>
+    <method>public int gov.llnl.utility.Options.getNumArguments()</method>
+    <method>public java.lang.String gov.llnl.utility.Options.getArgument(int)</method>
+    <method>public java.lang.String gov.llnl.utility.Options.getError()</method>
+    <method>public java.lang.String gov.llnl.utility.Options.getOptionValue(java.lang.String)</method>
+    <method>public void gov.llnl.utility.Options.addOption(java.lang.String)</method>
+    <method>public void gov.llnl.utility.Options.addOption(java.lang.String,boolean)</method>
+    <method>public void gov.llnl.utility.Options.addOption(java.lang.String,boolean,java.lang.String)</method>
+    <method>public void gov.llnl.utility.Options.setOptionString(java.lang.String)</method>
+  </class>
+  <class name="class gov.llnl.utility.Options$OptionContent">
+    <ctor>public gov.llnl.utility.Options$OptionContent(gov.llnl.utility.Options)</ctor>
+  </class>
+  <class name="class gov.llnl.utility.PackageUtilities">
+    <ctor>public gov.llnl.utility.PackageUtilities()</ctor>
+    <method>public static java.lang.String gov.llnl.utility.PackageUtilities.getJarMd5Checksum(java.lang.Class) throws java.io.IOException</method>
+    <method>public static java.net.URL gov.llnl.utility.PackageUtilities.getClassURL(java.lang.Class)</method>
+    <method>public static java.net.URL gov.llnl.utility.PackageUtilities.getJarURL(java.lang.Class)</method>
+    <method>public static java.net.URL gov.llnl.utility.PackageUtilities.getManifestURL(java.lang.Class)</method>
+    <method>public static java.util.jar.Manifest gov.llnl.utility.PackageUtilities.getManifest(java.lang.Class)</method>
+    <method>public static void gov.llnl.utility.PackageUtilities.main(java.lang.String[])</method>
+  </class>
+  <class name="class gov.llnl.utility.ReaderBase">
+    <ctor>public gov.llnl.utility.ReaderBase(gov.llnl.utility.ReaderContext)</ctor>
+    <method>public gov.llnl.utility.ReaderContext gov.llnl.utility.ReaderBase.getContext()</method>
+    <method>public java.io.File gov.llnl.utility.ReaderBase.getDirectory()</method>
+    <method>public void gov.llnl.utility.ReaderBase.register(java.lang.Object,org.w3c.dom.Element) throws gov.llnl.utility.ReaderException</method>
+    <method>public void gov.llnl.utility.ReaderBase.setContext(gov.llnl.utility.ReaderContext)</method>
+    <method>public void gov.llnl.utility.ReaderBase.setDirectory(java.io.File)</method>
+  </class>
+  <class name="class gov.llnl.utility.ReaderContext">
+    <ctor>public gov.llnl.utility.ReaderContext()</ctor>
+    <method>public java.io.File gov.llnl.utility.ReaderContext.getDirectory()</method>
+    <method>public java.io.File gov.llnl.utility.ReaderContext.getExternFile(java.lang.String) throws gov.llnl.utility.ReaderException</method>
+    <method>public java.io.File gov.llnl.utility.ReaderContext.getExternFile(org.w3c.dom.Element) throws gov.llnl.utility.ReaderException</method>
+    <method>public java.lang.Object gov.llnl.utility.ReaderContext.get(java.lang.String)</method>
+    <method>public java.lang.Object gov.llnl.utility.ReaderContext.get(java.lang.String,java.lang.Class) throws gov.llnl.utility.ReaderException</method>
+    <method>public java.lang.Object gov.llnl.utility.ReaderContext.get(org.w3c.dom.Element)</method>
+    <method>public java.lang.Object gov.llnl.utility.ReaderContext.get(org.w3c.dom.Element,java.lang.Class) throws gov.llnl.utility.ReaderException</method>
+    <method>public java.lang.String gov.llnl.utility.ReaderContext.findName(java.lang.Object)</method>
+    <method>public java.lang.String[] gov.llnl.utility.ReaderContext.getEntityList()</method>
+    <method>public static gov.llnl.utility.ReaderContext gov.llnl.utility.ReaderContext.create()</method>
+    <method>public void gov.llnl.utility.ReaderContext.register(java.lang.Object,java.lang.String)</method>
+    <method>public void gov.llnl.utility.ReaderContext.register(java.lang.Object,org.w3c.dom.Element) throws gov.llnl.utility.ReaderException</method>
+    <method>public void gov.llnl.utility.ReaderContext.setDirectory(java.io.File)</method>
+  </class>
+  <class name="class gov.llnl.utility.ReaderException">
+    <ctor>public gov.llnl.utility.ReaderException(java.lang.Exception)</ctor>
+    <ctor>public gov.llnl.utility.ReaderException(java.lang.String)</ctor>
+    <ctor>public gov.llnl.utility.ReaderException(java.lang.String,java.lang.Exception)</ctor>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnAttribute(org.w3c.dom.Element,java.lang.String) throws gov.llnl.utility.ReaderException</method>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnDuplicateElement(org.w3c.dom.Element)</method>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnElement(org.w3c.dom.Element,java.lang.String)</method>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnFile(java.io.File) throws gov.llnl.utility.ReaderException</method>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnFile(java.io.File,java.lang.Exception) throws gov.llnl.utility.ReaderException</method>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnFixme(java.lang.String) throws gov.llnl.utility.ReaderException</method>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnMissingAttribute(org.w3c.dom.Element,java.lang.String)</method>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnSize(java.lang.String,int,int) throws gov.llnl.utility.ReaderException</method>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnUnknownElement(org.w3c.dom.Element) throws gov.llnl.utility.ReaderException</method>
+    <method>public static gov.llnl.utility.ReaderException gov.llnl.utility.ReaderException.throwOnUnsupported(org.w3c.dom.Element) throws gov.llnl.utility.ReaderException</method>
+  </class>
+  <class name="class gov.llnl.utility.ReaderFactory">
+    <ctor>public gov.llnl.utility.ReaderFactory(gov.llnl.utility.ReaderContext)</ctor>
+    <method>public abstract java.lang.Object gov.llnl.utility.ReaderFactory.createFromXML(org.w3c.dom.Element) throws gov.llnl.utility.ReaderException</method>
+    <method>public boolean gov.llnl.utility.ReaderFactory.isEntity(org.w3c.dom.Element)</method>
+    <method>public gov.llnl.utility.ReaderContext gov.llnl.utility.ReaderFactory.getContext()</method>
+    <method>public java.lang.Object gov.llnl.utility.ReaderFactory.fetchEntity(org.w3c.dom.Element,java.lang.Class) throws gov.llnl.utility.ReaderException</method>
+    <method>public java.lang.Object gov.llnl.utility.ReaderFactory.load(java.io.File) throws gov.llnl.utility.ReaderException,java.io.IOException</method>
+    <method>public void gov.llnl.utility.ReaderFactory.setContext(gov.llnl.utility.ReaderContext)</method>
+  </class>
+  <class name="class gov.llnl.utility.ReaderTyped">
+    <ctor>public gov.llnl.utility.ReaderTyped(gov.llnl.utility.ReaderContext)</ctor>
+    <method>public abstract void gov.llnl.utility.ReaderTyped.apply(java.lang.Object,org.w3c.dom.Element) throws gov.llnl.utility.ReaderException</method>
+    <method>public void gov.llnl.utility.ReaderTyped.apply(java.lang.Object,java.io.InputStream) throws javax.xml.parsers.ParserConfigurationException,org.xml.sax.SAXException,java.io.IOException,gov.llnl.utility.ReaderException</method>
+    <method>public void gov.llnl.utility.ReaderTyped.apply(java.lang.Object,java.lang.String) throws gov.llnl.utility.ReaderException</method>
+    <method>public void gov.llnl.utility.ReaderTyped.apply(java.lang.Object,org.w3c.dom.Document) throws gov.llnl.utility.ReaderException</method>
+    <method>public void gov.llnl.utility.ReaderTyped.load(java.lang.Object,java.io.File) throws java.io.IOException,gov.llnl.utility.ReaderException,java.io.FileNotFoundException</method>
+  </class>
+  <class name="class gov.llnl.utility.ResourceUtilities">
+    <ctor>public gov.llnl.utility.ResourceUtilities()</ctor>
+    <method>public static boolean gov.llnl.utility.ResourceUtilities.getDefaultUseCache()</method>
+    <method>public static java.io.InputStream gov.llnl.utility.ResourceUtilities.getResourceStream(java.lang.ClassLoader,java.lang.String,boolean) throws java.io.FileNotFoundException,java.io.IOException</method>
+    <method>public static void gov.llnl.utility.ResourceUtilities.setDefaultUseCache(boolean)</method>
+  </class>
+  <class name="class gov.llnl.utility.SerializationUtilities">
+    <ctor>public gov.llnl.utility.SerializationUtilities()</ctor>
+    <method>public static java.lang.Object gov.llnl.utility.SerializationUtilities.load(java.io.File) throws java.io.FileNotFoundException,java.io.IOException,java.lang.ClassNotFoundException</method>
+    <method>public static void gov.llnl.utility.SerializationUtilities.save(java.io.File,java.lang.Object) throws java.io.FileNotFoundException,java.io.IOException</method>
+  </class>
+  <class name="class gov.llnl.utility.StringUtilities">
+    <ctor>public gov.llnl.utility.StringUtilities()</ctor>
+    <method>public static java.lang.String gov.llnl.utility.StringUtilities.join(java.lang.String[],java.lang.String)</method>
+    <method>public static java.lang.String gov.llnl.utility.StringUtilities.join(java.util.Collection,java.lang.String)</method>
+  </class>
+  <class name="class gov.llnl.utility.UUIDUtilities">
+    <ctor>public gov.llnl.utility.UUIDUtilities()</ctor>
+    <method>public static java.util.UUID gov.llnl.utility.UUIDUtilities.createUUID(java.lang.String)</method>
+    <method>public static long gov.llnl.utility.UUIDUtilities.createLong(java.lang.String)</method>
+  </class>
+  <class name="class gov.llnl.utility.UnsignedUtilities">
+    <ctor>public gov.llnl.utility.UnsignedUtilities()</ctor>
+    <method>public static int gov.llnl.utility.UnsignedUtilities.getUnsignedShort(short)</method>
+    <method>public static long gov.llnl.utility.UnsignedUtilities.getUnsignedInt(int)</method>
+  </class>
+  <class name="class gov.llnl.utility.WriterException">
+    <ctor>public gov.llnl.utility.WriterException(java.lang.Exception)</ctor>
+    <ctor>public gov.llnl.utility.WriterException(java.lang.String)</ctor>
+  </class>
+  <class name="class gov.llnl.utility.WriterTyped">
+    <ctor>public gov.llnl.utility.WriterTyped()</ctor>
+    <method>public abstract org.w3c.dom.Element gov.llnl.utility.WriterTyped.convertToElement(org.w3c.dom.Document,java.lang.Object) throws gov.llnl.utility.WriterException</method>
+    <method>public org.w3c.dom.Document gov.llnl.utility.WriterTyped.convertToDocument(java.lang.Object) throws gov.llnl.utility.WriterException</method>
+    <method>public void gov.llnl.utility.WriterTyped.save(java.io.File,java.lang.Object) throws java.io.FileNotFoundException,gov.llnl.utility.WriterException</method>
+    <method>public void gov.llnl.utility.WriterTyped.write(java.io.OutputStream,java.lang.Object) throws gov.llnl.utility.WriterException</method>
+    <method>public void gov.llnl.utility.WriterTyped.write(java.io.Writer,java.lang.Object) throws gov.llnl.utility.WriterException</method>
+  </class>
+  <class name="class gov.llnl.utility.XmlUtilities">
+    <ctor>public gov.llnl.utility.XmlUtilities()</ctor>
+    <method>public static boolean gov.llnl.utility.XmlUtilities.toBoolean(org.w3c.dom.Element)</method>
+    <method>public static double gov.llnl.utility.XmlUtilities.toDouble(org.w3c.dom.Element)</method>
+    <method>public static double gov.llnl.utility.XmlUtilities.toDoubleAttribute(org.w3c.dom.Element,java.lang.String,double)</method>
+    <method>public static float gov.llnl.utility.XmlUtilities.toFloat(org.w3c.dom.Element)</method>
+    <method>public static gov.llnl.utility.XmlUtilities$NodeListElementIterable gov.llnl.utility.XmlUtilities.findAll(org.w3c.dom.Element,java.lang.String)</method>
+    <method>public static int gov.llnl.utility.XmlUtilities.toInteger(org.w3c.dom.Element)</method>
+    <method>public static int gov.llnl.utility.XmlUtilities.toIntegerAttribute(org.w3c.dom.Element,java.lang.String,int)</method>
+    <method>public static java.lang.String gov.llnl.utility.XmlUtilities.getXmlPath(org.w3c.dom.Node)</method>
+    <method>public static javax.xml.namespace.NamespaceContext gov.llnl.utility.XmlUtilities.createNamespaceContext(org.w3c.dom.Document)</method>
+    <method>public static org.w3c.dom.Document gov.llnl.utility.XmlUtilities.parseFileToDOM(java.io.File) throws javax.xml.parsers.ParserConfigurationException,org.xml.sax.SAXException,java.io.FileNotFoundException,java.io.IOException,javax.xml.transform.TransformerConfigurationException,javax.xml.transform.TransformerException</method>
+    <method>public static org.w3c.dom.Document gov.llnl.utility.XmlUtilities.parseStreamToDOM(java.io.InputStream) throws java.io.IOException,javax.xml.parsers.ParserConfigurationException,org.xml.sax.SAXException</method>
+    <method>public static org.w3c.dom.Element gov.llnl.utility.XmlUtilities.appendElement(org.w3c.dom.Element,java.lang.String)</method>
+    <method>public static org.w3c.dom.Element gov.llnl.utility.XmlUtilities.appendElement(org.w3c.dom.Element,java.lang.String,double)</method>
+    <method>public static org.w3c.dom.Element gov.llnl.utility.XmlUtilities.appendElement(org.w3c.dom.Element,java.lang.String,int)</method>
+    <method>public static org.w3c.dom.Element gov.llnl.utility.XmlUtilities.appendElement(org.w3c.dom.Element,java.lang.String,java.lang.String)</method>
+    <method>public static org.w3c.dom.Element gov.llnl.utility.XmlUtilities.findFirst(org.w3c.dom.Element,java.lang.String)</method>
+    <method>public static void gov.llnl.utility.XmlUtilities.printXml(java.io.OutputStream,org.w3c.dom.Document,int)</method>
+    <method>public static void gov.llnl.utility.XmlUtilities.printXml(java.io.Writer,org.w3c.dom.Document,int)</method>
+    <method>public static void gov.llnl.utility.XmlUtilities.trimWhitespace(org.w3c.dom.Node)</method>
+  </class>
+  <class name="class gov.llnl.utility.XmlUtilities$AttributeListIterable">
+    <ctor>public gov.llnl.utility.XmlUtilities$AttributeListIterable(org.w3c.dom.NamedNodeMap)</ctor>
+    <method>public java.util.Iterator gov.llnl.utility.XmlUtilities$AttributeListIterable.iterator()</method>
+  </class>
+  <class name="class gov.llnl.utility.XmlUtilities$AttributeListIterator">
+    <method>public boolean gov.llnl.utility.XmlUtilities$AttributeListIterator.hasNext()</method>
+    <method>public java.lang.Object gov.llnl.utility.XmlUtilities$AttributeListIterator.next()</method>
+    <method>public org.w3c.dom.Node gov.llnl.utility.XmlUtilities$AttributeListIterator.next()</method>
+    <method>public void gov.llnl.utility.XmlUtilities$AttributeListIterator.remove()</method>
+  </class>
+  <class name="class gov.llnl.utility.XmlUtilities$NodeListElementIterable">
+    <ctor>public gov.llnl.utility.XmlUtilities$NodeListElementIterable(org.w3c.dom.NodeList)</ctor>
+    <method>public java.util.Iterator gov.llnl.utility.XmlUtilities$NodeListElementIterable.iterator()</method>
+  </class>
+  <class name="class gov.llnl.utility.XmlUtilities$NodeListIterable">
+    <ctor>public gov.llnl.utility.XmlUtilities$NodeListIterable(org.w3c.dom.NodeList)</ctor>
+    <method>public java.util.Iterator gov.llnl.utility.XmlUtilities$NodeListIterable.iterator()</method>
+  </class>
+  <class name="class gov.llnl.utility.XmlUtilities$NodeListIterator">
+    <method>public boolean gov.llnl.utility.XmlUtilities$NodeListIterator.hasNext()</method>
+    <method>public java.lang.Object gov.llnl.utility.XmlUtilities$NodeListIterator.next()</method>
+    <method>public org.w3c.dom.Node gov.llnl.utility.XmlUtilities$NodeListIterator.next()</method>
+    <method>public void gov.llnl.utility.XmlUtilities$NodeListIterator.remove()</method>
+  </class>
+  <class name="class gov.llnl.utility.XmlUtilities$NodeListTypeIterator">
+    <method>public boolean gov.llnl.utility.XmlUtilities$NodeListTypeIterator.hasNext()</method>
+    <method>public java.lang.Object gov.llnl.utility.XmlUtilities$NodeListTypeIterator.next()</method>
+    <method>public void gov.llnl.utility.XmlUtilities$NodeListTypeIterator.remove()</method>
+  </class>
+  <class name="interface gov.llnl.utility.AttributeInterface">
+    <method>public abstract boolean gov.llnl.utility.AttributeInterface.hasAttribute(java.lang.String)</method>
+    <method>public abstract java.lang.Object gov.llnl.utility.AttributeInterface.getAttribute(java.lang.String)</method>
+    <method>public abstract java.lang.Object gov.llnl.utility.AttributeInterface.getAttribute(java.lang.String,java.lang.Class) throws java.lang.InstantiationException</method>
+    <method>public abstract java.util.Collection gov.llnl.utility.AttributeInterface.getAttributeKeys()</method>
+    <method>public abstract void gov.llnl.utility.AttributeInterface.clearAttribute(java.lang.String)</method>
+    <method>public abstract void gov.llnl.utility.AttributeInterface.clearAttributes()</method>
+    <method>public abstract void gov.llnl.utility.AttributeInterface.copyAttributes(gov.llnl.utility.AttributeInterface)</method>
+    <method>public abstract void gov.llnl.utility.AttributeInterface.setAttribute(java.lang.String,java.io.Serializable)</method>
+  </class>
+  <class name="interface gov.llnl.utility.InitializeInterface">
+    <method>public abstract void gov.llnl.utility.InitializeInterface.initialize() throws gov.llnl.utility.InitializeException</method>
+  </class>
+</releaseInfo>

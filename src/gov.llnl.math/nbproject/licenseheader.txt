@@ -1,0 +1,10 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Copyright 2022, Lawrence Livermore National Security, LLC.
+${licensePrefix}All rights reserved
+${licensePrefix}
+${licensePrefix}Terms and conditions are given in "Notice" file.
+<#if licenseLast??>
+${licenseLast}
+</#if>

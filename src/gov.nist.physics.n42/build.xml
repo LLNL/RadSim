@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="gov.nist.physics.n42" default="default" basedir="."
+      xmlns:j2coverage="http://www.coverage.org"
+         xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3"
+         xmlns:jacoco="antlib:org.jacoco.ant">
+  <description>Builds, tests, and runs the project gov.nist.physics.n42.</description>
+
+  <!-- WLS and CI support -->
+  <property environment="env"/>
+  <target name="-pre-init" if="env.NETBEANS_USER_PROPERTIES">
+    <property name="user.properties.file" value="${env.NETBEANS_USER_PROPERTIES}"/>
+    <echo message="Use ${user.properties.file}"/>
+  </target>
+  
+  <target depends="resolve-test" name="-pre-pre-compile-test"/>
+  <import file="nbproject/build-impl.xml"/>
+  <import file="nbproject/build-llnl.xml"/>
+  <import file="nbproject/build-ivy.xml"/>
+  <import file="nbproject/build-coverage.xml"/>
+  <target depends="init, resolve, compile,manifest,schema,-pre-jar,-do-jar,-post-jar" description="Build JAR." name="jar"/>
+
+</project>
