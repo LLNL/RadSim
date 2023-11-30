@@ -1,0 +1,51 @@
+# This is the table for SI units
+# Mass
+mass:g,0.001
+mass:kg,1
+
+# Activity
+activity:TBq,1e12
+activity:GBq,1e9
+activity:MBq,1e6
+activity:kBq,1e3
+activity:Bq,1
+activity:kCi,3.7e13
+activity:Ci,3.7e10
+activity:mCi,3.7e7
+activity:uCi,3.7e4
+activity:nCi,3.7e1
+
+# Specific Activity
+specific_activity:uCi/g,3.7e7
+specific_activity:uCi/kg,3.7e4
+specific_activity:Bq/g,1000
+specific_activity:Bq/kg,1
+
+# Density
+density:g/cm3,1000
+density:kg/m3,1
+
+# Areal Density
+areal_density:g/cm2,10
+areal_density:kg/m2,1
+
+# Length
+length:cm,0.01
+length:m,1
+length:mm,0.001
+
+# Time
+time:s,1
+time:min,60
+time:h,3600
+time:d,86400
+time:a,31557600
+time:y,31557600
+time:yr,31557600
+
+# Flux
+flux:c/m^2/s,1
+flux:c/cm^2/s,10000
+
+dose:Sv/hr,0.0002777777777777778
+dose:Sv/s,1

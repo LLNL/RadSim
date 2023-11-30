@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:n42="http://physics.nist.gov/N42/2011/N42" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:n42rsiA="http://www.radiationsolutions.ca/pubdoc/n42rsiA" targetNamespace="http://www.radiationsolutions.ca/pubdoc/n42rsiA" elementFormDefault="qualified">
+	<xsd:import namespace="http://physics.nist.gov/N42/2011/N42" schemaLocation="http://physics.nist.gov/N42/2011/n42.xsd"/>
+	<xsd:complexType name="NuclideResultType">
+		<xsd:attribute name="SNR" type="xsd:double" use="required"/>
+		<xsd:attribute name="Detector" type="xsd:IDREFS"/>
+		<xsd:attribute name="Alarmed" type="xsd:boolean" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="GenericResultType">
+		<xsd:attribute name="ResultType" type="xsd:string" use="required"/>
+		<xsd:attribute name="Maximum" type="xsd:double" use="required"/>
+		<xsd:attribute name="Threshold" type="xsd:double" use="required"/>
+		<xsd:attribute name="Background" type="xsd:double" use="required"/>
+		<xsd:attribute name="Position" type="xsd:integer" use="required"/>
+		<xsd:attribute name="Detector" type="xsd:IDREFS"/>
+		<xsd:attribute name="Alarmed" type="xsd:boolean" use="required"/>
+		<xsd:attribute name="AcqTime" type="xsd:double"/>
+		<xsd:attribute name="Flags" type="xsd:nonNegativeInteger"/>
+		<xsd:attribute name="Units" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="GammaSampleInfoType">
+		<xsd:attribute name="Status" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="ErrStatus" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="DetSerNum" type="xsd:nonNegativeInteger" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="NasvdResultsType">
+		<xsd:sequence>
+			<xsd:element name="NasvdComponent" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attribute name="Number" type="xsd:nonNegativeInteger" use="required"/>
+					<xsd:attribute name="Position" type="xsd:nonNegativeInteger" use="required"/>
+					<xsd:attribute name="Detector" type="xsd:string" use="required"/>
+					<xsd:attribute name="SNR" type="xsd:double" use="required"/>
+					<xsd:attribute name="Alarmed" type="xsd:boolean" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="AsymmetryCheckPerformed" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="AlarmRemovedByAsymmetryCheck" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="AlarmRemovedByNORMIsotopes" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="AlarmFromPreviousSegment" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="NuclideResult" substitutionGroup="n42:NuclideExtension">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="n42rsiA:NuclideResultType"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="NasvdResults" type="n42rsiA:NasvdResultsType" substitutionGroup="n42:AnalysisResultsExtension"/>
+	<xsd:element name="OtherResults" substitutionGroup="n42:AnalysisResultsExtension">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="GenericResult" type="n42rsiA:GenericResultType" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GammaSampleInfo" type="n42rsiA:GammaSampleInfoType" substitutionGroup="n42:SpectrumExtension"/>
+</xsd:schema>
