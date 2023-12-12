@@ -7,7 +7,7 @@ from project import *
 packages = [
     ('src/gov.llnl.utility',       'src/gov.llnl.utility',       'ant'),
     ('src/gov.llnl.math',          'src/gov.llnl.math',          'ant'),
-    #('src/gov.llnl.rtk',           'src/gov.llnl.rtk',           'ant'),
+    ('src/gov.llnl.rtk',           'src/gov.llnl.rtk',           'ant'),
     ('src/gov.nist.xray',          'src/gov.nist.xray',          'ant'),
     ('src/gov.bnl.nndc.ensdf',     'src/gov.bnl.nndc.ensdf',     'ant'),
     ('src/gov.nist.physics.n42',   'src/gov.nist.physics.n42',   'ant'),
