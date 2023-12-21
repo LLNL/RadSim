@@ -40,6 +40,9 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 * Karl Nelson
 * Dhanush Hangal
 * Vincent Cheung
+* Bonnie Canion
+* Simon Labov
+* Caleb Mattoon
 
 ## License
 
