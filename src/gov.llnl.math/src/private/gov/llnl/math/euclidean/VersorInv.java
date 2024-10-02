@@ -6,11 +6,13 @@
  */
 package gov.llnl.math.euclidean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author nelson85
  */
-final class VersorInv implements Versor
+final class VersorInv implements Versor, Serializable
 {
   Versor versor_;
 

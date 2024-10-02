@@ -30,7 +30,7 @@ def javaClasspath():
             'gov.llnl.math',
             'gov.llnl.rtk',
             'gov.llnl.rtk.decay',
-            'gov.llnl.ensdf',
+            'gov.bnl.nndc.ensdf',
             'gov.nist.xray',
     ):
         path = glob.glob(os.path.join(DEVEL, repo, 'dist', '*.jar'))

@@ -193,6 +193,8 @@ public final class SchemaManagerImpl implements SchemaManager, EntityResolver
   @Override
   public synchronized void alias(URI systemId, URL location)
   {
+    if (location == null)
+      throw new NullPointerException("Alias is null for "+ systemId);
     this.aliasMap.put(systemId.toString(), location);
   }
 
@@ -220,7 +222,7 @@ public final class SchemaManagerImpl implements SchemaManager, EntityResolver
    *
    * @param <T>
    * @param context
-   * @param cls 
+   * @param cls2 
    * @return
    * @throws WriterException
    */
@@ -230,38 +232,44 @@ public final class SchemaManagerImpl implements SchemaManager, EntityResolver
   {
     try
     {
+      Class cls2 = cls;
+      while(cls2.isAnonymousClass())
+      {
+        cls2 = cls2.getSuperclass();
+      }
+      
       if (context != null)
       {
-        Marshaller marshaller = context.getMarshaller(cls);
+        Marshaller marshaller = context.getMarshaller(cls2);
         if (marshaller != null)
           return new ContentWriters.PrimitiveWriter(marshaller);
       }
 
       Class<? extends ObjectWriter> writerClass;
-      WriterInfo annotation = cls.getAnnotation(WriterInfo.class);
+      WriterInfo annotation = (WriterInfo) cls2.getAnnotation(WriterInfo.class);
       if (annotation != null)
         writerClass = annotation.value();
       else
-        writerClass = this.writerMap.get(cls.getName());
+        writerClass = this.writerMap.get(cls2.getName());
       if (writerClass != null)
         return writerClass.getDeclaredConstructor().newInstance();
 
       // Use a writer factory
       for (WriterFactory rf : writerFactories)
       {
-        ObjectWriter writer = rf.getWriter(cls);
+        ObjectWriter writer = rf.getWriter(cls2);
         if (writer != null)
         {
           return writer;
         }
       }
-      throw new WriterException("No writers defined for " + cls.getCanonicalName());
+      throw new WriterException("No writers defined for " + cls2.getName());
     }
     catch (WriterException | IllegalAccessException
             | IllegalArgumentException | InstantiationException
             | NoSuchMethodException | SecurityException | InvocationTargetException ex)
     {
-      throw new WriterException("Unable to create writer for " + cls.getCanonicalName(), ex);
+      throw new WriterException("Unable to create writer for " + cls.getName(), ex);
     }
   }
 
@@ -468,10 +476,11 @@ public final class SchemaManagerImpl implements SchemaManager, EntityResolver
     {
       try
       {
-        URL url = mangleURI(new URI(locations[i]));
+        URI uri = new URI(locations[i]);
+        URL url = mangleURI(uri);
         if (url == null)
         {
-          UtilityPackage.LOGGER.log(Level.WARNING, "Unable to locate schema for {0}", new URI(locations[i]));
+          UtilityPackage.LOGGER.log(Level.WARNING, "Unable to locate schema for {0}", uri);
           continue;
         }
         schemaMgr.scanSchema(url);

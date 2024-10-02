@@ -1,7 +1,7 @@
-/* 
+/*
  * Copyright 2016, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.rtk.physics;
@@ -98,17 +98,6 @@ public class NuclideManagerImpl implements NuclideManager
         return nuclide;
     }
 
-//    if (nuclide == null)
-//    {
-//      // We will dynamically allocate nuclides unless told otherwise
-//      Element element = Elements.get(name);
-//      if (element == null)
-//        return null;
-//      NuclideImpl impl = new NuclideImpl(name);
-//      impl.setAtomicNumber(element.getAtomicNumber());
-//      byName.put(name, impl);
-//      return impl;
-//    }
     return nuclide;
   }
 
@@ -116,6 +105,18 @@ public class NuclideManagerImpl implements NuclideManager
   public Nuclide getById(int id)
   {
     return this.byId.get(id);
+  }
+
+  @Override
+  public Nuclide natural(Element element)
+  {
+    if (element == null)
+      return null;
+    String name = element.getSymbol();
+    NuclideImpl impl = new NuclideImpl(name);
+    impl.setAtomicNumber(element.getAtomicNumber());
+    byName.put(name, impl);
+    return impl;
   }
 
   static private class NuclideDatabaseHandler extends DefaultHandler

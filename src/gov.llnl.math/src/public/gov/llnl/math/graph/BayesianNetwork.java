@@ -6,8 +6,8 @@
  */
 package gov.llnl.math.graph;
 
-import gov.llnl.math.graph.primatives.Connection;
-import gov.llnl.math.graph.primatives.Digraph;
+import gov.llnl.math.graph.primitives.Connection;
+import gov.llnl.math.graph.primitives.Digraph;
 import gov.llnl.utility.xml.bind.ReaderInfo;
 import java.io.PrintStream;
 

@@ -18,7 +18,7 @@ import org.xml.sax.Attributes;
 
 /**
  * Reads an object from an external source.
- * 
+ *
  * This reader appears inside of the imports section.
  *
  * @author nelson85
@@ -81,7 +81,16 @@ final public class ImportsReader extends ObjectReader<Object>
     String uri = attributes.getValue("extern");
     if (uri == null)
       throw new ReaderException("extern is required for import on " + this.getXmlName());
-    url = context.getExternal(uri);
+
+    String prioritizeSearchPaths = attributes.getValue("prioritizeSearchPaths");
+    if (prioritizeSearchPaths != null)
+    {
+      url = context.getExternal(uri, Boolean.parseBoolean(prioritizeSearchPaths));
+    }
+    else
+    {
+      url = context.getExternal(uri);
+    }
     try
     {
       synchronized (documentReader)
@@ -95,7 +104,7 @@ final public class ImportsReader extends ObjectReader<Object>
         }
 
         Object out = documentReader.loadURL(url);
-        
+
         // Grab the context to extract references from
         context.setState(documentReader.getContext());
 
@@ -141,8 +150,8 @@ final public class ImportsReader extends ObjectReader<Object>
   final class ReferenceReader extends ObjectReader<Object>
   {
     /**
-     * This is a dynamically created reader and thus we create the declaration on
-     * the fly.
+     * This is a dynamically created reader and thus we create the declaration
+     * on the fly.
      *
      * @return
      */

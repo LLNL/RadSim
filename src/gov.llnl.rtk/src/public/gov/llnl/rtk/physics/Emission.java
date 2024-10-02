@@ -18,4 +18,15 @@ public interface Emission
    * @return 
    */
   Transition getOrigin();
+
+  /**
+   * Get the intensity of this decay per decay that follows this branch.
+   *
+   * Note that this intensity is different that used in ENSDF. Those are stored
+   * as intensity per 100 decays of the parent, rather than the number that
+   * follow the branch.
+   *
+   * @return
+   */
+  Quantity getIntensity();
 }

@@ -51,7 +51,10 @@ public class RadItemStateReader extends ObjectReader<RadItemState>
     builder.element("StateVector").call(RadItemState::setStateVector, StateVector.class)
             .required();
     // <xsd:element ref="n42:RadItemCharacteristics" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("RadItemStateExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("RadItemStateExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 }

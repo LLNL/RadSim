@@ -14,11 +14,6 @@ public interface ElectronCapture extends Emission
 {
 
   /**
-   * @return the energy
-   */
-  Quantity getEnergy();
-
-  /**
    * Get the forbiddenness for this emission.
    * 
    * It is not clear if this applies only to the B+.
@@ -26,11 +21,6 @@ public interface ElectronCapture extends Emission
    * @return the forbiddenness
    */
   String getForbiddenness();
-
-  /**
-   * @return the intensity
-   */
-  Quantity getIntensity();
 
   /**
    * @return the logFT

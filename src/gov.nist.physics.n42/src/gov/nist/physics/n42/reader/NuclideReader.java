@@ -82,7 +82,10 @@ public class NuclideReader extends ObjectReader<Nuclide>
             .callDouble(Nuclide::setShieldingAtomicNumber).optional();
     builder.element("NuclideShieldingArealDensityValue")
             .callDouble(Nuclide::setShieldingArealDensity).optional();
-    builder.reader(new ExtensionReader("NuclideExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("NuclideExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

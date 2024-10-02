@@ -49,7 +49,10 @@ public class FaultReader extends ObjectReader<Fault>
     //  <xsd:element ref="n42:FaultSeverityCode" minOccurs="1" maxOccurs="1"/>
     builder.element("FaultSeverityCode").call(Fault::setSeverityCode, FaultSeverityCode.class).required();
     //  <xsd:element ref="n42:FaultExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("FaultExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("FaultExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

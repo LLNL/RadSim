@@ -56,7 +56,10 @@ public class RadDetectorStateReader extends ObjectReader<RadDetectorState>
     builder.element("RadDetectorCharacteristics").call(RadDetectorState::addCharacteristics, Characteristics.class)
             .optional().unbounded();
     //  <xsd:element ref="n42:RadDetectorStateExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("RadDetectorStateExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("RadDetectorStateExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

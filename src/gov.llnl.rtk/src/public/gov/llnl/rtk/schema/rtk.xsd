@@ -169,6 +169,28 @@
   <xs:complexType name="ExternalPeakTrackerReader-type">
     <xs:attributeGroup ref="util:object-attribs"/>
   </xs:complexType>
+  <xs:complexType name="FluxListReader-type">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element name="flux" type="rtk:FluxReader-type"/>
+    </xs:choice>
+    <xs:attributeGroup ref="util:object-attribs"/>
+  </xs:complexType>
+  <xs:complexType name="FluxReader-AttributesSection-type">
+    <xs:choice maxOccurs="unbounded">
+      <xs:any minOccurs="0" namespace="##any"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="FluxReader-type">
+    <xs:all minOccurs="0">
+      <xs:element minOccurs="0" name="attributes" type="rtk:FluxReader-AttributesSection-type"/>
+      <xs:element minOccurs="0" name="model" type="rtk:SourceModelReader-type"/>
+      <xs:element minOccurs="0" name="gammaLines" type="util:string-attr"/>
+      <xs:element minOccurs="0" name="gammaGroups" type="util:string-attr"/>
+      <xs:element minOccurs="0" name="neutronGroups" type="util:string-attr"/>
+    </xs:all>
+    <xs:attributeGroup ref="util:object-attribs"/>
+    <xs:anyAttribute namespace="##any" processContents="skip"/>
+  </xs:complexType>
   <xs:complexType name="GaussianFitterReader-type">
     <xs:all minOccurs="0">
       <xs:element minOccurs="0" name="startChannelFraction" type="util:double-attr"/>
@@ -485,6 +507,8 @@
   <xs:element name="expectedList" type="rtk:ExpectedListReader-type" util:class="gov.llnl.rtk.labeling.ExpectedList"/>
   <xs:element name="externalCalibration" type="rtk:ExternalCalibration-Reader-type" util:class="gov.llnl.rtk.calibration.ExternalCalibration"/>
   <xs:element name="externalPeakTracker" type="rtk:ExternalPeakTrackerReader-type" util:class="gov.llnl.rtk.calibration.ExternalPeakTracker"/>
+  <xs:element name="flux" type="rtk:FluxReader-type" util:class="gov.llnl.rtk.flux.Flux"/>
+  <xs:element name="fluxList" type="rtk:FluxListReader-type" util:class="gov.llnl.rtk.flux.FluxList"/>
   <xs:element name="gammaDose" type="rtk:QuantityReader-type" util:class="gov.llnl.rtk.physics.Quantity"/>
   <xs:element name="gammaFlux" type="rtk:QuantityReader-type" util:class="gov.llnl.rtk.physics.Quantity"/>
   <xs:element name="gammaFluxLines" type="rtk:QuantityReader-type" util:class="gov.llnl.rtk.physics.Quantity"/>

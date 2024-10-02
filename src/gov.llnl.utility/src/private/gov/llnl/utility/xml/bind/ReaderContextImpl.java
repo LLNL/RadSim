@@ -1,7 +1,7 @@
-/* 
+/*
  * Copyright 2016, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.utility.xml.bind;
@@ -143,7 +143,7 @@ public class ReaderContextImpl implements ReaderContext
     this.currentContext = old.parentContext;
   }
 //</editor-fold>
-//<editor-fold desc="deferred" defaultstate="collapsed">  
+//<editor-fold desc="deferred" defaultstate="collapsed">
 
   @Override
   @SuppressWarnings("unchecked")
@@ -190,31 +190,45 @@ public class ReaderContextImpl implements ReaderContext
 
 //</editor-fold>
 //<editor-fold desc="external" defaultstate="collapsed">
-  @Override
-  public URL getExternal(String file) throws ReaderException
+  public URL getExternal(String file, boolean prioritizeSearchPaths) throws ReaderException
   {
     try
     {
       if (file == null || file.isEmpty())
         throw new ReaderException("Null external resource file specified.");
 
-      URI f = URIUtilities.resolve(currentPath, file);
+      if (!prioritizeSearchPaths)
+      {
+        URI f = URIUtilities.resolve(currentPath, file);
 
-      // Verify that the result exists
-      if (URIUtilities.exists(f))
-        // Try to convert the uri to a url.
-        return f.toURL();
+        // Verify that the result exists
+        if (URIUtilities.exists(f))
+          // Try to convert the uri to a url.
+          return f.toURL();
+      }
 
       // Search the path for file
       Path[] paths = (Path[]) this.getDocumentReader().getProperty(DocumentReader.SEARCH_PATHS);
-      if (paths == null)
-        throw new ReaderException("Unable to locate external reference " + file);
-      for (Path path : paths)
+      if (paths != null)
       {
-        Path out = path.resolve(file).toAbsolutePath().normalize();
-        if (Files.exists(out))
-          return out.toUri().toURL();
+        for (Path path : paths)
+        {
+          Path out = path.resolve(file).toAbsolutePath().normalize();
+          if (Files.exists(out))
+            return out.toUri().toURL();
+        }
       }
+
+      if (prioritizeSearchPaths)
+      {
+        URI f = URIUtilities.resolve(currentPath, file);
+
+        // Verify that the result exists
+        if (URIUtilities.exists(f))
+          // Try to convert the uri to a url.
+          return f.toURL();
+      }
+
       throw new ReaderException("Unable to locate external reference " + file);
     }
     catch (MalformedURLException ex)
@@ -354,7 +368,7 @@ public class ReaderContextImpl implements ReaderContext
         // we need two pieces of information here.
         //  The element handler which matches the any pattern,
         //  and a handler for this element.
-        // search handlers will have to be responsible for 
+        // search handlers will have to be responsible for
         ElementHandler[] found = handlers.searchHandlers(previous.previousHandler, namespaceURI, localName, qualifiedName, attr);
         if (found != null)
         {
@@ -475,8 +489,8 @@ public class ReaderContextImpl implements ReaderContext
     // Execute post completion actions.
     //   For the duration of this call the child context is available.
     //   This handles the rare case when we want to use the attributes
-    //   for the newly created child.  But this is really more about 
-    //   being lazy when defining a simple class with string contents 
+    //   for the newly created child.  But this is really more about
+    //   being lazy when defining a simple class with string contents
     //   and attributes.
     parent.childContext = context;
     handler.onCall(this, context.parentObject, context.targetObject);
@@ -484,7 +498,7 @@ public class ReaderContextImpl implements ReaderContext
 
     // Reference on element close
     //   This is a safety feature as we are not guaranteed to have complete
-    //   the element until onEnd was complete.  
+    //   the element until onEnd was complete.
     if (context.referenceName != null)
       this.put(context.referenceName, context.targetObject);
 

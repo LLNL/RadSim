@@ -1,7 +1,7 @@
-/* 
+/*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.rtk.flux;
@@ -11,6 +11,7 @@ import gov.llnl.rtk.data.EnergyScale;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Set;
 import java.util.function.DoubleUnaryOperator;
@@ -455,7 +456,7 @@ public class FluxUtilities
       lower[i] = density;
       for (FluxLineStep line : calculator.getLines(group.energyLower, group.energyUpper))
       {
-        // FIXME this method neglects the slope of the group which requires a 
+        // FIXME this method neglects the slope of the group which requires a
         // kludge to address.
         if (line.step <= 0)
           continue;
@@ -670,7 +671,7 @@ public class FluxUtilities
         continue;
       }
 
-      // Line widely spaced, accept it 
+      // Line widely spaced, accept it
       double delta = (line.getEnergy() - last.getEnergy())
               / resolutionFunction.applyAsDouble(line.getEnergy());
       if (delta >= 0.3)
@@ -734,6 +735,43 @@ public class FluxUtilities
       flux3.addPhotonGroup(new FluxGroupBin(grp.getEnergyLower(), grp.getEnergyUpper(), counts));
     }
     return flux3;
+  }
+
+  public static FluxBinned chop(FluxBinned binned, double significance)
+  {
+    FluxBinned out = new FluxBinned();
+    ListIterator<FluxGroupBin> giter = binned.photonGroups.listIterator();
+    ListIterator<FluxLineStep> liter = binned.photonLines.listIterator();
+
+    while (giter.hasNext())
+    {
+      FluxGroupBin group = giter.next();
+      double density = group.getDensity();
+      double gcounts = group.getCounts();
+
+      while (liter.hasNext())
+      {
+        FluxLineStep line = liter.next();
+        if (line.energy < group.energyLower)
+          out.addPhotonLine(line);
+        if (line.energy >= group.energyUpper)
+        {
+          liter.previous();
+          break;
+        }
+
+        double counts = line.intensity;
+        if (counts < density * significance)
+        {
+          gcounts += counts;
+        }
+        else
+          out.addPhotonLine(line);
+      }
+
+      out.addPhotonGroup(new FluxGroupBin(group.energyLower, group.energyUpper, gcounts));
+    }
+    return out;
   }
 
   /**

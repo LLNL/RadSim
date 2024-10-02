@@ -8,41 +8,19 @@ public class SourceImpl implements Source
 {
   public Nuclide nuclide;
   public double activity;
+  public double atoms;
 
-  
   public SourceImpl(Source s)
   {
     this.nuclide = s.getNuclide();
     this.activity = s.getActivity();
-  }
-  
-  public static SourceImpl of(Nuclide nuclide)
-  {
-    SourceImpl source = new SourceImpl();
-    source.nuclide = nuclide;
-    return source;
+    this.atoms = s.getAtoms();
   }
 
-  public static SourceImpl fromActivity(Nuclide nuclide, double activity, ActivityUnit units)
+  public SourceImpl()
   {
-    SourceImpl source = new SourceImpl();
-    source.nuclide = nuclide;
-    source.activity = activity * units.getFactor();
-    return source;
   }
 
-  public static SourceImpl fromAtoms(Nuclide nuclide, double atoms)
-  {
-    SourceImpl source = new SourceImpl();
-    source.nuclide = nuclide;
-    source.activity = nuclide.getDecayConstant() * atoms;
-    return source;
-  }
-
-  private SourceImpl()
-  {
-  }
-  
   @Override
   public String toString()
   {
@@ -55,6 +33,12 @@ public class SourceImpl implements Source
   public Nuclide getNuclide()
   {
     return nuclide;
+  }
+
+  @Override
+  public double getAtoms()
+  {
+    return atoms;
   }
 
   @Override

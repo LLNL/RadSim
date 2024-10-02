@@ -196,7 +196,7 @@ public abstract class MessageEncoding<T> implements ProtoEncoding<T>
   public T parseStreamGZ(InputStream stream) throws ProtoException
   {
     ProtoContext context = new ProtoContext();
-    try (GZIPInputStream gis = new GZIPInputStream(stream))
+    try ( GZIPInputStream gis = new GZIPInputStream(stream))
     {
       return parseContents(context, ByteSource.wrap(gis));
     }
@@ -214,7 +214,7 @@ public abstract class MessageEncoding<T> implements ProtoEncoding<T>
 
   public void saveStreamGZ(OutputStream os, T t) throws IOException, ProtoException
   {
-    try (GZIPOutputStream gos = new GZIPOutputStream(os))
+    try ( GZIPOutputStream gos = new GZIPOutputStream(os))
     {
       byte[] bytes = this.toBytes(t);
       gos.write(bytes);
@@ -240,6 +240,10 @@ public abstract class MessageEncoding<T> implements ProtoEncoding<T>
     {
       if (field.id == -1)
         continue;
+      if ((field.optional!= null)
+              && (!field.optional.test(obj)))
+        continue;
+
       field.encoding.serializeField(field, baos, obj);
     }
     return baos.toByteArray();

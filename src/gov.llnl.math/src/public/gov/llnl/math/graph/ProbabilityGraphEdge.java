@@ -6,7 +6,7 @@
  */
 package gov.llnl.math.graph;
 
-import gov.llnl.math.graph.primatives.Edge;
+import gov.llnl.math.graph.primitives.Edge;
 
 /**
  *

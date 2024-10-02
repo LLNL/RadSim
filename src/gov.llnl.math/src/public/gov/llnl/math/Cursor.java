@@ -1,7 +1,7 @@
 /*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved.
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.math;
@@ -47,6 +47,12 @@ public class Cursor
    */
   public int seek(double x)
   {
+    if (intervals.length < 2)
+    {
+      index = 0;
+      fraction = 0;
+      return index;
+    }
     this.index = seekSegment(x, intervals, start, end, index, log);
     double x0 = intervals[index];
     double x1 = intervals[index + 1];

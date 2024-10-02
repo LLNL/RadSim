@@ -66,7 +66,10 @@ public class DerivedDataReader extends ObjectReader<DerivedData>
     //<xsd:element ref="n42:TotalExposure" minOccurs="0" maxOccurs="unbounded"/>
     builder.element("TotalExposure").call(DerivedData::addTotalExposure, ExposureRate.class).optional().unbounded();
     //<xsd:element ref="n42:DerivedDataExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("DerivedDataExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("DerivedDataExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

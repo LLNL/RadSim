@@ -123,7 +123,7 @@ public class PathUtilities
   {
     Path file = path.getFileName();
     String name = file.toString();
-    // Need to update pattern for cases where the filename has a 
+    // Need to update pattern for cases where the filename has a
     // two part extension and there are more than one period char in the name.
     Pattern pattern = Pattern.compile("\\.[^.]{1,6}(\\.[^.]{1,4})*$");
     Matcher matcher = pattern.matcher(name);
@@ -134,11 +134,11 @@ public class PathUtilities
       if (index == -1)
         return -1;
       matcher.region(index, name.length());
-      // Works correctly for one or two part extension 
+      // Works correctly for one or two part extension
       if (matcher.lookingAt())
       {
         // Check for special case where the file has a two part extension and there's
-        // a period char in the filename. 
+        // a period char in the filename.
         // For example: "test.myname.tar.gz"
         long numDotOccur = name.substring(index, name.length()).chars().filter(ch -> ch == '.').count();
         if (numDotOccur >= 3)

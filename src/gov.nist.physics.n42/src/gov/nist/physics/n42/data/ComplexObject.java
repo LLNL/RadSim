@@ -18,6 +18,7 @@ public abstract class ComplexObject
 {
   private final List<String> remarks = new ArrayList<>();
   private String id;
+  List<Object> extensions = new ArrayList<>();
 
   final public String getId()
   {
@@ -28,7 +29,7 @@ public abstract class ComplexObject
   {
     this.id = id;
   }
-  
+
   final public List<String> getRemarks()
   {
     return this.remarks;
@@ -37,6 +38,16 @@ public abstract class ComplexObject
   final public void addRemark(String remark)
   {
     this.remarks.add(remark);
+  }
+
+  public void addExtension(Object o)
+  {
+    this.extensions.add(o);
+  }
+
+  public List<Object> getExtensions()
+  {
+    return this.extensions;
   }
 
   public void visitReferencedObjects(Consumer<ComplexObject> visitor)

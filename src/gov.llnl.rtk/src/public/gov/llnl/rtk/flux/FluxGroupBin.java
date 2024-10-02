@@ -30,6 +30,7 @@ public class FluxGroupBin implements FluxGroup, Serializable
   final double energyLower;
   final double energyUpper;
   final double counts;
+  final double uncertainty;
 
   /**
    * Create a new FluxGroupBin.
@@ -38,13 +39,18 @@ public class FluxGroupBin implements FluxGroup, Serializable
    * @param energyUpper is the ending energy for the group.
    * @param counts is the total integrated counts.
    */
-  public FluxGroupBin(double energyLower, double energyUpper, double counts)
+  public FluxGroupBin(double energyLower, double energyUpper, double counts, double uncertainty)
   {
     this.energyLower = energyLower;
     this.energyUpper = energyUpper;
     this.counts = counts;
+    this.uncertainty = uncertainty;
     if (this.energyLower >= this.energyUpper)
       throw new RuntimeException("Invalid energy bin");
+  }
+
+  public FluxGroupBin(double energyLower, double energyUpper, double counts) {
+    this(energyLower, energyUpper, counts, 0.0);
   }
 
   @Override
@@ -63,6 +69,10 @@ public class FluxGroupBin implements FluxGroup, Serializable
   public double getCounts()
   {
     return counts;
+  }
+
+  public double getUncertainty() {
+    return uncertainty;
   }
 
   @Override

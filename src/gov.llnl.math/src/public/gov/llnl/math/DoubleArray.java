@@ -177,8 +177,8 @@ public class DoubleArray
    * @param arrays
    * @return
    */
-  public static double[] cat(double[] 
-  
+  public static double[] cat(double[]
+
     ... arrays)
   {
     int s = 0;
@@ -1352,8 +1352,14 @@ public class DoubleArray
       int i = begin;
       while (i + 8 <= end)
       {
-        sm += source[i] + source[i + 1] + source[i + 2] + source[i + 3]
-                + source[i + 4] + source[i + 5] + source[i + 5] + source[i + 7];
+        sm += source[i] +
+                source[i + 1] +
+                source[i + 2] +
+                source[i + 3] +
+                source[i + 4] +
+                source[i + 5] +
+                source[i + 6] +
+                source[i + 7];
         i += 8;
       }
       for (; i < end; ++i)

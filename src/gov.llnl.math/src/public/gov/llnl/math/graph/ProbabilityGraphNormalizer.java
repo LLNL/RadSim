@@ -6,9 +6,9 @@
  */
 package gov.llnl.math.graph;
 
-import gov.llnl.math.graph.primatives.Connection;
-import gov.llnl.math.graph.primatives.NodeEdgeList;
-import gov.llnl.math.graph.primatives.NodeEdgeList.Iterator;
+import gov.llnl.math.graph.primitives.Connection;
+import gov.llnl.math.graph.primitives.NodeEdgeList;
+import gov.llnl.math.graph.primitives.NodeEdgeList.Iterator;
 import java.util.LinkedList;
 import java.util.TreeMap;
 

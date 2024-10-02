@@ -44,7 +44,10 @@ public class SpectrumPeakAnalysisResultsReader extends ObjectReader<SpectrumPeak
     // <xsd:element ref="n42:SpectrumPeak" minOccurs="0" maxOccurs="unbounded"/>
     builder.element("SpectrumPeak").call(SpectrumPeakAnalysisResults::addPeak, SpectrumPeak.class).unbounded();
     // <xsd:element ref="n42:SpectrumPeakAnalysisResultsExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("SpectrumPeakAnalysisResultsExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("SpectrumPeakAnalysisResultsExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

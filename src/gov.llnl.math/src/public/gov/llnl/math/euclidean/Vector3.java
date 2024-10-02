@@ -61,15 +61,24 @@ public interface Vector3
   default double dot(Vector3 vec2)
   {
     double vx1 = this.getX();
-    double vx2 = vec2.getX();
-
     double vy1 = this.getY();
-    double vy2 = vec2.getY();
-
     double vz1 = this.getZ();
+    double vx2 = vec2.getX();
+    double vy2 = vec2.getY();
     double vz2 = vec2.getZ();
-
     return vx1 * vx2 + vy1 * vy2 + vz1 * vz2;
+  }
+
+
+  /**
+   * Dot-product
+   *
+   * @param vec2
+   * @return
+   */
+  default double cosine(Vector3 vec2)
+  {
+    return dot(vec2)/Math.sqrt(this.norm2()*vec2.norm2());
   }
 
   /**
@@ -96,6 +105,14 @@ public interface Vector3
             Math.signum(y) * ay / p,
             Math.signum(z) * az / p);
     return out;
+  }
+  
+   default Vector3 unitVector()
+  {
+    double vx = this.getX() / this.norm();
+    double vy = this.getY() / this.norm();
+    double vz = this.getZ() / this.norm();
+    return new Vector3Impl(vx, vy, vz);
   }
 
   default double[] toArray()

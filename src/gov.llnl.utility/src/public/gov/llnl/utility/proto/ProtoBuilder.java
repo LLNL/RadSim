@@ -1,7 +1,7 @@
 /*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.utility.proto;
@@ -232,9 +232,9 @@ public abstract class ProtoBuilder<T, B>
      * @param setter
      * @return
      */
-    ProtoBuilder.Options as(Function<T, G> getter, BiConsumer<B, S> setter);
+    ProtoBuilder.Options<T> as(Function<T, G> getter, BiConsumer<B, S> setter);
   }
-  
+
   public interface AsOneOf<T, B, G, S> extends AsObject<T, B, G, S>
   {
     ProtoBuilder.AsOneOf<T, B, G, S> add(int code, Class<? extends G> cls, MessageEncoding<? extends G> encoding);
@@ -290,7 +290,7 @@ public abstract class ProtoBuilder<T, B>
      * @param setter is the lambda to store the value in the object.
      * @return a handle for setting options.
      */
-    ProtoBuilder.Options asFloat(ToFloatFunction<U> getter, ObjFloatConsumer<B> setter);
+    ProtoBuilder.Options<U> asFloat(ToFloatFunction<U> getter, ObjFloatConsumer<B> setter);
   }
 
   public interface AsDouble<U, B> extends ProtoBuilder.AsObject<U, B, Double, Double>
@@ -302,10 +302,10 @@ public abstract class ProtoBuilder<T, B>
      * @param setter is the lambda to store the value in the object.
      * @return a handle for setting options.
      */
-    ProtoBuilder.Options asDouble(ToDoubleFunction<U> getter, ObjDoubleConsumer<B> setter);
+    ProtoBuilder.Options<U> asDouble(ToDoubleFunction<U> getter, ObjDoubleConsumer<B> setter);
   }
 
-  public interface Options
+  public interface Options<T>
   {
     /**
      * Indicates that the encoder can call the same set method an unlimited
@@ -316,10 +316,18 @@ public abstract class ProtoBuilder<T, B>
      *
      * @return a handle for setting options.
      */
-    Options repeated();
+    Options<T> repeated();
+
+    /**
+     * Determines if the object is stored or skipped when serializing.
+     *
+     * @param predicate must return true to store the field.
+     * @return a handle for setting options.
+     */
+    Options<T> optional(Predicate<T> predicate);
   }
 
-//<editor-fold desc="lambda">  
+//<editor-fold desc="lambda">
   static public interface ToFloatFunction<T>
   {
     float applyAsFloat(T t);

@@ -54,7 +54,10 @@ public class RadItemInformationReader extends ObjectReader<RadItemInformation>
     builder.element("RadItemCharacteristics").call(RadItemInformation::addCharacteristics, Characteristics.class).optional().unbounded();
     // <xsd:element ref="n42:RadItemInformationExtension" minOccurs="0" maxOccurs="unbounded"/>
     // builder.element("RadItemInformationExtension").call(RadItemInformation::setInformationExtension, ).optional().unbounded();
-    builder.reader(new ExtensionReader("RadItemInformationExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("RadItemInformationExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

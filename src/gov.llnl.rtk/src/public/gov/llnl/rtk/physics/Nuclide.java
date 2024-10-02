@@ -1,7 +1,7 @@
-/* 
+/*
  * Copyright (c) 2016, Lawrence Livermore National Security, LLC.
  * All rights reserved.
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.rtk.physics;
@@ -67,7 +67,7 @@ public interface Nuclide extends Comparable<Nuclide>
   {
     return LN2 / this.getHalfLife();
   }
-  
+
 
   /**
    * Specific activity in 1 over kg seconds.
@@ -88,13 +88,9 @@ public interface Nuclide extends Comparable<Nuclide>
   {
     return Double.isInfinite(getHalfLife());
   }
-  
+
   default public int getZaid()
   {
-//    return String.format("%d%03d%01d", this.getAtomicNumber(), 
-//            this.getMassNumber(), 
-//            this.getIsomerNumber()); // Karl's method in string format
-//    return 1000*this.getAtomicNumber() + this.getMassNumber(); // definition that doesn't care about state being ground or excited
     return 10000*this.getAtomicNumber() + 10*this.getMassNumber() + this.getIsomerNumber(); //Karl's method in int format
   }
 

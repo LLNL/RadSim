@@ -1,6 +1,5 @@
 package gov.llnl.rtk.data;
 
-import gov.llnl.rtk.data.EnergyScale;
 import gov.llnl.utility.ArrayEncoding;
 import gov.llnl.utility.io.ReaderException;
 import gov.llnl.utility.xml.bind.ObjectReader;

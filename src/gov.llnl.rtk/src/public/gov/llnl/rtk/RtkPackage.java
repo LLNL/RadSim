@@ -63,7 +63,7 @@ public class RtkPackage extends PackageResource
 
   public static void main(String[] args) throws ReaderException, FileNotFoundException, IOException
   {
-    UtilityPackage.getInstance().enableLog(Level.ALL);
+    UtilityPackage.getInstance().enableLog(Level.WARNING);
     SchemaBuilder sb = new SchemaBuilder();
 //    sb.include("http://rtk.llnl.gov/schema/rtk_attrib.xsd");
 //    sb.include("http://rtk.llnl.gov/schema/spectrum_attributes.xsd");
@@ -79,6 +79,7 @@ public class RtkPackage extends PackageResource
     {
       DomUtilities.printXml(os, sb.getDocument());
     }
+    System.out.println("SchemaBuilder return "+sb.getError());
     System.exit(sb.getError());
   }
 

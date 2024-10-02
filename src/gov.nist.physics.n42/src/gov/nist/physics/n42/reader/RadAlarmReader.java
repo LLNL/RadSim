@@ -62,7 +62,10 @@ public class RadAlarmReader extends ObjectReader<RadAlarm>
     builder.element("AlarmAudibleIndicator").callBoolean(RadAlarm::setAudibleIndicator).optional();
     builder.element("RadAlarmLightColor").callString(RadAlarm::setLightColor).optional();
     builder.element("RadAlarmEnergyWindowIndices").call(RadAlarm::setEnergyWindowIndices, int[].class).optional();
-    builder.reader(new ExtensionReader("RadAlarmExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("RadAlarmExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

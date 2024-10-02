@@ -8,9 +8,9 @@ package gov.llnl.rtk.physics;
  *
  * @author nelson85
  */
-class EmissionScaled
+public class EmissionScaled
 {
-  static Emission scaled(Emission e, double f)
+  public static Emission scaled(Emission e, double f)
   {
     if (e instanceof Alpha)
       return new ScaledAlpha((Alpha) e, f);
@@ -47,7 +47,7 @@ class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return Quantity.ScaleBy(parent.getIntensity(), scalar);
+      return parent.getIntensity().scaled(scalar);
     }
 
     @Override
@@ -84,7 +84,7 @@ class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return Quantity.ScaleBy(parent.getIntensity(), scalar);
+      return parent.getIntensity().scaled(scalar);
     }
 
     @Override
@@ -127,7 +127,7 @@ class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return Quantity.ScaleBy(parent.getIntensity(), scalar);
+      return parent.getIntensity().scaled(scalar);
     }
 
     @Override
@@ -161,15 +161,9 @@ class EmissionScaled
     }
 
     @Override
-    public Quantity getEnergy()
-    {
-      return parent.getEnergy();
-    }
-
-    @Override
     public Quantity getIntensity()
     {
-      return Quantity.ScaleBy(parent.getIntensity(), scalar);
+      return parent.getIntensity().scaled(scalar);
     }
 
     @Override
@@ -212,7 +206,7 @@ class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return Quantity.ScaleBy(parent.getIntensity(), scalar);
+      return parent.getIntensity().scaled(scalar);
     }
 
     @Override
@@ -221,7 +215,7 @@ class EmissionScaled
       return parent.getOrigin();
     }
   }
-  
+
   private static class ScaledXray implements Xray
   {
     private final Xray parent;
@@ -247,7 +241,7 @@ class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return Quantity.ScaleBy(parent.getIntensity(), scalar);
+      return parent.getIntensity().scaled(scalar);
     }
 
     @Override

@@ -1,7 +1,7 @@
-/* 
+/*
  * Copyright 2016, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.rtk.io;
@@ -74,7 +74,7 @@ class Gr135Spectrum
       String timeString = String.format("%4d-%02d-%02d %02d:%02d:%02d",
               2000 + data.year, data.month, data.day, data.hour, data.min, data.sec);
       spec.setStartTime(df.parse(timeString).toInstant());
-      spec.setAttribute(NEUTRONS, new Double(data.neutron));
+      spec.setAttribute(NEUTRONS, (double)(data.neutron));
       spec.setAttribute(ENERGY_POLYNOMIAL, energyPoly);
       spec.setAttribute("gr135.serial", data.serial);
       spec.setAttribute("gr135.version", data.version);

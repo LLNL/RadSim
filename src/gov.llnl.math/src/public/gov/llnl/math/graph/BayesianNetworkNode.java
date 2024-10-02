@@ -6,8 +6,8 @@
  */
 package gov.llnl.math.graph;
 
-import gov.llnl.math.graph.primatives.Connection;
-import gov.llnl.math.graph.primatives.DigraphNode;
+import gov.llnl.math.graph.primitives.Connection;
+import gov.llnl.math.graph.primitives.DigraphNode;
 
 /**
  *

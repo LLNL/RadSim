@@ -12,15 +12,8 @@ package gov.llnl.rtk.physics;
  *
  * @author nelson85
  */
-public interface Photon extends Emission
+public interface Photon extends EnergyEmission
 {
-
-  /**
-   * Get the emission energy.
-   *
-   * @return
-   */
-  Quantity getEnergy();
 
   /**
    * Get the intensity of this decay per decay that follows this branch.
@@ -31,6 +24,7 @@ public interface Photon extends Emission
    *
    * @return
    */
+  @Override
   Quantity getIntensity();
   
   // FIXME consider adding the inherent width of the line.  

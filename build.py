@@ -11,6 +11,8 @@ packages = [
     ('src/gov.nist.xray',          'src/gov.nist.xray',          'ant'),
     ('src/gov.bnl.nndc.ensdf',     'src/gov.bnl.nndc.ensdf',     'ant'),
     ('src/gov.nist.physics.n42',   'src/gov.nist.physics.n42',   'ant'),
+    ('src/gov.llnl.mcnp',          'src/gov.llnl.mcnp',          'ant'),
+    ('src/gov.llnl.geant4',        'src/gov.llnl.geant4',        'ant'),
 ]
 
 project = Project()

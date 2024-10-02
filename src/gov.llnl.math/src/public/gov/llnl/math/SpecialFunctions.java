@@ -1,7 +1,7 @@
-/* 
+/*
  * Copyright 2016, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.math;
@@ -18,48 +18,137 @@ import java.lang.reflect.Method;
  */
 public class SpecialFunctions
 {
+
   /**
-   * Quick and dirty version of erfinv function.
+   * Approximation for erfinv.
    *
-   * Taken from https://people.maths.ox.ac.uk/gilesm/files/gems_erfinv.pdf
-   * Quality is poor near 0 and 1 the approximation breaks down. This can be
-   * improved by adding approximations for these tails.
+   * Constructed using Mathematica.
    *
    * @param x
    * @return the err function inverse.
    */
   public static double erfinv(double x)
   {
-    double p;
-    double w = -Math.log((1 - x) * (1 + x));
+    if (x == 0)
+      return 0;
+    if (x < 0)
+      return -erfinv(-x);
 
-    if (w < 5)
+    double w = -Math.log((1 - x) * (1 + x));
+    double n, d;
+    if (w < 3.45)
     {
-      w = w - 2.5;
-      p = 2.81022636e-08;
-      p = 3.43273939e-07 + p * w;
-      p = -3.5233877e-06 + p * w;
-      p = -4.39150654e-06 + p * w;
-      p = 0.00021858087 + p * w;
-      p = -0.00125372503 + p * w;
-      p = -0.00417768164 + p * w;
-      p = 0.246640727 + p * w;
-      p = 1.50140941 + p * w;
+      /*
+        m = SetPrecision[1.5, 30]
+        u = SetPrecision[
+             PadeApproximant[
+             InverseErf[Sqrt[1 - Exp[-w]]]/Sqrt[1 - Exp[-w]] , {w, m, {6, 6}}], 30]
+        Print[NumberForm[CoefficientList[Numerator[u //. (-m + w) -> y], y], 25]]
+        Print[NumberForm[CoefficientList[Denominator[u //. (-m + w) -> y], y], 25]]
+       */
+      w -= 1.5;
+      n = 1.252063840583442036433263 + w * (0.5380584190819900833977914
+              + w * (0.1221526179597124238796725
+              + w * (0.01779255957279165722217822
+              + w * (0.001691358689944868285247066
+              + w * (0.00009787393428978440954689497
+              + w * (2.676026826385220778859289e-6))))));
+      d = 1. + w * (0.2297773998532498655277880
+              + w * (0.05091211763264040457508388
+              + w * (0.005539857443464884765033239
+              + w * (0.0004494148677735703259827607
+              + w * (0.00001828648164965060337400090
+              + w * (2.154490000287383085706267e-7))))));
+      return n * x / d;
+    }
+    if (w > 10.3)
+    {
+      /*
+        m = SetPrecision[4, 30]
+        u =SetPrecision[PadeApproximant[InverseErf[Sqrt[1 - Exp[-w^2]]], {w, m, {6, 6}}], 30]
+        Print[NumberForm[CoefficientList[Numerator[u //. (-m + w) -> y], y], 30]]
+        Print[NumberForm[CoefficientList[Denominator[u //. (-m + w) -> y], y],30]]
+       */
+      w = Math.sqrt(w) - 4;
+      n = 3.8397835813561773121259
+              + w * (6.40606141817807604873450527672
+              + w * (4.91646876250136741085330904788
+              + w * (2.10537490874210636928893364272
+              + w * (0.508016023883569847058045559907
+              + w * (0.0633632760824030951430985478726
+              + w * (0.00308703563325252013227516605271))))));
+      d = 1.
+              + w * (1.40543506657355026732416844459
+              + w * (0.910581421468976162170508303895
+              + w * (0.308673586635137049791633573337
+              + w * (0.0510901507380644397641886001543
+              + w * (0.00308561517071538672599065383562
+              + w * (3.35840388441975655044564681664e-9))))));
     }
     else
     {
-      w = Math.sqrt(w) - 3.000000;
-      p = -0.000200214257;
-      p = 0.000100950558 + p * w;
-      p = 0.00134934322 + p * w;
-      p = -0.00367342844 + p * w;
-      p = 0.00573950773 + p * w;
-      p = -0.0076224613 + p * w;
-      p = 0.00943887047 + p * w;
-      p = 1.00167406 + p * w;
-      p = 2.83297682 + p * w;
+      w = Math.sqrt(w) - 2.5;
+      n = 2.33368955690714387635337572 + w * (2.02874539567545870602821931572
+              + w * (1.14449090844734728013274085823
+              + w * (0.343295973133138669769414530280
+              + w * (0.0325130206074192534419948809892
+              + w * (-0.00375331798256883643810063847298
+              + w * (-0.00281167088594418422036289325941))))));
+      d = 1. + w * (0.443990650780212965834329850310
+              + w * (0.295609917624835638765143274286
+              + w * (0.0213047599525304036009376054831
+              + w * (0.00373354680395452695960993420209
+              + w * (-0.00293245623736438280475179213684
+              + w * (0.0000111924432836777578109331474155))))));
     }
-    return p * x;
+    return n / d;
+  }
+
+  /**
+   * Error function.
+   *
+   * @param x
+   * @return \( \displaystyle erf(x)= \frac{2}{\sqrt{\pi}}
+   * \int_{0}^{x}{e^{-t^2}dt} \)
+   */
+  public static double erf(double x)
+  {
+    if (x < 0)
+      return -erf(-x);
+
+    // Deal with the region where the value is very small.
+    if (x < 0.1)
+    {
+      /*
+        m = SetPrecision[0, 30]
+        u = SetPrecision[PadeApproximant[Erf[w], {w, m, {6, 6}}], 30]
+        Print[NumberForm[CoefficientList[Numerator[u //. (-m + w) -> y], y], 25]]
+        Print[NumberForm[CoefficientList[Denominator[u //. (-m + w) -> y], y],25]]
+       */
+      double x2 = x * x;
+      return x * (1.1283791670955126 + 0.11317568551751440 * x2
+              + 0.033311870314118763 * x2 * x2) / (1 + x2 * (0.43363267314552836 + x2 * (0.074066100791405257
+              + 0.0051349567587727263 * x2)));
+    }
+    if (x < 0.4)
+    {
+      /*
+        m = SetPrecision[0.25, 30]
+        u = SetPrecision[PadeApproximant[Erf[w], {w, m, {6, 6}}], 30]
+        Print[NumberForm[CoefficientList[Numerator[u //. (-m + w) -> y], y], 25]]
+        Print[NumberForm[CoefficientList[Denominator[u //. (-m + w) -> y], y],25]]
+       */
+      x = x - 0.25;
+      return (0.27632639016823696 + x * (1.1156145161119599
+              + x * (0.071715108805455341 + x * (0.12968704062787029
+              + x * (0.039142060403787829 + x * (0.032191915923229890
+              - x * 0.00023218718109118894))))))
+              / (1 + x * (0.20121272782521496
+              + x * (0.44668302064561055 + x * (0.067635953050670578
+              + x * (0.076170108574933698 + x * (0.0067757443023838768
+              + x * (0.0050179377835603070)))))));
+    }
+    return 1.0 - erfc(x);
   }
 
   public static double gammaln(double x)
@@ -89,75 +178,13 @@ public class SpecialFunctions
     // alternatives were 0.5*(x+sqrt(1+x^2))
   }
 
-  /**
-   * Error function.
-   *
-   * @param x
-   * @return \( \displaystyle erf(x)= \frac{2}{\sqrt{\pi}}
-   * \int_{0}^{x}{e^{-t^2}dt} \)
-   */
-  public static double erf(double x)
-  {
-    if (x < 0)
-      return -erf(-x);
-
-    // Deal with the region where the value is very small.
-    if (x < 0.1)
-    {
-      double x2 = x * x;
-      return x * (1.1283791670955126 + 0.11317568551751440 * x2
-              + 0.033311870314118763 * x2 * x2) / (1 + x2 * (0.43363267314552836 + x2 * (0.074066100791405257
-              + 0.0051349567587727263 * x2)));
-    }
-    if (x < 0.4)
-    {
-      x = x - 0.25;
-      return (0.27632639016823696 + x * (1.1156145161119599
-              + x * (0.071715108805455341 + x * (0.12968704062787029
-              + x * (0.039142060403787829 + x * (0.032191915923229890
-              - x * 0.00023218718109118894))))))
-              / (1 + x * (0.20121272782521496
-              + x * (0.44668302064561055 + x * (0.067635953050670578
-              + x * (0.076170108574933698 + x * (0.0067757443023838768
-              + x * (0.0050179377835603070)))))));
-    }
-    return 1.0 - erfc(x);
-  }
-
-  /**
-   * Complementary error function.
-   *
-   * @param x is the integration limit.
-   * @return \( \displaystyle erfc(x)= \frac{2}{\sqrt{\pi}}
-   * \int_{x}^{\infty}{e^{-t^2}dt} = 1-erf(x) \)
-   */
-  public static double erfc(double x)
-  {
-    double offset = 0;
-    double factor = 1;
-    if (x < 0)
-    {
-      offset = 2;
-      factor = -1;
-      x = -x;
-    }
-    if (x == 0)
-      return 1.0;
-
-    factor *= exp(-x * x);
-    if (x > 13)
-      return factor * erfcx_large(x) + offset;
-    int table = erfcx_table(x);
-    return factor * erfcx_small(x, table) + offset;
-  }
-
   public static double logerfc(double x)
   {
     if (x > 20)
     {
       double u = x * x;
       // Log of continued fraction expansion of erfc.
-      // Cuyt, Annie A. M.; Petersen, Vigdis B.; Verdonk, Brigitte; Waadeland, Haakon; Jones, William B. (2008). 
+      // Cuyt, Annie A. M.; Petersen, Vigdis B.; Verdonk, Brigitte; Waadeland, Haakon; Jones, William B. (2008).
       // Handbook of Continued Fractions for Special Functions.
       return -u + Math.log(x / MathConstants.SQRT_PI / (u + 0.5 / (1 + 1 / (u + 1.5 / (1 + 2 / (u + 2.5))))));
     }
@@ -236,6 +263,49 @@ public class SpecialFunctions
       throw null;
     }
   }
+
+  /**
+   * Complementary error function.
+   *
+   * @param x is the integration limit.
+   * @return \( \displaystyle erfc(x)= \frac{2}{\sqrt{\pi}}
+   * \int_{x}^{\infty}{e^{-t^2}dt} = 1-erf(x) \)
+   */
+  public static double erfc(double x)
+  {
+    double offset = 0;
+    double factor = 1;
+    if (x < 0)
+    {
+      offset = 2;
+      factor = -1;
+      x = -x;
+    }
+    if (x == 0)
+      return 1.0;
+
+    double r = -x * x;
+    factor *= exp(r);
+    if (x > 13)
+      return factor * erfcx_large(x) + offset;
+    int table = erfcx_table(x);
+    return factor * erfcx_small(x, table) + offset;
+  }
+
+  public static double erfcx(double x)
+  {
+    if (x == 0)
+      return 1.0;
+    if (x < 0)
+      return exp(x * x) * erfc(x);
+    if (Double.isNaN(x))
+      return Double.NaN;
+    if (x > 13)
+      return erfcx_large(x);
+    int table = erfcx_table(x);
+    return erfcx_small(x, table);
+  }
+
 //<editor-fold desc="erfcx" defaultstate="collapse">
   final static double[][] ERFCX_TABLE = new double[][]
   {
@@ -351,19 +421,6 @@ public class SpecialFunctions
     return n / d;
   }
 
-  public static double erfcx(double x)
-  {
-    if (x == 0)
-      return 1.0;
-    if (x < 0)
-      return exp(x * x) * erfc(x);
-    if (Double.isNaN(x))
-      return Double.NaN;
-    if (x > 13)
-      return erfcx_large(x);
-    int table = erfcx_table(x);
-    return erfcx_small(x, table);
-  }
 //</editor-fold>
 //<editor-fold desc="exp" defaultstate="collapsed">
   final static double EXP_F = 0.693147180559945309417232;
@@ -389,8 +446,9 @@ public class SpecialFunctions
     return p;
   }
 
-  public static double exp(double x)
+  public static double exp(double x0)
   {
+    double x = x0;
     if (x > 0)
     {
       double u = exp(-x);
@@ -402,7 +460,9 @@ public class SpecialFunctions
     // Special cases
     if (x == 0)
       return 1.0;
-    if (Double.isInfinite(x))
+    if (Double.isNaN(x))
+      return Double.NaN;
+    if (x<-745)
       return 0.0;
     x /= EXP_F;
 
@@ -421,21 +481,6 @@ public class SpecialFunctions
     }
     if (q == 0)
       return 0.0;
-
-    // Revise by adjusting to nearest log
-    long bits = Double.doubleToRawLongBits(x);
-    long exponent = (bits & 0x7ff0000000000000L) >> 52;
-    long mantissa = bits & 0x000fffffffffffffL;
-    int e = (int) exponent;
-    if (e == 0)
-      return q;
-    // Shift down 
-    long e2 = 1022;
-    e -= 1023;
-    if (e < 0)
-      e2 += e;
-    long revised = (mantissa | 0x8000000000000000L | (e2 << 52));
-    double m = Double.longBitsToDouble(revised);
 
     // Pade Approximate
     double p = exp_pade(x / 2);

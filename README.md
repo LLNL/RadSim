@@ -31,6 +31,8 @@ An example script on how to output a list of emissions and intesities for a give
 	python api-test.py
 ```
 
+An example python notebook on how to transport radiation using MCNP from a collection of sources by defining the source and shielding geometry is provided in gov.llnl.mcnp/py/ subdirectory.
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
@@ -40,9 +42,11 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 * Karl Nelson
 * Dhanush Hangal
 * Vincent Cheung
+* Brandon Lahmann
 * Bonnie Canion
 * Simon Labov
 * Caleb Mattoon
+* Noah McFerran
 
 ## License
 
@@ -56,4 +60,4 @@ within the U.S. Department of Energy’s National Nuclear Security Administratio
 * This work was produced under the auspices of the U.S. Department of Energy by
 Lawrence Livermore National Laboratory under Contract DE-AC52-07NA27344.
 
-* LLNL-CODE-854710 LLNL-CODE-855199
+* LLNL-CODE-854710 LLNL-CODE-855199 LLNL-CODE-2000457

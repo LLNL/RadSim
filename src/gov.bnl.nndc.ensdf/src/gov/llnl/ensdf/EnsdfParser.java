@@ -133,7 +133,7 @@ public class EnsdfParser
     EnsdfQuantity QP = new EnsdfQuantity(line.substring(64, 74), line.substring(74, 76));
     String ION = line.substring(76, 80).strip();
     Nuclide nuclide = Nuclides.get(NUCID);
-    if (nuclide != null && !E.field.equals("0.0"))
+    if (nuclide != null && E.toDouble() != 0.0)
     {
 //      // Assume always M1 for now
 //      nuclide = Nuclides.get(NUCID + "m");
@@ -144,7 +144,7 @@ public class EnsdfParser
       nuclide = null;
       for (Nuclide nuclide2 : isomers)
       {
-        if (Math.abs(nuclide2.getHalfLife() - T.value) < 0.1 * T.value)
+        if (Math.abs(nuclide2.getHalfLife() - T.value) < 0.03 * T.value)
         {
           nuclide = nuclide2;
           break;

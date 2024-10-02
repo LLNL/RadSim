@@ -64,7 +64,10 @@ public class MultimediaDataReader extends ObjectReader<MultimediaData>
 //    builder.element("ImagePerspectiveCode").optional();
 //    builder.element("ImageWidthValue").optional();
 //    builder.element("ImageHeightValue").optional();
-    builder.reader(new ExtensionReader("MultimediaDataExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("MultimediaDataExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

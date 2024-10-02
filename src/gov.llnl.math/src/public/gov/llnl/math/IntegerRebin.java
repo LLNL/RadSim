@@ -10,6 +10,7 @@ import gov.llnl.math.random.BinomialRandom;
 import gov.llnl.math.random.RandomGenerator;
 import gov.llnl.utility.UUIDUtilities;
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Utility function to rescale an integer histogram. This function assumes that
@@ -53,7 +54,7 @@ public class IntegerRebin implements Serializable
    * form it does not need to deal arbitrary energy bins in either scale.
    *
    * @param x
-   * @param s is the change in scale.  (typically desired/actual)
+   * @param s is the change in scale. (typically desired/actual)
    * @return
    */
   public int[] scale(int[] x, double s)
@@ -156,12 +157,24 @@ public class IntegerRebin implements Serializable
     return rebinRange(input, 0, input.length, inputEdges, outputEdges);
   }
 
-  public int[] rebinRange(int[] input, int inputStart, int inputEnd,
+  public int[] rebinRange(
+          int[] input, int inputStart, int inputEnd,
+          double[] inputEdges, double[] outputEdges)
+  {
+    int[] output = new int[outputEdges.length - 1];
+    return rebinRange(output,
+            input, inputStart, inputEnd,
+            inputEdges, outputEdges);
+  }
+
+  public int[] rebinRange(
+          int[] output,
+          int[] input, int inputStart, int inputEnd,
           double[] inputEdges, double[] outputEdges)
   {
     MathAssert.assertLengthEqual(input, inputEdges.length - 1);
-
-    int[] output = new int[outputEdges.length - 1];
+    MathAssert.assertLengthEqual(output, outputEdges.length - 1);
+    Arrays.fill(output, 0);
 
     // Clear the results
     underflow = IntegerArray.sumRange(input, 0, inputStart);
@@ -171,7 +184,6 @@ public class IntegerRebin implements Serializable
     double outputBinsBegin = outputEdges[0];
     double outputBinsEnd = outputEdges[outputEdges.length - 1];
 
-   
     int i1 = 0;
 
     double inputBin0;

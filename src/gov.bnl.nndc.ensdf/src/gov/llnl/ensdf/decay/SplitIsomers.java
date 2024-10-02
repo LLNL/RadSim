@@ -14,6 +14,7 @@ import gov.llnl.ensdf.EnsdfLevel;
 import gov.llnl.ensdf.EnsdfNormalization;
 import gov.llnl.ensdf.EnsdfParent;
 import gov.llnl.ensdf.EnsdfQuantity;
+import gov.llnl.ensdf.EnsdfTimeQuantity;
 import gov.llnl.rtk.physics.DecayTransition;
 import gov.llnl.rtk.physics.Emission;
 import gov.llnl.rtk.physics.EmissionCorrelation;
@@ -381,7 +382,7 @@ public class SplitIsomers
         }
       }
     }
-
+    
     if (parent.nuclide == null)
     {
       System.out.println("WARNING parent nuclide is null");
@@ -389,8 +390,12 @@ public class SplitIsomers
     }
     if (dataSet.levels.isEmpty())
     {
-      System.out.println("WARNING parent levels are empty");
-      return false;
+      EnsdfLevel assumedGround = new EnsdfLevel(dataSet, new EnsdfQuantity("0.0", "0.0"), "", new EnsdfTimeQuantity("", ""), "", null, '\u0000', "", '\u0000');
+      isomers.add(assumedGround);
+      dataSet.levels.add(assumedGround);
+      levelWorkspaceMap.put(assumedGround, new LevelWorkspace(assumedGround, this));
+//      System.out.println("WARNING parent levels are empty");
+//      return false;
     }
 
     // Always add the ground state (even if we missed it somehow)
@@ -410,11 +415,10 @@ public class SplitIsomers
     {
       LevelWorkspace ws = levelWorkspaceMap.get(level);
       ws.splitIndex = i;
-
       // Make sure we can properly assign the child
       for (Nuclide isomer : nuclearIsomers)
       {
-        if (Math.abs(isomer.getHalfLife() - level.T.toDouble()) < 0.05 * isomer.getHalfLife()
+        if (Math.abs(isomer.getHalfLife() - level.T.toDouble()) < 0.03 * isomer.getHalfLife()
                 || (Double.isInfinite(isomer.getHalfLife()) && Double.isInfinite(level.T.toDouble())))
           ws.nuclide = isomer;
       }
@@ -642,9 +646,13 @@ public class SplitIsomers
   private double getGammaProbability(EnsdfGamma gamma)
   {
     double total = 0;
-    if (gamma.TI.isSpecified())
-      total = gamma.TI.toDouble() * this.normalizationTransition;
-    else
+      if (gamma.TI.isSpecified()) {
+          if (this.normalizationTransition == -1) {
+              System.out.println("WARNING record without transition normalization specified");
+              this.normalizationTransition = 1;
+          }
+          total = gamma.TI.toDouble() * this.normalizationTransition;
+      } else
     {
       if (gamma.RI.isSpecified())
       {
@@ -652,6 +660,10 @@ public class SplitIsomers
         double cc = 0;
         if (gamma.CC.isSpecified())
           cc = gamma.CC.toDouble();
+        if (this.normalizationGamma == -1) {
+            System.out.println("WARNING record without gamma normalization specified");
+            this.normalizationGamma = 1;
+        }
         total += gamma.RI.toDouble() * this.normalizationGamma * this.branchingRatio * (1 + cc);
       } else
         System.out.println("WARNING Energy " + gamma.E.toDouble() + ": RI not specified");
@@ -769,19 +781,22 @@ public class SplitIsomers
     if (!options.contains(Option.EXCLUDE_UNASSIGNED))
     {
       double total = 0;
-      for (EnsdfLevel level : this.isomers)
-      {
-        LevelWorkspace ws = this.getLevelWorkspace(level);
-        total += ws.branchingRatio;
-        split[ws.splitIndex] = ws.branchingRatio;
+ 
+      if (this.isomers.size() == 1) {
+        split[0] = 1;
+      } else {
+        for (EnsdfLevel level : this.isomers) {
+          LevelWorkspace ws = this.getLevelWorkspace(level);
+          total += ws.branchingRatio;
+          split[ws.splitIndex] = ws.branchingRatio;
+        }
+
+        for (int j = 0; j < split.length; ++j) {
+          split[j] /= total;
+        }
       }
 
-      for (int j = 0; j < split.length; ++j)
-      {
-        split[j] /= total;
-      }
     }
-
     // Use the split to assign all of the unassigned radiation
     dataSet.unassigned.gamma.stream().forEach(p -> this.getEmissionWorkspace(p).split = split);
     dataSet.unassigned.beta.stream().forEach(p -> this.getEmissionWorkspace(p).split = split);
@@ -797,11 +812,13 @@ public class SplitIsomers
     LevelWorkspace ws = this.getLevelWorkspace(isomer);
     int splitIndex = ws.splitIndex;
     double br = ws.branchingRatio;
-
     // Need to account for possiblity that nothing reached this isomer
-    if (br <= 0)
+    if (br <= 0 && this.isomers.size() > 1)
       return null;
-
+    if (br == 0 && this.isomers.size() == 1) {
+      ws.branchingRatio = this.branchingRatio;  // Assign all emissions to the only possible isomer
+      br = ws.branchingRatio;
+    }
     // Set up an API stub
     DecayTransitionImpl dt = new DecayTransitionImpl(dataSet,
             this.parent.nuclide,
@@ -920,7 +937,14 @@ public class SplitIsomers
     for (EnsdfBeta beta : betas)
     {
       EmissionWorkspace ws2 = this.getEmissionWorkspace(beta);
-      double probability = ws2.split[splitIndex] * ws2.probablity / br;
+      double probability;
+      if (betas.size() == 1) {   // if this is the only beta, assume 100%
+        probability = 1.;
+        ws2.probablity = br;
+      }
+      else {
+        probability = ws2.split[splitIndex] * ws2.probablity / br;
+      }
       if (probability <= 0)
         continue;
       betaTotal += probability;
@@ -946,12 +970,19 @@ public class SplitIsomers
     for (EnsdfAlpha alpha : alphas)
     {
       EmissionWorkspace ws2 = this.getEmissionWorkspace(alpha);
-      double probability = ws2.split[splitIndex] * ws2.probablity / br;
+      double probability;
+      if (alphas.size() == 1) {   // if this is the only alpha, assume 100%
+        probability = 1.;
+        ws2.probablity = br;
+      }
+      else {
+        probability = ws2.split[splitIndex] * ws2.probablity / br;
+      }
       if (probability <= 0)
         continue;
       alphaTotal += probability;
     }
-
+    
     // FIXME add checks here if alphaTotal is way off as it may indicate a problem with the data.
     for (EnsdfAlpha alpha : alphas)
     {
@@ -972,7 +1003,14 @@ public class SplitIsomers
     for (EnsdfElectronCapture ec : collectCaptures)
     {
       EmissionWorkspace ws2 = this.getEmissionWorkspace(ec);
-      double probability = ws2.split[splitIndex] * ws2.probablity / br;
+      double probability;
+      if (collectCaptures.size() == 1) {   // if this is the only EC, assume 100%
+        probability = 1.;
+        ws2.probablity = br;
+      }
+      else {
+      probability = ws2.split[splitIndex] * ws2.probablity / br;
+      }
       if (probability <= 0)
         continue;
       captureTotal += probability;

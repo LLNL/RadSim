@@ -7,8 +7,8 @@
 package gov.llnl.math.graph;
 
 //#ifndef RNAK_GRAPHS_VITERBI_PROBABILITY_GRAPH_H_
-import gov.llnl.math.graph.primatives.Connection;
-import gov.llnl.math.graph.primatives.NodeEdgeList;
+import gov.llnl.math.graph.primitives.Connection;
+import gov.llnl.math.graph.primitives.NodeEdgeList;
 import gov.llnl.utility.UUIDUtilities;
 import java.io.PrintStream;
 import java.io.Serializable;

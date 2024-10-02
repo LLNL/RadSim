@@ -14,6 +14,7 @@ import gov.nist.physics.n42.N42Package;
 import gov.nist.physics.n42.data.ComplexObject;
 import gov.nist.physics.n42.data.GrossCountAnalysisResults;
 import gov.nist.physics.n42.data.Quantity;
+import gov.nist.physics.n42.data.SourcePosition;
 import org.xml.sax.Attributes;
 
 /**
@@ -64,9 +65,12 @@ public class GrossCountAnalysisResultsReader extends ObjectReader<GrossCountAnal
     builder.element("BackgroundCountRateUncertaintyValue")
             .call(GrossCountAnalysisResults::setBackgroundCountRateUncertainty, Quantity.class).optional();
     // <xsd:element ref="n42:SourcePosition" minOccurs="0" maxOccurs="1"/>
-    //builder.element("SourcePosition").optional();  
+    builder.element("SourcePosition").call(GrossCountAnalysisResults::setSourcePosition, SourcePosition.class).optional();  
     // <xsd:element ref="n42:GrossCountAnalysisResultsExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("GrossCountAnalysisResultsExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("GrossCountAnalysisResultsExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

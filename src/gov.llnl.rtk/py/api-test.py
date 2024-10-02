@@ -24,6 +24,7 @@ Ba137m = SourceImpl.fromActivity(Nuclides.get("Ba137m"), 94.7, Bq)
 Co60 = SourceImpl.fromActivity(Nuclides.get("Co60"), 100, Bq)
 Na22 = SourceImpl.fromActivity(Nuclides.get("Na22"), 100, Bq)
 Ir192 = SourceImpl.fromActivity(Nuclides.get("Ir192"), 100, Bq)
+Mo99 = SourceImpl.fromActivity(Nuclides.get("Ir192"), 100, Bq)
 
 # can also add aging of source
 
@@ -39,6 +40,7 @@ sourceList.add(Ba137m)
 # sourceList.add(Co60)
 # sourceList.add(Na22)
 # sourceList.add(Ir192)
+# sourceList.add(Mo99)
 
 beta_record = {'E':[], 'I': []}
 gamma_record = {'E':[], 'I': []}

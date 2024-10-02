@@ -44,12 +44,6 @@ public class ElectronCaptureImpl implements ElectronCapture, Serializable
   }
 
   @Override
-  public Quantity getEnergy()
-  {
-    return this.energy;
-  }
-
-  @Override
   public Quantity getIntensity()
   {
     return this.intensity;

@@ -1,7 +1,7 @@
 /*
- * Copyright 2016, Lawrence Livermore National Security, LLC. 
+ * Copyright 2016, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.utility;
@@ -249,7 +249,7 @@ public class TestSupport
   // <editor-fold defaultstate="collapsed" desc="Class TestReaderMixed">
   @Reader.Declaration(pkg = TestPackage.class,
           name = "TestReader", order = Reader.Order.SEQUENCE,
-          contents = Reader.Contents.MIXED, 
+          contents = Reader.Contents.MIXED,
           options = Reader.Option.CONTENT_REQUIRED)
   static public class TestReaderMixed<T> extends ObjectReader<T>
   {
@@ -488,6 +488,12 @@ public class TestSupport
     public ElementContext getContext(Class cls)
     {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public URL getExternal(String extern, boolean prioritizeSearchPaths) throws ReaderException
+    {
+      throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
   }

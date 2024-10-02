@@ -25,6 +25,7 @@ import gov.nist.physics.n42.data.GrossCountAnalysisResults;
 import gov.nist.physics.n42.data.RadAlarm;
 import gov.nist.physics.n42.data.RadMeasurement;
 import gov.nist.physics.n42.data.RadMeasurementGroup;
+import gov.nist.physics.n42.data.Spectrum;
 import gov.nist.physics.n42.data.SpectrumPeakAnalysisResults;
 import java.time.Instant;
 import org.xml.sax.Attributes;
@@ -42,7 +43,9 @@ import org.xml.sax.Attributes;
 
 @Reader.Attribute(name = "radMeasurementReferences", type = String.class, required = false)
 
+
 @Reader.Attribute(name = "radMeasurementGroupReferences", type = String.class, required = false)
+
 
 @Reader.Attribute(name = "derivedDataReferences", type = String.class, required = false)
 public class AnalysisResultsReader extends ObjectReader<AnalysisResults>
@@ -86,7 +89,7 @@ public class AnalysisResultsReader extends ObjectReader<AnalysisResults>
             .optional()
             .unbounded();
     //  <xsd:element ref="n42:AnalysisResultStatusCode" minOccurs="0" maxOccurs="1"/>
-    builder.element("AnalysisResultStatusCode").call(AnalysisResults::setStatusCode, AnalysisResultStatusCode.class).optional(); 
+    builder.element("AnalysisResultStatusCode").call(AnalysisResults::setStatusCode, AnalysisResultStatusCode.class).optional();
     //  <xsd:element ref="n42:AnalysisConfidenceValue" minOccurs="0" maxOccurs="1"/>
     builder.element("AnalysisConfidenceValue").callDouble(AnalysisResults::setConfidence).optional();
     //  <xsd:element ref="n42:AnalysisResultDescription" minOccurs="0" maxOccurs="1"/>
@@ -120,7 +123,10 @@ public class AnalysisResultsReader extends ObjectReader<AnalysisResults>
             .call(AnalysisResults::addFault, Fault.class)
             .optional().unbounded();
     //  <xsd:element ref="n42:AnalysisResultsExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("AnalysisResultsExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("AnalysisResultsExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

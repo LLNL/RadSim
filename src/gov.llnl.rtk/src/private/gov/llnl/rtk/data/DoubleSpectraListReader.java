@@ -17,7 +17,7 @@ import gov.llnl.utility.xml.bind.Reader;
         cls = DoubleSpectraList.class,
         referenceable = true, document = true,
         order = Reader.Order.FREE)
-public class DoubleSpectraListReader extends SpectraListReader
+public class DoubleSpectraListReader extends SpectraListReader<DoubleSpectraList>
 {
   @SuppressWarnings("unchecked")
   public DoubleSpectraListReader()

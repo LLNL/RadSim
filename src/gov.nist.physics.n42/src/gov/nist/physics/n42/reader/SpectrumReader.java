@@ -18,8 +18,6 @@ import gov.nist.physics.n42.data.ComplexObject;
 import gov.nist.physics.n42.data.EfficiencyCalibration;
 import gov.nist.physics.n42.data.FWHMCalibration;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 import org.xml.sax.Attributes;
 
 /**
@@ -32,21 +30,13 @@ import org.xml.sax.Attributes;
         cls = Spectrum.class,
         typeName = "SpectrumType")
 @Reader.Attribute(name = "id", type = String.class, required = true)
-
 @Reader.Attribute(name = "radDetectorInformationReference", type = String.class, required = false)
-
 @Reader.Attribute(name = "energyCalibrationReference", type = String.class, required = true)
-
 @Reader.Attribute(name = "FWHMCalibrationReference", type = String.class, required = false)
-
 @Reader.Attribute(name = "fullEnergyPeakEfficiencyCalibrationReference", type = String.class, required = false)
-
 @Reader.Attribute(name = "intrinsicSingleEscapePeakEfficiencyCalibrationReference", type = String.class, required = false)
-
 @Reader.Attribute(name = "intrinsicDoubleEscapePeakEfficiencyCalibrationReference", type = String.class, required = false)
-
 @Reader.Attribute(name = "intrinsicFullEnergyPeakEfficiencyCalibrationReference", type = String.class, required = false)
-
 @Reader.Attribute(name = "radRawSpectrumReferences", type = String.class, required = false)
 public class SpectrumReader extends ObjectReader<Spectrum>
 {
@@ -86,10 +76,12 @@ public class SpectrumReader extends ObjectReader<Spectrum>
     // <xsd:element ref="n42:ChannelData" minOccurs="1" maxOccurs="1"/>
     builder.reader(new ChannelDataReader()).call(Spectrum::setCountData);
     // <xsd:element ref="n42:SpectrumExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("SpectrumExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("SpectrumExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
-
 
 }
 

@@ -10,11 +10,7 @@ package gov.llnl.rtk.physics;
  *
  * @author nelson85
  */
-public interface Alpha extends Emission
+public interface Alpha extends EnergyEmission
 {
-  Quantity getEnergy();
-
-  Quantity getIntensity();
-
   Quantity getHindrance();
 }

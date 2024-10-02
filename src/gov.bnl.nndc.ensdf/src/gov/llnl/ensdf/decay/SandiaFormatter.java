@@ -104,7 +104,7 @@ public class SandiaFormatter
             .forEach(this::formatPositron);
     emissions.stream().filter(p -> p instanceof ElectronCapture)
             .map(p -> (ElectronCapture) p)
-            .sorted((p1, p2) -> Double.compare(p1.getEnergy().getValue(), p2.getEnergy().getValue()))
+            .sorted((p1, p2) -> Double.compare(p1.getIntensity().getValue(), p2.getIntensity().getValue()))
             .forEach(this::formatElectronCapture);
     emissions.stream().filter(p -> p instanceof Xray)
             .map(p -> (Xray) p)
@@ -166,10 +166,9 @@ public class SandiaFormatter
 
   private void formatElectronCapture(ElectronCapture t)
   {
-    sb.append("  <electronCapture energy=\"").append(t.getEnergy().getValue()).append("\"");
+    sb.append("  <electronCapture intensity=\"").append(t.getIntensity().getValue()).append("\"");
     if (!t.getForbiddenness().isBlank())
       sb.append(" forbiddenness=\"").append(t.getForbiddenness().toLowerCase()).append("\"");
-    sb.append(" intensity=\"").append(t.getIntensity().getValue()).append("\"");
     if (t.getLogFT().isSpecified())
       sb.append(" logFT=\"").append(t.getLogFT().getValue()).append("\"");
     sb.append(">\n");

@@ -55,7 +55,10 @@ public class SpectrumPeakReader extends ObjectReader<SpectrumPeak>
             .callDouble(SpectrumPeak::setNetAreaUncertainty)
             .unbounded();
     // <xsd:element ref="n42:SpectrumPeakExtension" minOccurs="0" maxOccurs="1"/>
-    builder.reader(new ExtensionReader("SpectrumPeakExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("SpectrumPeakExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

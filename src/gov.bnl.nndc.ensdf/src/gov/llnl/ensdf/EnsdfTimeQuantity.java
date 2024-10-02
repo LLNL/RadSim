@@ -117,6 +117,8 @@ public class EnsdfTimeQuantity implements Serializable
     if (getClass() != obj.getClass())
       return false;
     final EnsdfTimeQuantity other = (EnsdfTimeQuantity) obj;
+    if (this.toDouble() - other.toDouble() < this.toDouble()*0.0001)
+        return true;
     if (!Objects.equals(this.field, other.field))
       return false;
     if (!Objects.equals(this.unc, other.unc))

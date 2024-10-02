@@ -10,13 +10,9 @@ package gov.llnl.rtk.physics;
  *
  * @author nelson85
  */
-public interface Positron extends Emission
+public interface Positron extends EnergyEmission
 {
-
-  Quantity getEnergy();
-
-  Quantity getIntensity();
-
+  
   Quantity getLogFT();
 
   String getForbiddenness();

@@ -48,7 +48,7 @@ public class EnsdfLevel extends EnsdfEmissions implements Serializable
   public final String MS;
   public final char Q;
 
-  EnsdfLevel(EnsdfDataSet dataSet,
+  public EnsdfLevel(EnsdfDataSet dataSet,
           EnsdfQuantity E, String J,
           EnsdfTimeQuantity T,
           String L,

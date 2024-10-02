@@ -69,18 +69,18 @@ public class AnyReader<T> extends ObjectReader<T>
 
   /**
    * Create a reader for a wild card element.
-   * 
+   *
    * @param namespaceURI
    * @param localName
    * @param qualifiedName
    * @param attr
-   * @return 
+   * @return
    */
   @Override
   public Reader findReader(
-          String namespaceURI, 
-          String localName, 
-          String qualifiedName, 
+          String namespaceURI,
+          String localName,
+          String qualifiedName,
           Attributes attr)
   {
     try
@@ -109,13 +109,13 @@ public class AnyReader<T> extends ObjectReader<T>
   /**
    * Specialize the schema element declaration to use xs:any if there is no
    * element name.
-   * 
+   *
    * @param builder
    * @param name
    * @param group
    * @param topLevel
    * @return
-   * @throws ReaderException 
+   * @throws ReaderException
    */
   @Override
   public DomBuilder createSchemaElement(SchemaBuilder builder, String name, DomBuilder group, boolean topLevel) throws ReaderException

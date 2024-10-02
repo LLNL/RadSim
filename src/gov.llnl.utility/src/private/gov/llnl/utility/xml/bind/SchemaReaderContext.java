@@ -51,7 +51,7 @@ class SchemaReaderContext implements ReaderContext
   }
 
   @Override
-  public URL getExternal(String extern) throws ReaderException
+  public URL getExternal(String extern, boolean prioritizeSearchPaths) throws ReaderException
   {
     return (URL) notUsed();
   }

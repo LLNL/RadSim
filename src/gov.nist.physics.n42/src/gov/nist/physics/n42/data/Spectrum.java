@@ -168,24 +168,24 @@ public class Spectrum extends ComplexObject
   {
     return intrinsicFullEnergyPeakEfficiencyCalibration;
   }
-  
-    @Override
+
+  @Override
   public void visitReferencedObjects(Consumer<ComplexObject> visitor)
   {
-    
-    if (this.detector!=null)
+
+    if (this.detector != null)
       visitor.accept(this.detector);
-    if (this.energyCalibration!=null)
+    if (this.energyCalibration != null)
       visitor.accept(this.energyCalibration);
-    if (this.fwhmCalibration!=null)
+    if (this.fwhmCalibration != null)
       visitor.accept(this.fwhmCalibration);
-    if (this.fullEnergyPeakEfficiencyCalibration!=null)
+    if (this.fullEnergyPeakEfficiencyCalibration != null)
       visitor.accept(this.fullEnergyPeakEfficiencyCalibration);
-    if (this.intrinsicDoubleEscapePeakEfficiencyCalibration!=null)
+    if (this.intrinsicDoubleEscapePeakEfficiencyCalibration != null)
       visitor.accept(this.intrinsicDoubleEscapePeakEfficiencyCalibration);
-    if (this.intrinsicFullEnergyPeakEfficiencyCalibration!=null)
+    if (this.intrinsicFullEnergyPeakEfficiencyCalibration != null)
       visitor.accept(this.intrinsicFullEnergyPeakEfficiencyCalibration);
-    if (this.intrinsicSingleEscapePeakEfficiencyCalibration!=null)
+    if (this.intrinsicSingleEscapePeakEfficiencyCalibration != null)
       visitor.accept(this.intrinsicSingleEscapePeakEfficiencyCalibration);
   }
 

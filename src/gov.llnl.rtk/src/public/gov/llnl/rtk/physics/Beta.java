@@ -10,17 +10,8 @@ package gov.llnl.rtk.physics;
  *
  * @author nelson85
  */
-public interface Beta extends Emission
+public interface Beta extends EnergyEmission
 {
-
-  /** 
-   * End point energy for the beta.
-   * 
-   * @return 
-   */
-  Quantity getEnergy();
-
-  Quantity getIntensity();
 
   /**
    * Get the Log FT.

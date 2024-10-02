@@ -65,7 +65,10 @@ public class DoseAnalysisResultsReader extends ObjectReader<DoseAnalysisResults>
             .call(DoseAnalysisResults::setTotalDose, Quantity.class)
             .optional();
     //builder.element("SourcePosition").optional();
-    builder.reader(new ExtensionReader("DoseAnalysisResultsExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("DoseAnalysisResultsExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

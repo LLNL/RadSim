@@ -58,7 +58,10 @@ public class ExposureAnalysisResultsReader extends ObjectReader<ExposureAnalysis
             .call(ExposureAnalysisResults::setTotalExposure, Quantity.class).optional();
 //builder.element("SourcePosition" minOccurs="0" maxOccurs="1"/>
 //builder.element("ExposureAnalysisResultsExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("ExposureAnalysisResultsExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("ExposureAnalysisResultsExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

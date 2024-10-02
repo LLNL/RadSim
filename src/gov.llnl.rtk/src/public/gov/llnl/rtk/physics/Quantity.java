@@ -19,12 +19,12 @@ import java.io.Serializable;
 public class Quantity extends Number implements Serializable
 {
   public static Quantity UNSPECIFIED = new Quantity(0, null, 0, false);
-  
+
   String units;
   double value;
   boolean specified = true;
   double uncertainty = 0;
-  
+
   static public Quantity of(double value, String units)
   {
     return new Quantity(value, units);
@@ -39,7 +39,7 @@ public class Quantity extends Number implements Serializable
   static public Quantity of(double value, String units, double uncertainty)
   {
     return new Quantity(value, units, uncertainty);
-  }  
+  }
 
   private Quantity(double value, String units, double uncertainty)
   {
@@ -47,7 +47,7 @@ public class Quantity extends Number implements Serializable
     this.units = units;
     this.uncertainty = uncertainty;
   }
-  
+
   private Quantity(double value, String units, double uncertainty, boolean specified)
   {
     this.value = value;
@@ -55,14 +55,24 @@ public class Quantity extends Number implements Serializable
     this.uncertainty = uncertainty;
     this.specified = specified;
   }
-  
+
+  // FIXME this is not using Java naming convensions.  Also it would be better as a member function
+  @Deprecated
   public static Quantity ScaleBy(Quantity quantity, double scalar)
   {
     double newValue = quantity.getValue() * scalar;
     double newUncertainty = quantity.getUncertainty() * scalar;
     return new Quantity( newValue, quantity.getUnits(), newUncertainty, quantity.specified);
   }
-  
+
+  public Quantity scaled(double scalar)
+  {
+    double newValue = this.getValue() * scalar;
+    double newUncertainty = this.getUncertainty() * scalar;
+    return new Quantity( newValue, this.getUnits(), newUncertainty, this.specified);
+
+  }
+
   /**
    * Get the value in SI units.
    *
@@ -95,12 +105,12 @@ public class Quantity extends Number implements Serializable
   {
     return value;
   }
-  
+
   /**
    * Get the uncertainty of the quantity without conversion.
    *
    * @return
-   */  
+   */
   public double getUncertainty()
   {
     return uncertainty;
@@ -110,22 +120,22 @@ public class Quantity extends Number implements Serializable
    * Get the uncertainty of the quantity without conversion.
    *
    * @return
-   */  
+   */
   public boolean isSpecified()
   {
     return specified;
   }
-  
+
   /**
    * Get the uncertainty of the quantity without conversion.
    *
    * @return
-   */  
+   */
   public boolean hasUncertainty()
   {
     return uncertainty!=0;
-  }  
-  
+  }
+
   @Override
   public int intValue()
   {

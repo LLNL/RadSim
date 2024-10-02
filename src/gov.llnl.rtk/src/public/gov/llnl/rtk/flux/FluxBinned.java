@@ -1,11 +1,12 @@
-/* 
+/*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.rtk.flux;
 
+import gov.llnl.utility.ExpandableObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.Objects;
  *
  * @author nelson85
  */
-public class FluxBinned implements Flux, Serializable
+public class FluxBinned extends ExpandableObject implements Flux, Serializable
 {
 
   final List<FluxLineStep> photonLines = new ArrayList<>();

@@ -1,7 +1,7 @@
 /*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.nist.physics.n42.data;
@@ -100,7 +100,7 @@ public class NuclideNGTest
   public void testFindConfidence()
   {
     System.out.println("findConfidence");
-    Class<T> type = null;
+    Class type = null;
     Nuclide instance = new Nuclide();
     Object expResult = null;
     Object result = instance.findConfidence(type);

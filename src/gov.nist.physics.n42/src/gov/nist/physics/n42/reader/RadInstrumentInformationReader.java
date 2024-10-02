@@ -62,7 +62,10 @@ public class RadInstrumentInformationReader extends ObjectReader<RadInstrumentIn
     builder.element("RadInstrumentCharacteristics").call(RadInstrumentInformation::addCharacteristics, Characteristics.class).optional().unbounded();
     
     //<xsd:element ref="n42:RadInstrumentInformationExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("RadInstrumentInformationExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("RadInstrumentInformationExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

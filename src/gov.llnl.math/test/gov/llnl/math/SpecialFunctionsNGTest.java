@@ -1,7 +1,7 @@
 /*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.math;
@@ -9,6 +9,7 @@ package gov.llnl.math;
 import static gov.llnl.math.SpecialFunctions.erf;
 import static gov.llnl.math.SpecialFunctions.erfc;
 import static gov.llnl.math.SpecialFunctions.erfcx;
+import static gov.llnl.math.SpecialFunctions.erfinv;
 import static gov.llnl.math.SpecialFunctions.exp;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
@@ -27,12 +28,21 @@ public class SpecialFunctionsNGTest
   @Test
   public void testErfinv()
   {
-//    System.out.println("erfinv");
-//    double x = 0.0;
-//    double expResult = 0.0;
-//    double result = SpecialFunctions.erfinv(x);
-//    assertEquals(result, expResult, 0.0);
-//    fail("The test case is a prototype.");
+    double f = 0;
+    for (int i = 0; i < 50; i++)
+    {
+      assertEquals(f, erfinv(erf(f)), 1e-6);
+      f += 0.1;
+    }
+  }
+
+  @Test
+  public void testErfinv2()
+  {
+    for (int i = -4; i < 5; ++i)
+    {
+      assertEquals(erfinv(erf(i)), i, 1e-4);
+    }
   }
 
   @Test
@@ -70,6 +80,8 @@ public class SpecialFunctionsNGTest
     assertEquals(erfc(2), 0.004677734981047266, 1e-16);
     assertEquals(erfc(5), 1.5374597944280307e-12, 1e-27);
     assertEquals(erfc(10), 2.0884875837625256e-45, 1e-60);
+    assertEquals(erfc(2.5e33), 0.0, 1e-60);
+    assertEquals(erfc(-2.5e33), 2.0, 1e-60);
     assertEquals(erfc(Double.NaN), Double.NaN, 0.0);
     assertEquals(erfc(Double.NEGATIVE_INFINITY), 2.0, 0.0);
     assertEquals(erfc(Double.POSITIVE_INFINITY), 0.0, 0.0);
@@ -101,6 +113,7 @@ public class SpecialFunctionsNGTest
     assertEquals(exp(-2), Math.exp(-2), 0.0);
     assertEquals(exp(-200), Math.exp(-200), 1e-95);
     assertEquals(exp(-745), Math.exp(-745), 0.0);
+    assertEquals(exp(-2e33), Math.exp(-2e33), 0.0);
     assertEquals(exp(-Double.MIN_VALUE), Math.exp(-Double.MIN_VALUE), 0.0);
 
     assertEquals(exp(Double.NaN), Math.exp(Double.NaN), 0.0);

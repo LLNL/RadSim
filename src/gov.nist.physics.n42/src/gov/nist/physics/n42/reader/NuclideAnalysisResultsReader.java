@@ -47,7 +47,10 @@ public class NuclideAnalysisResultsReader extends ObjectReader<NuclideAnalysisRe
             .unbounded();
     //   <xsd:element ref="n42:NuclideAnalysisReducedChiSquareValue" minOccurs="0" maxOccurs="1"/>
     //   <xsd:element ref="n42:NuclideAnalysisResultsExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("NuclideAnalysisResultsExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("NuclideAnalysisResultsExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

@@ -100,7 +100,10 @@ public class RadInstrumentDataReader extends ObjectReader<RadInstrumentData>
     //  <xsd:element ref="n42:MultimediaData" minOccurs="0" maxOccurs="unbounded"/>
     
     // <xsd:element ref="n42:RadInstrumentDataExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("RadInstrumentDataExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("RadInstrumentDataExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

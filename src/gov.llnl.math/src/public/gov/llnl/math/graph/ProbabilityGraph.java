@@ -7,9 +7,9 @@
 package gov.llnl.math.graph;
 
 import gov.llnl.math.graph.ProbabilityGraphNode.NodeType;
-import gov.llnl.math.graph.primatives.Connection;
-import gov.llnl.math.graph.primatives.Graph;
-import gov.llnl.math.graph.primatives.NodeEdgeList;
+import gov.llnl.math.graph.primitives.Connection;
+import gov.llnl.math.graph.primitives.Graph;
+import gov.llnl.math.graph.primitives.NodeEdgeList;
 import gov.llnl.utility.UUIDUtilities;
 import gov.llnl.utility.xml.bind.ReaderInfo;
 import java.io.PrintStream;

@@ -25,7 +25,7 @@ import org.xml.sax.Attributes;
  */
 @Reader.Declaration(pkg = N42Package.class,
         name = "Extension")
-public class ExtensionReader extends AnyReader
+public class ExtensionReader extends AnyReader<Object>
 {
   private final String name;
 

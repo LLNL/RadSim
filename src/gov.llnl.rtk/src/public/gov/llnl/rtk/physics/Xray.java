@@ -10,9 +10,7 @@ package gov.llnl.rtk.physics;
  *
  * @author nelson85
  */
-public interface Xray extends Emission
+public interface Xray extends EnergyEmission
 {
   public String getName();
-  public Quantity getEnergy();
-  public Quantity getIntensity();
 }

@@ -7,7 +7,10 @@
 package gov.llnl.rtk.physics;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
+import gov.llnl.rtk.flux.FluxGroupTrapezoid;
+import gov.llnl.rtk.flux.FluxTrapezoid;
 
 public interface Emissions
 {
@@ -58,4 +61,5 @@ public interface Emissions
   {
     return getEmissions().stream().filter(p->p instanceof Xray).map(p->(Xray)p).collect(Collectors.toList());
   }
+  
 }

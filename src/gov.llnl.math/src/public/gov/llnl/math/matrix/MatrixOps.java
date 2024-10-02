@@ -938,8 +938,8 @@ public class MatrixOps
 
   /**
    * Fill a matrix with a value.
-   * 
-   * The traversal direction depends on the orientation of the matrix.  Some 
+   *
+   * The traversal direction depends on the orientation of the matrix.  Some
    * are filled rowwise and others are columnwise depending on what was the minor
    * direction of the matrix.
    *
@@ -977,7 +977,7 @@ public class MatrixOps
 //</editor-fold>
 //</editor-fold>
 //<editor-fold desc="comparison" defaultstate="collapsed">
-  
+
     /**
    * Compares two matrices to see if they are equal within limits of precision.
    *
@@ -1014,7 +1014,7 @@ public class MatrixOps
     }
     return true;
   }
-  
+
   /**
    * Compares two matrices to see if they are equal within limits of precision.
    *
@@ -1431,7 +1431,7 @@ public class MatrixOps
       return MatrixFactory.newColumnMatrix(maximumVector2(MatrixIterators.newRowReadIterator(m)));
     }
   }
-  
+
   public static double maximumOfAll(Matrix m)
   {
     if (determineVectorAccess1(m))
@@ -1441,9 +1441,9 @@ public class MatrixOps
     else
     {
       return maximumVectorAll(MatrixIterators.newRowReadIterator(m));
-    }    
+    }
   }
-  
+
   private static double maximumVectorAll(VectorIterator iter)
   {
     double d = -Double.MAX_VALUE;

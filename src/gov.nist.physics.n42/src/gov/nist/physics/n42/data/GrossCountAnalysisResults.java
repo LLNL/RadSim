@@ -29,6 +29,7 @@ public class GrossCountAnalysisResults extends ComplexObject
   private Quantity totalCounts;
   private Quantity backgroundCountRate;
   private Quantity backgroundCountRateUncertainty;
+  private SourcePosition sourcePosition;
 
   public Quantity getAverageCountRate()
   {
@@ -104,6 +105,22 @@ public class GrossCountAnalysisResults extends ComplexObject
   public void setTotalCounts(Quantity totalCounts)
   {
     this.totalCounts = totalCounts;
+  }
+
+  /**
+   * @return the sourcePosition
+   */
+  public SourcePosition getSourcePosition()
+  {
+    return sourcePosition;
+  }
+
+  /**
+   * @param sourcePosition the sourcePosition to set
+   */
+  public void setSourcePosition(SourcePosition sourcePosition)
+  {
+    this.sourcePosition = sourcePosition;
   }
 
 }

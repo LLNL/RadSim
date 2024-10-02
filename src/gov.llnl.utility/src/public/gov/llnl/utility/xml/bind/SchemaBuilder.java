@@ -196,7 +196,12 @@ public class SchemaBuilder
 
     // Create the schema element so that it can be used for definitions and documents.
     UtilityPackage.LOGGER.log(Level.FINE, "Create schema element {0}", name);
-    reader.createSchemaElement(this, name, this.getRoot(), true);
+    DomBuilder dom = reader.createSchemaElement(this, name, this.getRoot(), true);
+    Reader.Declaration decl = reader.getDeclaration();
+    if (!decl.substitutionGroup().equals(Reader.Declaration.NULL))
+    {
+      dom.attr("substitutionGroup", decl.substitutionGroup());
+    }
   }
 
   /**
@@ -217,7 +222,7 @@ public class SchemaBuilder
     // Skip packages that are not in this schema.
     if (defaultSchema != reader.getPackage())
     {
-      UtilityPackage.LOGGER.log(Level.SEVERE, "Skip {0}", reader.getClass().getName());
+      UtilityPackage.LOGGER.log(Level.FINE, "Skip {0}", reader.getClass().getName());
       return;
     }
 
@@ -417,8 +422,15 @@ public class SchemaBuilder
         name = name.replaceAll(Pattern.quote(File.separator), ".");
         UtilityPackage.LOGGER.log(Level.FINEST, "Looking for class {0}", name);
         ClassLoader cl = this.getClass().getClassLoader();
-        Class<?> cls = Class.forName(name, false, cl);
+        Class<?> cls = null;
+        try {
+         cls = Class.forName(name, false, cl);
 
+        }
+        catch ( java.lang.NoClassDefFoundError ex)
+        {
+          continue;
+        }
         // Scan for element fields
         for (Field field : cls.getDeclaredFields())
         {
@@ -479,7 +491,7 @@ public class SchemaBuilder
         {
           ByteArrayOutputStream os = new ByteArrayOutputStream();
           ex.printStackTrace(new PrintStream(os));
-          UtilityPackage.LOGGER.log(Level.WARNING, "Failure in object reader {0}\n{1}", new Object[]
+          UtilityPackage.LOGGER.log(Level.SEVERE, "Failure in object reader {0}\n{1}", new Object[]
           {
             cls, new String(os.toByteArray())
           });

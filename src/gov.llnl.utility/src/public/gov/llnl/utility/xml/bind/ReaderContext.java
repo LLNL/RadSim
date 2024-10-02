@@ -98,7 +98,27 @@ public interface ReaderContext
    * resource is malformed.
    *
    */
-  URL getExternal(String extern) throws ReaderException;
+  default URL getExternal(String extern) throws ReaderException
+  {
+    return getExternal(extern, false);
+  }
+  
+  /**
+   * Fetch an external referenced object relative to this context.
+   *
+   * Uses the DocumentReader.SEARCH_PATHS property to locate any resources that
+   * are not found in the same directory as the document being processed.
+   *
+   * @param extern is the URL name of the entity to locate.
+   * @param prioritizeSearchPaths prioritize the search paths over internal local path
+   * @return the URL of the named object.
+   * @throws ReaderException if the resource cannot be located or the external
+   * resource is malformed.
+   *
+   */
+  URL getExternal(String extern, boolean prioritizeSearchPaths) throws ReaderException;
+  
+  
 
   /**
    * Gets the current file being loaded.

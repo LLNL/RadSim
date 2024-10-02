@@ -146,4 +146,12 @@ public abstract class ReaderDeclarationImpl implements Reader.Declaration
     return NO_OPTIONS;
   }
 
+  @Override
+  public String substitutionGroup()
+  {
+    if (base != null)
+      return base.substitutionGroup();
+    return Reader.Declaration.NULL;
+  }
+
 }

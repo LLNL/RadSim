@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.FilerException;
@@ -36,6 +35,7 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.PrimitiveType;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.ElementFilter;
@@ -172,6 +172,25 @@ public class ReaderProcessor extends AbstractProcessor
     TypeMirror schema = getClassAnnotation(element, Reader.Declaration.class, "pkg");
 
     TypeMirror readerClass = types.erasure(elems.getTypeElement(ObjectReader.class.getTypeName()).asType());
+
+    // Prevent the landmine that the cls in the declaration and the class of the reader are mismatched.
+    {
+      DeclaredType t = (DeclaredType) typeElement.asType();
+      DeclaredType t0 = (DeclaredType) typeElement.asType();
+      while (t != null && !types.isAssignable(readerClass, t))
+      {
+        t = (DeclaredType) ((TypeElement) types.asElement(t)).getSuperclass();
+        // Derived types like ObjectStringReader<>
+        if(!t.getTypeArguments().isEmpty())
+          break;
+      }
+      TypeMirror t2 = ((DeclaredType) t).getTypeArguments().get(0);
+      TypeMirror t3 = getClassAnnotation(element, Reader.Declaration.class, "cls");
+      if (!types.isAssignable(t3, t2))
+        mesg.printMessage(Diagnostic.Kind.ERROR,
+                String.format("cls and template type mismatch at %s (%s,%s,%s,%s)", typeElement, t0, t, t2, t3), typeElement);
+    }
+
     TypeElement readerElement = (TypeElement) types.asElement(readerClass);
     Map<String, ExecutableElement> methods = getMethods(readerElement);
     ExecutableElement startMethod = methods.get("start");

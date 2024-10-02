@@ -1,7 +1,7 @@
-/* 
+/*
  * Copyright (c) 2016, Lawrence Livermore National Security, LLC.
  * All rights reserved.
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.rtk.physics;
@@ -20,8 +20,8 @@ public interface Nuclides
   /**
    * Get a nuclide by name.
    *
-   * It can also accept under specified nuclides such as elements.
-   * This accepts a few formats.  "Tc-99m", "Tc99m", "99TCM", etc
+   * It can also accept under specified nuclides such as elements. This accepts
+   * a few formats. "Tc-99m", "Tc99m", "99TCM", etc
    *
    * @return the nuclide requested or null if no element was found.
    */
@@ -55,24 +55,19 @@ public interface Nuclides
     return out;
   }
 
-  // Test code 
-  public static void main(String[] args)
+  /**
+   * Creates a natural nuclide.
+   *
+   * This is a bit abusive as the nuclide will in most cases be mixture rather
+   * than a single nuclide. It also won't get the isRadioactive correct as there
+   * is no defined halflife for mixtures.
+   *
+   * @param element
+   * @return
+   */
+  public static Nuclide natural(Element element)
   {
-    Element Tc = Elements.get("Tc");
-    System.out.println(Nuclides.get(Tc.getAtomicNumber(), 99, 1));
-    System.out.println(Nuclides.get("Tc99m"));
-    System.out.println(Nuclides.get("99TC"));
-    System.out.println(Nuclides.get("99TCM"));
-    System.out.println(Nuclides.get("99-TCM"));
-    System.out.println(Nuclides.get("Tc-99m"));
-    System.out.println(Nuclides.get("38KM"));
-    System.out.println(Nuclides.get("38Km"));
-    System.out.println(Nuclides.get("K-38m"));
-    System.out.println(Nuclides.get("K38m"));
-    System.out.println(Nuclides.get("Y80m2"));  
-    System.out.println(Nuclides.get("Y-80m2"));  
-    System.out.println(Nuclides.get("80YM2")); 
-    System.out.println(Nuclides.getIsomers(39, 80));
+    return MANAGER.natural(element);
   }
 
 //<editor-fold desc="internal" defaultstate="collapsed">
@@ -83,6 +78,8 @@ public interface Nuclides
     Nuclide getById(int id);
 
     ArrayList<String> getNuclideNames();
+
+    Nuclide natural(Element element);
   }
 
   NuclideManager MANAGER

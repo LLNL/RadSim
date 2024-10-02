@@ -1,7 +1,7 @@
-/* 
+/*
  * Copyright 2016, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.rtk.io;
@@ -123,9 +123,9 @@ class ChnSpectrum
   {
     try
     {
-      spec.setAttribute("CHN::magic", new Integer(header.magic));
-      spec.setAttribute("CHN::mca_number", new Integer(header.mca_number));
-      spec.setAttribute("CHN::segment", new Integer(header.segment));
+      spec.setAttribute("CHN::magic", (int)header.magic);
+      spec.setAttribute("CHN::mca_number", (int) header.mca_number);
+      spec.setAttribute("CHN::segment", (int) (header.segment));
       spec.setRealTime((header.realtime * 0.02));
       spec.setLiveTime((header.livetime * 0.02));
 

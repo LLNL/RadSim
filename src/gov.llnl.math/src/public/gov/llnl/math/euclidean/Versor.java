@@ -27,7 +27,7 @@ public interface Versor extends Quaternion
    * Create a versor.
    *
    * @param axis is the direction to rotate about.
-   * @param angle is the angle to rotate.
+   * @param angle is the angle to rotate in radians.
    * @return a new versor.
    */
   public static Versor of(Vector3 axis, double angle)
@@ -42,26 +42,58 @@ public interface Versor extends Quaternion
     return new VersorImpl(Math.cos(angle / 2), x * k, y * k, z * k);
   }
 
-  /**
-   * Create a versor.
-   *
-   * @param x is the x dimension of the versor to rotate about.
-   * @param y is the y dimension of the versor to rotate about.
-   * @param z is the z dimension of the versor to rotate about.
-   * @param angle is the angle to rotate.
-   * @return a new versor.
-   */
-  public static Versor of(double x, double y, double z, double angle)
+  public static Versor fromQuaternion(double w, double i, double j, double k)
   {
-    double r = Math.sqrt(x * x + y * y + z * z);
-    if (r == 0)
+    return new VersorImpl(w, i, j, k);
+  }
+
+  public static Versor fromAxis(MutableVector3 ax, MutableVector3 ay, MutableVector3 az)
+  {
+    double qx;
+    double qy;
+    double qz;
+    double qw;
+    double t;
+    if (az.z < 0)
     {
-      x = 1;
-      angle = 0;
-      r = 1;
+      if (ax.x > ay.y)
+      {
+        t = 1 + ax.x - ay.y - az.z;
+        qx = t;
+        qy = ax.y + ay.x;
+        qz = ax.z + az.x;
+        qw = ay.z - az.y;
+      }
+      else
+      {
+        t = 1 - ax.x + ay.y - az.z;
+        qx = ax.y + ay.x;
+        qy = t;
+        qz = ay.z + az.y;
+        qw = az.x - ax.z;
+      }
     }
-    double q = Math.sin(angle / 2);
-    return new VersorImpl(Math.cos(angle / 2), q * x / r, q * y / r, q * z / r);
+    else
+    {
+      if (ax.x < -ay.y)
+      {
+        t = 1 - ax.x - ay.y + az.z;
+        qx = az.x + ax.z;
+        qy = ay.z + az.y;
+        qz = t;
+        qw = ax.y - ay.x;
+      }
+      else
+      {
+        t = 1 + ax.x + ay.y + az.z;
+        qx = ay.z - az.y;
+        qy = az.x - ax.z;
+        qz = ax.y - ay.x;
+        qw = t;
+      }
+    }
+    t = Math.sqrt(qw*qw+qx*qx+qy*qy+qz*qz);
+    return Versor.fromQuaternion(qw/t, qx/t, qy/t, qz/t);
   }
 
   /**
@@ -89,6 +121,32 @@ public interface Versor extends Quaternion
     return Vector3.of(q2.getI(), q2.getJ(), q2.getK());
   }
 
+  default Vector3 invRotate(Vector3 v)
+  {
+    if (getU() == 0)
+      return Vector3.of(v.getX(), v.getY(), v.getZ());
+    Quaternion q = QuaternionOps.multiply(this.inv(), v);
+    Quaternion q2 = QuaternionOps.multiply(q, this);
+    return Vector3.of(q2.getI(), q2.getJ(), q2.getK());
+  }
+
+  default Versor multiply(Versor v)
+  {
+    double q1i = this.getI();
+    double q1j = this.getJ();
+    double q1k = this.getK();
+    double q1u = this.getU();
+    double q2i = v.getI();
+    double q2j = v.getJ();
+    double q2k = v.getK();
+    double q2u = v.getU();
+    return Versor.fromQuaternion(
+            q1u * q2u - q1i * q2i - q1j * q2j - q1k * q2k,
+            q1u * q2i + q1i * q2u + q1j * q2k - q1k * q2j,
+            q1u * q2j + q1j * q2u + q1k * q2i - q1i * q2k,
+            q1u * q2k + q1k * q2u + q1i * q2j - q1j * q2i);
+  }
+
   default Versor round(int dig)
   {
     long p = POWERS_OF_10[dig];
@@ -100,7 +158,7 @@ public interface Versor extends Quaternion
     double ax = (long) (Math.abs(x) * p + 0.5);
     double ay = (long) (Math.abs(y) * p + 0.5);
     double az = (long) (Math.abs(z) * p + 0.5);
-    return Versor.of(
+    return Versor.fromQuaternion(
             Math.signum(w) * aw / p,
             Math.signum(x) * ax / p,
             Math.signum(y) * ay / p,

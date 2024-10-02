@@ -1,7 +1,7 @@
 /*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.nist.physics.n42.reader;
@@ -23,7 +23,7 @@ import org.xml.sax.Attributes;
  */
 public class ReaderUtilitiesNGTest
 {
-  
+
   public ReaderUtilitiesNGTest()
   {
   }
@@ -87,8 +87,8 @@ public class ReaderUtilitiesNGTest
     System.out.println("addReferences");
     ReaderContext context = null;
     Object target = null;
-    BiConsumer<T, T2> method = null;
-    Class<T2> cls = null;
+    BiConsumer method = null;
+    Class cls = null;
     String references = "";
     ReaderUtilities.addReferences(context, target, method, cls, references);
     // TODO review the generated test code and remove the default call to fail.
@@ -109,5 +109,5 @@ public class ReaderUtilitiesNGTest
     // TODO review the generated test code and remove the default call to fail.
     fail("The test case is a prototype.");
   }
-  
+
 }

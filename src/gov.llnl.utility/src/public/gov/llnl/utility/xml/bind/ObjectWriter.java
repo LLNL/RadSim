@@ -34,6 +34,10 @@ public abstract class ObjectWriter<Type>
     this.options = options;
     this.elementName = name;
     this.pkg = pkg;
+    if(this.elementName == null || this.elementName.isBlank())
+    {
+      throw new UnsupportedOperationException("name cannot be none");
+    }
   }
 
   /**

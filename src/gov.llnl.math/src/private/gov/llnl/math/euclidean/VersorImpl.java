@@ -6,16 +6,29 @@
  */
 package gov.llnl.math.euclidean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author nelson85
  */
-final class VersorImpl implements Versor
+final class VersorImpl implements Versor, Serializable
 {
   double u_, i_, j_, k_;
 
   public VersorImpl(double u, double i, double j, double k)
   {
+    double s = u * u + i * i + j * j + k * k;
+    if (s == 0)
+      u = 1;
+    if (s != 1)
+    {
+      s = Math.sqrt(s);
+      u /= s;
+      i /= s;
+      j /= s;
+      k /= s;
+    }
     this.u_ = u;
     this.i_ = i;
     this.j_ = j;

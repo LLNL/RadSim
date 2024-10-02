@@ -69,7 +69,7 @@ public abstract class PackageResource implements Singletons.Singleton
       }
       if (this.schemaURL == null)
       {
-        UtilityPackage.LOGGER.log(Level.WARNING, "Unable to locate resource {0}", schemaURI);
+        this.logger.log(Level.WARNING, "Unable to locate resource {0}", schemaURI);
       }
     }
     catch (URISyntaxException | MalformedURLException ex)
@@ -100,7 +100,7 @@ public abstract class PackageResource implements Singletons.Singleton
       throw new RuntimeException(ex);
     }
   }
-  
+
   public Schema getSchema()
   {
     return this.getClass().getAnnotation(Schema.class);

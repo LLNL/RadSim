@@ -1,13 +1,15 @@
 /*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.nist.physics.n42.reader;
 
 import gov.llnl.utility.xml.bind.ReaderContext;
 import gov.nist.physics.n42.data.RadInstrumentVersion;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.fail;
 import org.testng.annotations.Test;
 
 /**
@@ -16,7 +18,7 @@ import org.testng.annotations.Test;
  */
 public class RadInstrumentVersionReaderNGTest
 {
-  
+
   public RadInstrumentVersionReaderNGTest()
   {
   }
@@ -48,5 +50,5 @@ public class RadInstrumentVersionReaderNGTest
     // TODO review the generated test code and remove the default call to fail.
     fail("The test case is a prototype.");
   }
-  
+
 }

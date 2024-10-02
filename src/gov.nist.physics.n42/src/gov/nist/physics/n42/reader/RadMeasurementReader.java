@@ -104,7 +104,10 @@ public class RadMeasurementReader extends ObjectReader< RadMeasurement>
     builder.element("OccupancyIndicator").callBoolean(RadMeasurement::setOccupancy)
             .optional();
     //  <xsd:element ref="n42:RadMeasurementExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("RadMeasurementExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("RadMeasurementExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 

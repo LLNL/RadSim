@@ -68,7 +68,10 @@ public class RadInstrumentStateReader extends ObjectReader<RadInstrumentState>
             .call(RadInstrumentState::addInstrumentCharacteristics, Characteristics.class)
             .optional().unbounded();
     //  <xsd:element ref="n42:RadInstrumentStateExtension" minOccurs="0" maxOccurs="unbounded"/>
-    builder.reader(new ExtensionReader("RadInstrumentStateExtension")).nop().optional().unbounded();
+    builder.reader(new ExtensionReader("RadInstrumentStateExtension"))
+            .call((p, v) -> p.addExtension(v))
+            .optional()
+            .unbounded();
     return builder.getHandlers();
   }
 
