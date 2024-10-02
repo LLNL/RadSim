@@ -1,3 +1,61 @@
 /jars
-.DS_Store
-BNL2023.txt.dts_map
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.exe
+
+# Temporary and log files
+*.lock
+*.log
+*.tmp
+*.ser
+
+# Matlab files
+*.mat
+
+# Serilization files (LLNL)
+*.ser
+*.ser.gz
+
+# Data files
+*.thirft.gz
+*.open.gz
+*.dat.gz
+*.open
+*.asc
+*.dat
+*.db
+*.pcc
+*.pcf
+*.spe
+*.dts_map
+
+*.DS_Store
+*Thumbs.db
+~*
+*~
+*.[oa]
+*.pyc
+*.class
+*.dll
+*.so
+*.dylib
+
+#build files
+/build/
+/dist/
+# allow jar's in dependency folder
+!**/dependency/*.jar
+
+# IDE files
+hs_err_pid*.
+/nbproject/private/
+/nbproject/genfiles.properties
+*.prj
+.ant-targets-build.xml
