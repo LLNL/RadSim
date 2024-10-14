@@ -8,7 +8,7 @@ strict arbitrary whitespace requirements while also allowing the user to declare
 changed across multiple simulations. 
 
 For RadSim, this API will be used "underneath" another allowing users to specify detector geometries and sources 
-to be simulated in MCNP without any prior knowledge of MCNP.
+to be simulated in MCNP without any prior knowledge of MCNP. A python notebook illustrating the use of this tool can be found in the py directory.
 
 ## Use
 
@@ -26,69 +26,19 @@ automatically and does not need to be included in decks.
 
 Cells are defined by:
 * A volume
+Volumes are initiated with an axis and an orientation relative to that axis. 
 * A material with some density
-
-Volumes are initiated with a surface and an orientation relative to that surface. The volume is then further refined by 
-union and/or intersection operations with additional surface-orientation pairs. For example, a hollow sphere could be defined
-with the following code:
-
-    Volume hollowSphere = new Volume(
-        Surface.sphere("Inner Sphere", 1.0),        // Sphere surface centered at 0,0,0 with radius 1.0
-        Volume.Orientation.POSITIVE                 // Everything oriented outside the sphere
-        );
-    
-    hollowSphere.addSurface(
-        Surface.sphere("Outer Sphere",2.0),         // Sphere surface centered at 0,0,0 with radius 2.0
-        Volume.Orientation.NEGATIVE,                // Everything oriented inside the sphere
-        Volume.Operator.INTERSECTION                // Intersect this volume with the current volume
-        );
-
-Surfaces can be defined using their MCNP keywords and parameters in the order expected by MCNP. For example a sphere can be defined by:
-
-    Surface sphere = new Surface(name, "s", x0, y0, z0, radius);
-
-The goal of this API is to replace these keywords with prebuilt surface constructor calls for simplicity and readability. 
-Currently, spheres can be alternatively constructed via the call:
-
-    Surface.sphere(String name, Double x0, Double y0, Double z0, Double radius)
-
-Materials are a collection of isotopes with associated number or weight fractions. These fractions do not need to be normalized,
-this is handled automatically by MCNP. Isotopes are defined by their Z and A and then added to a material with a corresponding
-fraction. For example, a material of uranium could be defined by the following code:
-
-    Material uranium = new Material("Uranium");
-    uranium.addIsotope(new Isotope("U235", 92, 235), 0.007);        // U235
-    uranium.addIsotope(new Isotope("U238", 92, 238), 0.993);        // U238
-
-In simulations where individual isotopes are unimportant, one can set A = 0 to represent the natural abundance of isotopes.
-This is generally true with gamma transport.
-
-Also note that negative numbers should be used to represent mass fractions. Otherwise, the fractions are assumed to be number fractions.
-This notation is brought over from MCNP and may be changed in future updates to be more transparent.
-
-With these pieces, one can define a cell with the following calls:
-
-        Cell cell = new Cell("Hollow Uranium Sphere", hollowSphere);
-        cell.setMaterial(uranium, -19.3);
-
-Note that the `-19.3` is a mass density in g/cc. Positive densities are assumed to be number densities. Like mentioned
-previously, this is a left over from MCNP and may be updated for transparency in future updates.
+Materials are a collection of isotopes with associated number or weight fractions. 
 
 ## Particles
 
 Particles are simply what particles are to be considered in the MCNP simulation. They are not restricted to the source particles
-although, the source particle should be included in the simulation. Particles are straightforward to define:
-
-    public Particle(String name, String id)
+although, the source particle should be included in the simulation.
 
 However, it requires knowing the MCNP `id` for the particle you want. This is alleviated by child classes like 
 `Photon` and `Electron` that carry that information internally. Particles also have various physics options that can be
 set by providing a list of Objects in the order expected by the MCNP physics card. All these options have been given 
-explicit variables in the child classes to increase transparency. For example, the upper energy limit of a photon could be
-set to 100.0 MeV via the following code:
-
-    Photon photon = new Photon()
-    photon.setUpperEnergyLimit(100.0)
+explicit variables in the child classes to increase transparency. 
 
 ## Tallys
 
@@ -112,3 +62,11 @@ Each representing a different type of integration to be performed by MCNP. Tally
 * An integration type
 
 The most common tallys are done on surfaces and cells and these are the tallys currently supported by the API. 
+
+## Supported Geometries
+
+The following geometry sections are supported in RadSim, and can be used as illustrated below to construct more complicated composite geometries.
+
+![Alt text](data/spherical.png)
+![Alt text](data/cylindrical.png)
+![Alt text](data/conical.png)
