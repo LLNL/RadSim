@@ -22,37 +22,37 @@ Reference: https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html
     Get the source code https://geant4.web.cern.ch/download
     Unzip it and you should get a folder named "geant4-"+version (v11.1.2 as of this writing) and prepare the following file tree by making an empty build directory:
 
-├── geant4-src
-│   ├── geant4-v11.1.2
-│   ├── geant4-v11.1.2-build
+├── geant4-src\
+│   ├── geant4-v11.1.2\
+│   ├── geant4-v11.1.2-build\
 
 2) Build Procedures
 
-   (Choice A) To use QT, inside the build directory, perform:
+(Choice A) To use QT, inside the build directory, perform:
 
 ```
-cmake -DCMAKE_INSTALL_PREFIX=path/to/destination/geant4-v11.1.2-install -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_QT=ON -DGEANT4_USE_QT3D=ON /path/to/geant4-src/geant4-v11.1.2 $
+$cmake -DCMAKE_INSTALL_PREFIX=path/to/destination/geant4-v11.1.2-install -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_QT=ON -DGEANT4_USE_QT3D=ON /path/to/geant4-src/geant4-v11.1.2 
 ```
-   (Choice B) To use X11, you can do:
+(Choice B) To use X11, you can do:
 
 ```
-cmake -DCMAKE_INSTALL_PREFIX=path/to/destination/geant4-v11.1.2-install -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_OPENGL_X11=ON /path/to/geant4-src/geant4-v11.1.2
+$cmake -DCMAKE_INSTALL_PREFIX=path/to/destination/geant4-v11.1.2-install -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_OPENGL_X11=ON /path/to/geant4-src/geant4-v11.1.2
 ```
    After that, you can start building by (N is the number of cores you want to allocate):
 ```
-make -jN
-make install
+$make -jN
+$make install
 ```
 
 3) Post-install
 
     The Geant4PackageCache.cmake is known to be buggy during the build process. Since it is a cache file, you should safely remove it.
 ```
-rm path/to/destination/geant4-v11.1.2-install/lib/Geant4-11.1.2/Geant4PackageCache.cmake
+$rm path/to/destination/geant4-v11.1.2-install/lib/Geant4-11.1.2/Geant4PackageCache.cmake
 ```
    You may want to use the geant.sh provide to set your environment variables:
 ```
-source path/to/destination/geant4-v11.1.2-install/bin/geant4.sh
+$source path/to/destination/geant4-v11.1.2-install/bin/geant4.sh
 ```
 4) Optional Testing
 
