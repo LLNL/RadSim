@@ -24,7 +24,7 @@ Reference: https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html
 
 ├── geant4-src\
 │   ├── geant4-v11.1.2\
-│   ├── geant4-v11.1.2-build\
+│   ├── geant4-v11.1.2-build\\
 
 2) Build Procedures
 
@@ -79,3 +79,8 @@ xcode-select --install
 ```
 sudo xcodebuild -license
 ```
+
+## Supported Geometries
+
+The following geometry sections are supported in RadSim, and can be used as illustrated below to construct more complicated composite geometries.
+
