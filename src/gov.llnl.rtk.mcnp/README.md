@@ -25,10 +25,8 @@ a cell that represents the "outside world" or everything outside the system of i
 automatically and does not need to be included in decks.
 
 Cells are defined by:
-* A volume
-Volumes are initiated with an axis and an orientation relative to that axis. 
-* A material with some density
-Materials are a collection of isotopes with associated number or weight fractions. 
+* A volume: Volumes are initiated with an axis and an orientation relative to that axis. 
+* A material with some density: Materials are a collection of isotopes with associated number or weight fractions. 
 
 ## Particles
 
