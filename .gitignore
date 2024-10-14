@@ -35,6 +35,8 @@
 *.pcf
 *.spe
 *.dts_map
+*.csv
+*.mac
 
 *.DS_Store
 *Thumbs.db
