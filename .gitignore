@@ -61,3 +61,5 @@ hs_err_pid*.
 /nbproject/genfiles.properties
 *.prj
 .ant-targets-build.xml
+
+*checkpoint.ipynb
