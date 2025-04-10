@@ -81,7 +81,7 @@ public class MutableVector3 implements Vector3, Serializable
     return this;
   }
 
-  public MutableVector3 negate(Vector3 v)
+  public MutableVector3 negateAssign()
   {
     x = -x;
     y = -y;
@@ -115,9 +115,9 @@ public class MutableVector3 implements Vector3, Serializable
 
   public MutableVector3 rotateAssign(Versor q1)
   {
-    double vi = q1.getI();
-    double vj = q1.getJ();
-    double vk = q1.getK();
+    double vi = q1.getX();
+    double vj = q1.getY();
+    double vk = q1.getZ();
     double vu = q1.getU();
 
     double nu = -vi * x - vj * y - vk * z;
@@ -133,9 +133,9 @@ public class MutableVector3 implements Vector3, Serializable
 
   public MutableVector3 rotateInvAssign(Versor q1)
   {
-    double vi = -q1.getI();
-    double vj = -q1.getJ();
-    double vk = -q1.getK();
+    double vi = -q1.getX();
+    double vj = -q1.getY();
+    double vk = -q1.getZ();
     double vu = q1.getU();
 
     double nu = -vi * x - vj * y - vk * z;

@@ -33,9 +33,9 @@ public interface DecayLibrary
 
   /**
    * Get all decays that produce a specified nuclide.
-   * 
+   *
    * @param nuclide
-   * @return 
+   * @return
    */
   public List<DecayTransition> getTransitionsTo(Nuclide nuclide);
 }

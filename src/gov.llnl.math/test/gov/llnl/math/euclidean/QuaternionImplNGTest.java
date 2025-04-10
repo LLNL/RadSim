@@ -27,7 +27,7 @@ public class QuaternionImplNGTest
   {
     QuaternionImpl instance = new QuaternionImpl(1, 2, 3, 4);
     double expResult = 2.0;
-    double result = instance.getI();
+    double result = instance.getX();
     assertEquals(result, expResult, 0.0);
   }
 
@@ -39,7 +39,7 @@ public class QuaternionImplNGTest
   {
     QuaternionImpl instance = new QuaternionImpl(1, 2, 3, 4);
     double expResult = 3.0;
-    double result = instance.getJ();
+    double result = instance.getY();
     assertEquals(result, expResult, 0.0);
   }
 
@@ -51,7 +51,7 @@ public class QuaternionImplNGTest
   {
     QuaternionImpl instance = new QuaternionImpl(1, 2, 3, 4);
     double expResult = 4.0;
-    double result = instance.getK();
+    double result = instance.getZ();
     assertEquals(result, expResult, 0.0);
   }
 

@@ -38,7 +38,7 @@ public class CompositionReader extends ObjectReader<Composition>
   public ElementHandlerMap getHandlers(ReaderContext context) throws ReaderException
   {
     ReaderBuilder<Composition> builder = this.newBuilder();
-    builder.element("entry").call(Composition::add, Component.class).optional();
+    builder.element("entry").call(Composition::add, MaterialComponent.class).optional();
     return builder.getHandlers();
   }
 

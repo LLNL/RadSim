@@ -7,10 +7,17 @@
 package gov.llnl.rtk.physics;
 
 /**
- *
+ * Standard interface for xray data.
+ * 
  * @author nelson85
  */
 public interface XrayLibrary
 {
-  XrayData get(Element element); 
+  /** 
+   * Find the xray data by element.
+   * 
+   * @param element
+   * @return the xray data or null if not found.
+   */
+  XrayData get(Element element);
 }

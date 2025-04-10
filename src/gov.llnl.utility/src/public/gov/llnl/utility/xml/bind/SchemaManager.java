@@ -6,6 +6,7 @@
  */
 package gov.llnl.utility.xml.bind;
 
+import gov.llnl.utility.PackageResource;
 import gov.llnl.utility.Singletons;
 import gov.llnl.utility.io.WriterException;
 import java.net.URI;
@@ -96,6 +97,10 @@ public interface SchemaManager extends Singletons.Singleton
    * @return 
    */
   EntityResolver getEntityResolver();
+
+  public void registerPackage(PackageResource pkg);
+  
+  public PackageResource findPackage(String name);
 
   public interface ReaderFactory
   {

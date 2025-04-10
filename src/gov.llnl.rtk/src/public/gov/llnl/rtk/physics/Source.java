@@ -8,6 +8,8 @@ package gov.llnl.rtk.physics;
 
 /**
  *
+ * FIXME what is the difference between a MaterialComponent and a Source?
+ * 
  * @author nelson85
  */
 public interface Source
@@ -18,31 +20,37 @@ public interface Source
 
   default double getAtoms()
   {
-    return getActivity()/getNuclide().getDecayConstant();
+    return getActivity() / getNuclide().getDecayConstant();
   }
 
-    public static Source of(Nuclide nuclide)
+  /**
+   * Create a source from a nuclide with an activity of 1 Bq.
+   *
+   * @param nuclide
+   * @return 
+   */
+  public static Source of(Nuclide nuclide)
   {
-    SourceImpl source = new SourceImpl();
-    source.nuclide = nuclide;
+    SourceImpl source = new SourceImpl(nuclide);
+    source.activity = 1;
+    source.atoms = source.activity / nuclide.getDecayConstant();
     return source;
   }
 
-  public static Source fromActivity(Nuclide nuclide, double activity, ActivityUnit units)
+  public static Source fromActivity(Nuclide nuclide, QuantityImpl activity)
   {
-    if (nuclide.getDecayConstant()==0)
+    activity.require(PhysicalProperty.ACTIVITY);
+    if (nuclide.getDecayConstant() == 0)
       throw new IllegalArgumentException("Nuclide is stable");
-    SourceImpl source = new SourceImpl();
-    source.nuclide = nuclide;
-    source.activity = activity * units.getFactor();
-    source.atoms = source.activity/nuclide.getDecayConstant();
+    SourceImpl source = new SourceImpl(nuclide);
+    source.activity = activity.as("Bq");
+    source.atoms = source.activity / nuclide.getDecayConstant();
     return source;
   }
 
   public static Source fromAtoms(Nuclide nuclide, double atoms)
   {
-    SourceImpl source = new SourceImpl();
-    source.nuclide = nuclide;
+    SourceImpl source = new SourceImpl(nuclide);
     source.activity = nuclide.getDecayConstant() * atoms;
     source.atoms = atoms;
     return source;

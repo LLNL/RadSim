@@ -11,7 +11,7 @@ public class EmissionCorrelationImpl implements EmissionCorrelation
   private Emission cause;
   private Emission effect;
   private double probability;
-  
+
   public EmissionCorrelationImpl(Emission cause, Emission effect, double probability)
   {
     this.cause = cause;

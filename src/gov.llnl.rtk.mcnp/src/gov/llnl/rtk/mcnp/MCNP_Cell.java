@@ -7,6 +7,7 @@ import java.util.List;
 import gov.llnl.math.euclidean.Vector3;
 import gov.llnl.rtk.physics.ConicalSection;
 import gov.llnl.rtk.physics.CylindricalSection;
+import gov.llnl.rtk.physics.PhysicalProperty;
 import gov.llnl.rtk.physics.Section;
 import gov.llnl.rtk.physics.SphericalSection;
 
@@ -110,7 +111,7 @@ public class MCNP_Cell {
         } else if (includeLowerHalf) {
             cell = new MCNP_Cell(name, lowerHalf);
         }
-        cell.setMaterial(new MCNP_Material(name + " Material", section.getMaterial()), -section.getMaterial().getDensity());
+        cell.setMaterial(new MCNP_Material(name + " Material", section.getMaterial()), -section.getMaterial().getDensity().getValue());
         return cell;
     }
 
@@ -139,7 +140,7 @@ public class MCNP_Cell {
         }
 
         MCNP_Cell cell = new MCNP_Cell(name, volume);
-        cell.setMaterial(new MCNP_Material(name + " Material", section.getMaterial()), -section.getMaterial().getDensity());
+        cell.setMaterial(new MCNP_Material(name + " Material", section.getMaterial()), -section.getMaterial().getDensity().as(PhysicalProperty.DENSITY));
         return cell;
     }
 
@@ -172,7 +173,7 @@ public class MCNP_Cell {
         }
 
         MCNP_Cell cell = new MCNP_Cell(name, volume);
-        cell.setMaterial(new MCNP_Material(name + " Material", section.getMaterial()), -section.getMaterial().getDensity());
+        cell.setMaterial(new MCNP_Material(name + " Material", section.getMaterial()), -section.getMaterial().getDensity().getValue());
         return cell;
     }
 

@@ -17,16 +17,15 @@ public class SourceImpl implements Source
     this.atoms = s.getAtoms();
   }
 
-  public SourceImpl()
+  public SourceImpl(Nuclide nuc)
   {
+    this.nuclide = nuc;
   }
 
   @Override
   public String toString()
   {
-    StringBuilder sb=new StringBuilder();
-    sb.append(this.getNuclide()).append(" ").append(getActivity());
-    return sb.toString();
+    return String.format("Source(%s,%.3e)", this.getNuclide().getName(), getActivity());
   }
 
   @Override

@@ -1,7 +1,7 @@
 /*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.nist.physics.n42.reader;
@@ -13,6 +13,7 @@ import gov.llnl.utility.xml.bind.ReaderContext;
 import gov.nist.physics.n42.N42Package;
 import gov.nist.physics.n42.data.ComplexObject;
 import gov.nist.physics.n42.data.GrossCountAnalysisResults;
+import gov.nist.physics.n42.data.Nuclide;
 import gov.nist.physics.n42.data.Quantity;
 import gov.nist.physics.n42.data.SourcePosition;
 import org.xml.sax.Attributes;
@@ -64,6 +65,7 @@ public class GrossCountAnalysisResultsReader extends ObjectReader<GrossCountAnal
     // <xsd:element ref="n42:BackgroundCountRateUncertaintyValue" minOccurs="0" maxOccurs="1"/>
     builder.element("BackgroundCountRateUncertaintyValue")
             .call(GrossCountAnalysisResults::setBackgroundCountRateUncertainty, Quantity.class).optional();
+    builder.element("SourcePosition").call(GrossCountAnalysisResults::setSourcePosition, SourcePosition.class).optional();
     // <xsd:element ref="n42:SourcePosition" minOccurs="0" maxOccurs="1"/>
     builder.element("SourcePosition").call(GrossCountAnalysisResults::setSourcePosition, SourcePosition.class).optional();  
     // <xsd:element ref="n42:GrossCountAnalysisResultsExtension" minOccurs="0" maxOccurs="unbounded"/>

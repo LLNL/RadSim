@@ -15,11 +15,11 @@ public interface Beta extends EnergyEmission
 
   /**
    * Get the Log FT.
-   * 
+   *
    * @return the logFT or null if not specified.
-   */  
+   */
   Quantity getLogFT();
- 
+
   String getForbiddenness();
 
 }

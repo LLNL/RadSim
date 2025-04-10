@@ -1,13 +1,14 @@
-/* 
+/*
  * Copyright 2022, Lawrence Livermore National Security, LLC.
  * All rights reserved
- * 
+ *
  * Terms and conditions are given in "Notice" file.
  */
 package gov.llnl.rtk.flux;
 
 import gov.llnl.rtk.data.EnergyScale;
 import gov.llnl.rtk.data.EnergyScaleFactory;
+import gov.llnl.utility.ExpandableObject;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,7 +28,7 @@ import java.util.Objects;
  *
  * @author nelson85
  */
-public class FluxSpectrum implements Flux, Serializable
+public class FluxSpectrum extends ExpandableObject implements Flux, Serializable 
 {
   final static EnergyScale EMPTY_SCALE = EnergyScaleFactory.newScale(new double[0]);
 
@@ -41,29 +42,29 @@ public class FluxSpectrum implements Flux, Serializable
   /**
    * Create a new FluxSpectrum.
    *
-   * @param gammaScale is the energy scale for the groups.
-   * @param gammaCounts is the counts in each energy group.
+   * @param photonScale is the energy scale for the groups.
+   * @param photonCounts is the counts in each energy group.
    * @param neutronScale
    * @param neutronCounts
    */
-  public FluxSpectrum(EnergyScale gammaScale, double[] gammaCounts,
+  public FluxSpectrum(EnergyScale photonScale, double[] photonCounts,
           EnergyScale neutronScale, double[] neutronCounts)
   {
     // Sanity checks
-    if (gammaScale != null && gammaScale.getChannels() != gammaCounts.length)
+    if (photonScale != null && photonScale.getChannels() != photonCounts.length)
       throw new IllegalArgumentException();
     if (neutronScale != null && neutronScale.getChannels() != neutronCounts.length)
       throw new IllegalArgumentException();
-    if (gammaScale == null)
-      gammaScale = EMPTY_SCALE;
+    if (photonScale == null)
+      photonScale = EMPTY_SCALE;
     if (neutronScale == null)
       neutronScale = EMPTY_SCALE;
 
-    this.photonScale = gammaScale;
-    this.photonCounts = gammaCounts;
+    this.photonScale = photonScale;
+    this.photonCounts = photonCounts;
     this.neutronScale = neutronScale;
     this.neutronCounts = neutronCounts;
-    this.photonGroups = new SpectrumGroupList(gammaScale, gammaCounts);
+    this.photonGroups = new SpectrumGroupList(photonScale, photonCounts);
     this.neutronGroups = new SpectrumGroupList(neutronScale, neutronCounts);
   }
 
@@ -110,7 +111,7 @@ public class FluxSpectrum implements Flux, Serializable
   /**
    * @return the gammaScale
    */
-  public EnergyScale getGammaScale()
+  public EnergyScale getPhotonScale()
   {
     return photonScale;
   }
@@ -118,7 +119,7 @@ public class FluxSpectrum implements Flux, Serializable
   /**
    * @return the gammaCounts
    */
-  public double[] getGammaCounts()
+  public double[] getPhotonCounts()
   {
     return photonCounts;
   }

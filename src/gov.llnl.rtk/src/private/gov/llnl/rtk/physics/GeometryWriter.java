@@ -40,10 +40,10 @@ public class GeometryWriter extends ObjectWriter<Geometry>
     if (object == null)
       return;
     WriterBuilder wb = newBuilder();
-    if (object.getExtent1() > 0)
-      wb.element("extent1").writer(new Units.UnitWriter("length:cm")).put(object.getExtent1());
-    if (object.getExtent2() > 0)
-      wb.element("extent2").writer(new Units.UnitWriter("length:cm")).put(object.getExtent2());
+    if (object.getExtent1() != null)
+      wb.element("extent1").writer(new QuantityWriter("length:cm")).put(object.getExtent1());
+    if (object.getExtent2() != null)
+      wb.element("extent2").writer(new QuantityWriter("length:cm")).put(object.getExtent2());
   }
 
 }

@@ -6,6 +6,7 @@
  */
 package gov.llnl.rtk.flux;
 
+import gov.llnl.utility.ExpandableObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.Objects;
  *
  * @author nelson85
  */
-public class FluxTrapezoid implements Flux, Serializable
+public class FluxTrapezoid extends ExpandableObject implements Flux, Serializable
 {
 
   final List<FluxLineStep> photonLines = new ArrayList<>();

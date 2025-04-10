@@ -40,6 +40,35 @@ public class Vector3Ops
     return Math.sqrt(x * x + y * y + z * z);
   }
 
+  public static void cross(MutableVector3 out, Vector3 a, Vector3 b)
+  {
+    double a1 = a.getX();
+    double a2 = a.getY();
+    double a3 = a.getZ();
+    double b1 = b.getX();
+    double b2 = b.getY();
+    double b3 = b.getZ();
+    out.x = a2 * b3 - a3 * b2;
+    out.y = a3 * b1 - a1 * b3;
+    out.z = a1 * b2 - a2 * b1;
+  }
+
+  public static void cross(MutableVector3 out, Vector3 origin, Vector3 a, Vector3 b)
+  {
+    double x0 = origin.getX();
+    double y0 = origin.getY();
+    double z0 = origin.getZ();
+    double a1 = a.getX() - x0;
+    double a2 = a.getY() - y0;
+    double a3 = a.getZ() - z0;
+    double b1 = b.getX() - x0;
+    double b2 = b.getY() - y0;
+    double b3 = b.getZ() - z0;
+    out.x = a2 * b3 - a3 * b2;
+    out.y = a3 * b1 - a1 * b3;
+    out.z = a1 * b2 - a2 * b1;
+  }
+
   public static double correlation(Vector3 v1, Vector3 v2)
   {
     double x1 = v1.getX();
@@ -72,6 +101,18 @@ public class Vector3Ops
     double dy = (c1.getY() - c2.getY());
     double dz = (c1.getZ() - c2.getZ());
     return dx * dx + dy * dy + dz * dz;
+  }
+
+  public static double cos(Vector3 tmp1, Vector3 tmp2)
+  {
+    double x1 = tmp1.getX();
+    double x2 = tmp2.getX();
+    double y1 = tmp1.getY();
+    double y2 = tmp2.getY();
+    double z1 = tmp1.getZ();
+    double z2 = tmp2.getZ();
+    return (x1 * x2 + y1 * y2 + z1 * z2)
+            / Math.sqrt((x1 * x1 + y1 * y1 + z1 * z1) * (x2 * x2 + y2 * y2 + z2 * z2));
   }
 
 }

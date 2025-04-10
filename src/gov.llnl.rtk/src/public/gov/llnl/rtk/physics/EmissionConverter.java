@@ -17,12 +17,13 @@ import java.util.List;
  * @author cheung27
  */
 public class EmissionConverter
-{ /**
- * 
- * @param energyEmissionList
- * @param energyScale
- * @return new FluxTrapezoid with emissions in photon list
- */
+{
+  /**
+   *
+   * @param energyEmissionList
+   * @param energyScale
+   * @return new FluxTrapezoid with emissions in photon list
+   */
   public static FluxTrapezoid getEmissionAsFluxTrapezoid(List<? extends EnergyEmission> energyEmissionList, EnergyScale energyScale)
   {
 
@@ -34,18 +35,19 @@ public class EmissionConverter
       double energy = energyEmission.getEnergy().getValue();
       double intensity = energyEmission.getIntensity().getValue();
 
-      if (energy > edges[edges.length - 1]) {
+      if (energy > edges[edges.length - 1])
+      {
         continue;
       }
-      
+
       int lowerIndex = energyScale.findEdgeFloor(energy);
       int upperIndex = lowerIndex + 1;
-      
+
       double deltaE = edges[upperIndex] - edges[lowerIndex];
 
       double lowerFraction = (edges[upperIndex] - energy) / deltaE;
       double upperFraction = (energy - edges[lowerIndex]) / deltaE;
-      
+
       densities[lowerIndex] += intensity * lowerFraction;
       densities[upperIndex] += intensity * upperFraction;
     }

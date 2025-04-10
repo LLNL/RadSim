@@ -12,7 +12,7 @@ package gov.llnl.rtk.physics;
  */
 public interface DecayTransition extends Transition
 {
-  
+
   Nuclide getChild();
 
 }

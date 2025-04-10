@@ -29,10 +29,8 @@ public class CompositionFactory
         throw new RuntimeException("Unable to parse component " + part);
 
       Nuclide nuclide = Nuclides.get(matcher.group(1));
-      double activity = Double.parseDouble(matcher.group(2));
-      double unit = Units.get(matcher.group(3));
-      activity *= unit;
-
+      String unit = matcher.group(3);
+      Quantity activity = Quantity.of(Double.parseDouble(matcher.group(2)), unit);
       out.add(nuclide, 1, activity);
     }
     return out;

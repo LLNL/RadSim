@@ -1,5 +1,4 @@
 # Utility script for converting GADRAS gam files into Tarantula flux files.
-
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
@@ -8,14 +7,18 @@ import os
 import re
 import jpype
 import jpype.imports
-jpype.startJVM(classpath=[
-    "../../gov.llnl.utility/dist/*",
-    "../../gov.llnl.math/dist/*",
-    "../../gov.llnl.rtk/dist/*",
-    ])
-#import common
-#import extractor
-#import gov
+
+root = os.path.normpath(os.path.join(os.path.dirname(__file__),".."))
+print("ROOT", root)
+classpath = [
+    os.path.join(root, "..", "gov.llnl.utility", "dist", "*"),
+    os.path.join(root, "..", "gov.llnl.math", "dist", "*"),
+    os.path.join(root, "..", "gov.llnl.rtk", "dist", "*"),
+    os.path.join(root, "..", "gov.llnl.rtk.gadras", "dist", "*"),
+]
+jpype.startJVM(classpath=classpath)
+print(jpype.java.lang.System.getProperty("java.class.path"))
+
 import java
 from collections import deque
 from java.nio.file import Paths
@@ -100,11 +103,13 @@ def readGam(filename):
 
 def computeFluxSpectrum(filename, surface):
 
+    detector = os.path.relpath(os.path.join(root, "py", "common", "null.xml"))
+    rebin = os.path.relpath(os.path.join(root, "py", "common", "rebin.dat"))
     # step 1 convert to a spectrum using the null detector
     if surface:
-        os.system("%s/bin/Response.exe --detector=detector/null.xml --rebin=detector/rebin.dat --distance=500 --output=out.xml %s" % (SANDIA_TOOLS, filename + ".gam"))
+        os.system("%s/bin/Response.exe --detector=%s --rebin=%s --distance=500 --output=out.xml %s" % (SANDIA_TOOLS, detector, rebin, filename + ".gam"))
     else:
-        os.system("%s/bin/Response.exe --detector=detector/null.xml --rebin=detector/rebin.dat --distance=100 --output=out.xml %s" % (SANDIA_TOOLS, filename + ".gam"))
+        os.system("%s/bin/Response.exe --detector=%s --rebin=%s --distance=100 --output=out.xml %s" % (SANDIA_TOOLS, detector, rebin, filename + ".gam"))
 
     # step 2 load the spectrum
     dr = DocumentReader.create(DoubleSpectraList)
@@ -175,9 +180,9 @@ if __name__ == "__main__":
             le = [i.getEnergy() for i in flux.getPhotonLines()]
             li = [i.getIntensity() for i in flux.getPhotonLines()]
             gl = gam['GammaLines']
-            plt.plot(ges.getCenters(), gcounts)
+            plt.plot(ges.getCenters(), gcounts, label="GADRAS spectrum")
             #plt.scatter(gl[:, 0], gl[:, 1], c='g')
-            plt.scatter(le, li, c='r', alpha=0.5)
+            plt.scatter(le, li, c='r', alpha=0.5, label="RTK lines")
 
             gc = [i.getDensity() for i in flux.getPhotonGroups()]
             x = np.zeros(256)
@@ -189,8 +194,10 @@ if __name__ == "__main__":
             x[2:-1:2] = e[1:-1]
             y[0::2] = gc
             y[1::2] = gc
-            plt.plot(x, y/2)
+            plt.plot(x, y/2, label="RTK groups")
             plt.yscale('log')
+            plt.xlabel('Energy (keV)')
+            plt.legend()
             plt.show()
 
         if args.trap:

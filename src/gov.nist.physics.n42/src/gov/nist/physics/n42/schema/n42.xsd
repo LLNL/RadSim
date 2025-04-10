@@ -247,6 +247,8 @@
       <xs:element minOccurs="0" name="TotalCountsValue" type="n42:QuantityType"/>
       <xs:element minOccurs="0" name="BackgroundCountRateValue" type="n42:QuantityType"/>
       <xs:element minOccurs="0" name="BackgroundCountRateUncertaintyValue" type="n42:QuantityType"/>
+      <xs:element minOccurs="0" name="SourcePosition" type="n42:SourcePositionType"/>
+      <xs:element minOccurs="0" name="SourcePosition" type="n42:SourcePositionType"/>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="n42:GrossCountAnalysisResultsExtension"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>

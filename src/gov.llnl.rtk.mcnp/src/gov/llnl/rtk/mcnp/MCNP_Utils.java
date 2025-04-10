@@ -254,8 +254,8 @@ public class MCNP_Utils {
 
         MCNP_Distribution distribution = new MCNP_Distribution("Distribution");
 
-        double[] edges = flux.getGammaScale().getEdges();
-        double[] counts = flux.getGammaCounts();
+        double[] edges = flux.getPhotonScale().getEdges();
+        double[] counts = flux.getPhotonCounts();
         for (int i = 0; i < edges.length; i++) {
             edges[i] *= 0.001;
         }

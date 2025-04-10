@@ -13,9 +13,9 @@ package gov.llnl.math.euclidean;
 public interface Quaternion
 {
   double getU();
-  double getI();
-  double getJ();
-  double getK();
+  double getX();
+  double getY();
+  double getZ();
   
   static Quaternion of(double u, double i, double j, double k)
   {

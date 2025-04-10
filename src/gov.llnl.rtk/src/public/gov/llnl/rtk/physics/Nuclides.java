@@ -27,7 +27,7 @@ public interface Nuclides
    */
   static Nuclide get(String name)
   {
-    return MANAGER.getByName(name);
+    return NuclidesImpl.INSTANCE.getByName(name);
   }
 
   /**
@@ -40,7 +40,7 @@ public interface Nuclides
    */
   static Nuclide get(int z, int mass, int meta)
   {
-    return MANAGER.getById(z * 10000 + mass * 10 + meta);
+    return NuclidesImpl.INSTANCE.getById(z * 10000 + mass * 10 + meta);
   }
 
   static List<Nuclide> getIsomers(int z, int mass)
@@ -67,22 +67,7 @@ public interface Nuclides
    */
   public static Nuclide natural(Element element)
   {
-    return MANAGER.natural(element);
+    return NuclidesImpl.INSTANCE.natural(element);
   }
 
-//<editor-fold desc="internal" defaultstate="collapsed">
-  interface NuclideManager
-  {
-    Nuclide getByName(String name);
-
-    Nuclide getById(int id);
-
-    ArrayList<String> getNuclideNames();
-
-    Nuclide natural(Element element);
-  }
-
-  NuclideManager MANAGER
-          = ReflectionUtilities.getConstructor("gov.llnl.rtk.physics.NuclideManagerImpl", NuclideManager.class).get();
-//</editor-fold>
 }

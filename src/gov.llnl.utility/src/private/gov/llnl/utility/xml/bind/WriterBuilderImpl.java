@@ -24,6 +24,7 @@ class WriterBuilderImpl implements
         ObjectWriter.WriterContents
 {
   ObjectWriter parentWriter;
+  PackageResource pkg = null;
   String elementName = null;
   Producer producer = null;
   WriterContextImpl context = null;
@@ -37,6 +38,16 @@ class WriterBuilderImpl implements
   @Override
   public WriterBuilderImpl element(String name)
   {
+    pkg = null;
+    elementName = name;
+    producer = null;
+    return this;
+  }
+
+  @Override
+  public WriterBuilderImpl element(PackageResource pkg, String name)
+  {
+    this.pkg = pkg;
     elementName = name;
     producer = null;
     return this;
@@ -45,7 +56,8 @@ class WriterBuilderImpl implements
   @Override
   public <Type> WriterBuilderImpl writer(ObjectWriter<Type> writer)
   {
-    producer = new WriterProducer(elementName, writer);
+    producer = new WriterProducer(pkg, elementName, writer);
+    pkg = null;
     elementName = null;
     return this;
   }
@@ -74,7 +86,7 @@ class WriterBuilderImpl implements
   {
     if (elementName == null)
       elementName = writer.getElementName();
-    producer = new WriterProducer(elementName, writer);
+    producer = new WriterProducer(null, elementName, writer);
     producer.handle(context.current().object);
     elementName = null;
   }
@@ -105,8 +117,9 @@ class WriterBuilderImpl implements
   {
     try
     {
-      context.writeContent(elementName, value);
+      context.writeContent(pkg, elementName, value);
       elementName = null;
+      pkg = null;
       return this;
     }
     catch (WriterException ex)
@@ -125,7 +138,7 @@ class WriterBuilderImpl implements
     context.pushContext(element, null, elementName, pkg);
     Class cls = value.getClass();
     ObjectWriter writer = ObjectWriter.create(cls);
-    producer = new WriterProducer(null, writer);
+    producer = new WriterProducer(null, null, writer);
     producer.handle(value);
     elementName = null;
     context.popContext();
@@ -150,7 +163,7 @@ class WriterBuilderImpl implements
       {
         cls = v.getClass();
         writer = ObjectWriter.create(cls);
-        producer = new WriterProducer(null, writer);
+        producer = new WriterProducer(null, null, writer);
       }
       producer.handle(v);
     }
@@ -167,7 +180,7 @@ class WriterBuilderImpl implements
     PackageResource pkg = this.parentWriter.getPackage();
     DomBuilder element = context.newElement(pkg, elementName);
     context.pushContext(element, null, elementName, pkg);
-    producer = new WriterProducer(writer.getElementName(), writer);
+    producer = new WriterProducer(null, writer.getElementName(), writer);
     elementName = null;
     for (Type v : value)
     {
@@ -250,11 +263,13 @@ class WriterBuilderImpl implements
 
   class WriterProducer implements Producer
   {
+    PackageResource pkg;
     String elementName;
     ObjectWriter writer;
 
-    WriterProducer(String elementName, ObjectWriter writer)
+    WriterProducer(PackageResource pkg, String elementName, ObjectWriter writer)
     {
+      this.pkg = pkg;
       this.elementName = elementName;
       this.writer = writer;
     }
@@ -262,7 +277,7 @@ class WriterBuilderImpl implements
     @Override
     public void handle(Object object) throws WriterException
     {
-      context.write(writer, elementName, object);
+      context.write(writer, pkg, elementName, object);
     }
   }
 //</editor-fold>

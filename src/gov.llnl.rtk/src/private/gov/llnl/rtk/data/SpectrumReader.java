@@ -48,6 +48,8 @@ public abstract class SpectrumReader<T extends SpectrumBase> extends ObjectReade
   public ElementHandlerMap getHandlers(ReaderContext context) throws ReaderException
   {
     ReaderBuilder<T> builder = this.newBuilder();
+    builder.element("attributes").reader(new AttributesReader()).call((p,v)->p.getAttributes().putAll(v))
+            .optional();
     builder.section(new AttributesSection());
     builder.element("title").callString(T::setTitle);
     builder.element("realTime").callDouble(T::setRealTime);

@@ -12,23 +12,47 @@ package gov.llnl.rtk.physics;
  */
 public interface Layer
 {
-  /**
-   * Get the age of the material.
-   *
-   * @return get age in seconds.
-   */
-  double getAge();
-
-  double getDensity();
-
-  Geometry getGeometry();
-
   String getLabel();
 
-  double getMass();
+  Layer getPrevious();
 
   Material getMaterial();
 
-  double getThickness();
+  Geometry getGeometry();
+
+  /**
+   * Get mass.
+   *
+   * @return
+   */
+  Quantity getMass();
+
+  /**
+   * Get the thickness of the shell.
+   *
+   * @return
+   */
+  Quantity getThickness();
+
+  default Quantity getOuter()
+  {
+    Layer previous = this.getPrevious();
+    if (previous != null)
+      return this.getThickness().plus(previous.getOuter());
+    return this.getThickness();
+  }
+
+  default Quantity getInner()
+  {
+    Layer previous = this.getPrevious();
+    if (previous != null)
+      return previous.getOuter();
+    return Quantity.of(0, this.getThickness().getUnits());
+  }
   
+  default Quantity getVolume()
+  {
+    return this.getGeometry().computeVolume(this.getInner(), this.getThickness());
+  }
+
 }

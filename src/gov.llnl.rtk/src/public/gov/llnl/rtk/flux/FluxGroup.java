@@ -33,6 +33,11 @@ public interface FluxGroup
   {
     return (getEnergyLower() + getEnergyUpper())/2;
   }
+  
+  default double getEnergyWidth()
+  {
+    return getEnergyUpper()-getEnergyLower();
+  }
 
   /**
    * Get the total counts in the group

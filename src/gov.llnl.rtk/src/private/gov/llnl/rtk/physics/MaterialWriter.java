@@ -16,7 +16,7 @@ import gov.llnl.utility.xml.bind.ObjectWriter;
  * @author nelson85
  */
 @Internal
-public class MaterialWriter extends ObjectWriter<MaterialImpl>
+public class MaterialWriter extends ObjectWriter<Material>
 {
   public MaterialWriter()
   {
@@ -24,25 +24,26 @@ public class MaterialWriter extends ObjectWriter<MaterialImpl>
   }
 
   @Override
-  public void attributes(WriterAttributes attributes, MaterialImpl object) throws WriterException
+  public void attributes(WriterAttributes attributes, Material object) throws WriterException
   {
   }
 
   @Override
-  public void contents(MaterialImpl object) throws WriterException
+  public void contents(Material object) throws WriterException
   {
     if (object == null)
       throw new RuntimeException("Null material");
     WriterBuilder wb = newBuilder();
-    wb.element("age")
-            .writer(new Units.UnitWriter("time:a"))
-            .put(object.getAge());
+    if (object.getAge() != null && object.getAge().getValue() != 0)
+      wb.element("age")
+              .writer(new QuantityWriter("time:a"))
+              .put(object.getAge());
     wb.element("density")
-            .writer(new Units.UnitWriter("density:g/cm3"))
+            .writer(new QuantityWriter("density:g/cm3"))
             .put(object.getDensity());
-    WriteObject<Component> wo = wb.element("component")
-            .writer(new ComponentWriter());
-    for (Component entry : object)
+    WriteObject<MaterialComponent> wo = wb.element("component")
+            .writer(new MaterialComponentWriter());
+    for (MaterialComponent entry : object)
       wo.put(entry);
   }
 

@@ -31,6 +31,8 @@ class MapEncoding<T1, T2> implements ProtoEncoding<Map<T1, T2>>
 
   public MapEncoding(ProtoEncoding<T1> m1, ProtoEncoding<T2> m2, Supplier<Map<T1, T2>> supplier)
   {
+    field1.name = "key";
+    field1.name = "value";
     field1.id = 1;
     field2.id = 2;
     field1.setter = lambda1;

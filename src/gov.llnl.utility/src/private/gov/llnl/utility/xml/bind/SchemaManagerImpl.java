@@ -8,6 +8,7 @@ package gov.llnl.utility.xml.bind;
 
 import gov.llnl.utility.ClassUtilities;
 import gov.llnl.utility.ListUtilities;
+import gov.llnl.utility.PackageResource;
 import gov.llnl.utility.StringUtilities;
 import gov.llnl.utility.UtilityPackage;
 import gov.llnl.utility.annotation.Internal;
@@ -36,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -78,6 +80,7 @@ public final class SchemaManagerImpl implements SchemaManager, EntityResolver
   private final HashMap<String, URL> aliasMap = new HashMap<>();
   final ArrayList<ReaderFactory> readerFactories = new ArrayList<>();
   final ArrayList<WriterFactory> writerFactories = new ArrayList<>();
+  final HashMap<String, PackageResource> schemaMap = new HashMap<>();
 
   public SchemaManagerImpl()
   {
@@ -106,6 +109,18 @@ public final class SchemaManagerImpl implements SchemaManager, EntityResolver
 //<editor-fold desc="utility">
   public URL mangleURI(URI uri)
   {
+    if ("file".equals(uri.getScheme()))
+    {
+      try
+      {
+        return uri.toURL();
+      }
+      catch (MalformedURLException ex)
+      {
+        return null;
+      }
+    }
+    
     // We only pretend to be http addresses
     if (!"http".equals(uri.getScheme()))
       return null;
@@ -442,7 +457,7 @@ public final class SchemaManagerImpl implements SchemaManager, EntityResolver
     }
     catch (UnknownHostException ex)
     {
-      throw new RuntimeException("Unable to locate schema for " + url);
+      throw new RuntimeException("Unable to locate schema for " + url + " "+ ex);
     }
     catch (IOException | SAXException ex)
     {
@@ -472,11 +487,15 @@ public final class SchemaManagerImpl implements SchemaManager, EntityResolver
     // split by white space
     // handle every other argument
     SchemaManagerImpl schemaMgr = (SchemaManagerImpl) SchemaManager.getInstance();
-    for (int i = 1; i < locations.length; i += 2)
+    for (int i = 0; i < locations.length; i += 2)
     {
       try
       {
-        URI uri = new URI(locations[i]);
+        String base = locations[i+1];
+        PackageResource p = SchemaManager.getInstance().findPackage(locations[i]);
+        if (p!=null)
+          base = p.getSchemaURI();
+        URI uri = new URI(base);
         URL url = mangleURI(uri);
         if (url == null)
         {
@@ -487,9 +506,21 @@ public final class SchemaManagerImpl implements SchemaManager, EntityResolver
       }
       catch (URISyntaxException ex)
       {
-        UtilityPackage.LOGGER.log(Level.WARNING, "Malformed URI {0}", locations[i]);
+        UtilityPackage.LOGGER.log(Level.WARNING, "Malformed URI {0}", locations[i+1]);
       }
     }
+  }
+
+  @Override
+  public void registerPackage(PackageResource pkg)
+  {
+    this.schemaMap.put(pkg.getNamespaceURI(), pkg);
+  }
+  
+  @Override
+  public PackageResource findPackage(String name)
+  {
+    return this.schemaMap.get(name);
   }
 
   class XsdHandler extends DefaultHandler

@@ -28,20 +28,37 @@ public class GeometryReader extends ObjectReader<Geometry>
   @Override
   public Geometry start(ReaderContext context, Attributes attributes) throws ReaderException
   {
-    Geometry object = new Geometry();
     String typeString = attributes.getValue("type");
     Geometry.Type type = Geometry.Type.valueOf(typeString.toUpperCase());
-    object.setType(type);
-    return object;
+    State state = new State();
+    state.type = type;
+    context.setState(state);
+    return null;
+  }
+  
+  @Override
+  public Geometry end(ReaderContext context) throws ReaderException
+  {
+    State s = (State) context.getState();
+    return Geometry.of(s.type, s.extent1, s.extent2);
   }
 
   @Override
   public ElementHandlerMap getHandlers(ReaderContext context) throws ReaderException
   {
     ReaderBuilder<Geometry> builder = this.newBuilder();
-    builder.element("extent1").reader(new Units.UnitReader(PhysicalProperty.LENGTH)).call(Geometry::setExtent1);
-    builder.element("extent2").reader(new Units.UnitReader(PhysicalProperty.LENGTH)).call(Geometry::setExtent2);
+    builder.element("extent1").reader(new QuantityReader(PhysicalProperty.LENGTH))
+            .callContext((c,p,v)->((State)c.getState()).extent1 = v);
+    builder.element("extent2").reader(new QuantityReader(PhysicalProperty.LENGTH))
+            .callContext((c,p,v)->((State)c.getState()).extent2 = v);
     return builder.getHandlers();
+  }
+  
+  private static class State
+  {
+    Geometry.Type type;
+    Quantity extent1;
+    Quantity extent2;
   }
 
 }

@@ -94,7 +94,7 @@ class DocumentWriterImpl<Type> implements DocumentWriter<Type>
   {
     context.clearReferences();
     Document document = context.newDocument(writer);
-    context.write(writer, WriterContextImpl.ROOT, object);
+    context.write(writer, null, WriterContextImpl.ROOT, object);
     
     // Add the xsi declaration
     Element documentElement = document.getDocumentElement();

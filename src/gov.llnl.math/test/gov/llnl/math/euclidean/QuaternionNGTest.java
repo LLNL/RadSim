@@ -33,9 +33,9 @@ public class QuaternionNGTest
     Quaternion result = Quaternion.of(u, i, j, k);
     assertEquals(result.getClass(), expResult.getClass());
     assertEquals(result.getU(), expResult.getU());
-    assertEquals(result.getI(), expResult.getI());
-    assertEquals(result.getJ(), expResult.getJ());
-    assertEquals(result.getK(), expResult.getK());
+    assertEquals(result.getX(), expResult.getX());
+    assertEquals(result.getY(), expResult.getY());
+    assertEquals(result.getZ(), expResult.getZ());
   }
   
 }

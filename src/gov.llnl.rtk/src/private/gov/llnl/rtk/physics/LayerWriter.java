@@ -7,7 +7,6 @@
 package gov.llnl.rtk.physics;
 
 import gov.llnl.rtk.RtkPackage;
-import gov.llnl.rtk.physics.Units;
 import gov.llnl.utility.annotation.Internal;
 import gov.llnl.utility.io.WriterException;
 import gov.llnl.utility.xml.bind.ObjectWriter;
@@ -17,7 +16,7 @@ import gov.llnl.utility.xml.bind.ObjectWriter;
  * @author nelson85
  */
 @Internal
-public class LayerWriter extends ObjectWriter<LayerImpl>
+public class LayerWriter extends ObjectWriter<Layer>
 {
   public LayerWriter()
   {
@@ -25,17 +24,17 @@ public class LayerWriter extends ObjectWriter<LayerImpl>
   }
 
   @Override
-  public void attributes(WriterAttributes attributes, LayerImpl object) throws WriterException
+  public void attributes(WriterAttributes attributes, Layer object) throws WriterException
   {
     if (object.getLabel() != null)
       attributes.add("label", object.getLabel());
   }
 
   @Override
-  public void contents(LayerImpl object) throws WriterException
+  public void contents(Layer object) throws WriterException
   {
     WriterBuilder wb = newBuilder();
-    wb.element("thickness").writer(new Units.UnitWriter("length:cm")).put(object.getThickness());
+    wb.element("thickness").writer(new QuantityWriter("length:cm")).put(object.getThickness());
     wb.element("geometry").writer(new GeometryWriter()).put(object.getGeometry());
     wb.element("material").writer(new MaterialWriter()).put(object.getMaterial());
   }

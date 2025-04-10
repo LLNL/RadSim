@@ -9,8 +9,6 @@ package gov.llnl.rtk.view;
 import gov.llnl.math.euclidean.Vector3;
 import gov.llnl.math.euclidean.Vector3Ops;
 import gov.llnl.math.euclidean.Versor;
-import gov.llnl.rtk.view.SensorView;
-import gov.llnl.rtk.view.SensorViewSystem;
 import gov.llnl.utility.xml.bind.ReaderInfo;
 import java.util.ArrayList;
 import java.util.Iterator;

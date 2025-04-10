@@ -90,6 +90,11 @@ public class Transform
           throws ParserConfigurationException, SAXException,
           IOException, TransformerConfigurationException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException
   {
+    if (argv.length<3)
+    {
+      System.out.println("Usage: transform xslt infile outfile");
+      System.exit(-1);
+    }
     // Parse the arguments
     Path xslt = Paths.get(argv[0]);
     Path inputFile = Paths.get(argv[1]);

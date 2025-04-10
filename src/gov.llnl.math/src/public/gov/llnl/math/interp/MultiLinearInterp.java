@@ -18,13 +18,13 @@ import gov.llnl.math.Cursor;
  *
  * @author nelson85
  */
-class MultiLinearInterp implements MultiInterpolator
+public class MultiLinearInterp implements MultiInterpolator
 {
 
   private final double[] xv;
   private final double[][] yv;
 
-  MultiLinearInterp(double[] x, double[] 
+  public MultiLinearInterp(double[] x, double[] 
   
     ... y)
   {

@@ -8,6 +8,7 @@ package gov.llnl.utility.xml.bind.marshallers;
 
 import gov.llnl.utility.ArrayEncoding;
 import gov.llnl.utility.xml.bind.Marshaller;
+import gov.llnl.utility.xml.bind.ObjectWriter;
 import gov.llnl.utility.xml.bind.WriterContext;
 
 /**
@@ -19,7 +20,7 @@ class DoublesArrayMarshaller implements Marshaller<double[][]>
   @Override
   public String marshall(double[][] o, WriterContext.MarshallerOptions options)
   {
-    return ArrayEncoding.encodeDoublesArray(o, true);
+    return ArrayEncoding.encodeDoublesArray(o, options.get(ObjectWriter.DOUBLE_ARRAY_COMPACT, Boolean.class, false));
   }
 
   @Override
@@ -27,5 +28,5 @@ class DoublesArrayMarshaller implements Marshaller<double[][]>
   {
     return double[][].class;
   }
-  
+
 }

@@ -29,7 +29,7 @@ public interface Nuclide extends Comparable<Nuclide>
   /**
    * Get the atomic mass.
    *
-   * @return
+   * @return g/mole
    */
   double getAtomicMass();
 
@@ -68,7 +68,6 @@ public interface Nuclide extends Comparable<Nuclide>
     return LN2 / this.getHalfLife();
   }
 
-
   /**
    * Specific activity in 1 over kg seconds.
    *
@@ -91,7 +90,7 @@ public interface Nuclide extends Comparable<Nuclide>
 
   default public int getZaid()
   {
-    return 10000*this.getAtomicNumber() + 10*this.getMassNumber() + this.getIsomerNumber(); //Karl's method in int format
+    return 10000 * this.getAtomicNumber() + 10 * this.getMassNumber() + this.getIsomerNumber(); //Karl's method in int format
   }
 
 }

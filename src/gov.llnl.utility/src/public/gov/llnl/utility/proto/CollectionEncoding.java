@@ -26,9 +26,16 @@ class CollectionEncoding<T> implements ProtoEncoding
   final static Function getter = (Function) (Object o) -> o;
   final Supplier<Collection<T>> supplier;
 
-  public CollectionEncoding(ProtoEncoding pe, Supplier<Collection<T>> supplier)
+  /** 
+   * Create a new collection encoding.
+   * 
+   * @param encoding is the encoding for the item.
+   * @param supplier is a a method to produce the list.
+   */
+  public CollectionEncoding(ProtoEncoding encoding, Supplier<Collection<T>> supplier)
   {
-    embedded.encoding = pe;
+    embedded.name = encoding.getSchemaName();
+    embedded.encoding = encoding;
     embedded.setter = setter;
     if (supplier == null)
       supplier = ArrayList::new;

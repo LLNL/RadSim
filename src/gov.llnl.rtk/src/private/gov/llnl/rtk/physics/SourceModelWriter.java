@@ -16,7 +16,7 @@ import gov.llnl.utility.xml.bind.ObjectWriter;
  * @author nelson85
  */
 @Internal
-public class SourceModelWriter extends ObjectWriter<SphericalModel>
+public class SourceModelWriter extends ObjectWriter<SourceModel>
 {
   public SourceModelWriter()
   {
@@ -24,18 +24,18 @@ public class SourceModelWriter extends ObjectWriter<SphericalModel>
   }
 
   @Override
-  public void attributes(WriterAttributes attributes, SphericalModel object) throws WriterException
+  public void attributes(WriterAttributes attributes, SourceModel object) throws WriterException
   {
     if (object.getTitle() != null)
       attributes.add("title", object.getTitle());
   }
 
   @Override
-  public void contents(SphericalModel object) throws WriterException
+  public void contents(SourceModel object) throws WriterException
   {
     WriterBuilder wb = newBuilder();
     wb.element("geometry").writer(new GeometryWriter()).put(object.getGeometry());
-    WriteObject<LayerImpl> wo = wb.element("layer").writer(new LayerWriter());
+    WriteObject<Layer> wo = wb.element("layer").writer(new LayerWriter());
     int i = 0;
     for (Layer layer : object.getLayers())
       wo.put(layer); //.id(String.format("layer." + i++));

@@ -20,32 +20,48 @@ import org.xml.sax.Attributes;
  */
 @Internal
 
-@Reader.Declaration(pkg = RtkPackage.class, name = "material", cls = MaterialImpl.class,
+@Reader.Declaration(pkg = RtkPackage.class, name = "material", cls = Material.class,
         order = Reader.Order.SEQUENCE, referenceable = true)
-public class MaterialReader extends ObjectReader<MaterialImpl>
+public class MaterialReader extends ObjectReader<Material>
 {
 
   @Override
-  public MaterialImpl start(ReaderContext context, Attributes attributes) throws ReaderException
+  public Material start(ReaderContext context, Attributes attributes) throws ReaderException
   {
-    return new MaterialImpl();
+    context.setState(new MaterialBuilder(UnitSystem.SI));
+    return null;
+  }
+  
+  public Material end(ReaderContext context) throws ReaderException
+  {
+    return state(context).build();
   }
 
   @Override
   public ElementHandlerMap getHandlers(ReaderContext context) throws ReaderException
   {
-    ReaderBuilder<MaterialImpl> builder = this.newBuilder();
+    ReaderBuilder<Material> builder = this.newBuilder();
+    builder.element("title")
+            .callContext((s, p, v) -> state(s).label(v), String.class).optional();
+    builder.element("description")
+            .callContext((s, p, v) -> state(s).description(v), String.class).optional();
+    builder.element("comment")
+            .callContext((s, p, v) -> state(s).comment(v), String.class).optional();
     builder.element("age")
-            .reader(new Units.UnitReader(PhysicalProperty.TIME))
-            .call(MaterialImpl::setAge).optional();
+            .reader(new QuantityReader(PhysicalProperty.TIME))
+            .callContext((s,p,v)->state(s).age(v)).optional();
     builder.element("density")
-            .reader(new Units.UnitReader(PhysicalProperty.DENSITY))
-            .call(MaterialImpl::setDensity);
+            .reader(new QuantityReader(PhysicalProperty.DENSITY))
+            .callContext((s,p,v)->state(s).density(v));
     builder.element("component")
-            .reader(new ComponentReader())
-            .call(MaterialImpl::addEntry).unbounded();
+            .reader(new MaterialComponentReader())
+            .callContext((s,p,v)->state(s).add(v)).unbounded().optional();
     return builder.getHandlers();
   }
-
+  
+  MaterialBuilder state(ReaderContext context)
+  {
+    return (MaterialBuilder) context.getState();
+  }
 
 }

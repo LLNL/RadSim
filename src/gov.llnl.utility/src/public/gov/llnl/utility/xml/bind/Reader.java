@@ -283,6 +283,8 @@ public interface Reader<Component>
     Option[] options() default 
     {
     };
+    
+    String xslt() default NULL;
 
     String substitutionGroup() default NULL;
   }

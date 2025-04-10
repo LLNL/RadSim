@@ -14,7 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import gov.llnl.rtk.flux.*;
-import gov.llnl.rtk.physics.Component;
+import gov.llnl.rtk.physics.MaterialComponent;
 import gov.llnl.rtk.physics.Section;
 import gov.llnl.rtk.physics.SphericalSection;
 import gov.llnl.rtk.physics.CylindricalSection;
@@ -101,7 +101,7 @@ public class GEANT4Environment {
         SphericalSection sphericalSection = (SphericalSection) section;
 
         Material material = sphericalSection.getMaterial();
-        double density = material.getDensity();
+        double density = material.getDensity().getValue();
         double innerRadius = sphericalSection.getInnerRadius();
         double outerRadius = sphericalSection.getOuterRadius();
         double startPhi = sphericalSection.getPhi1();
@@ -114,7 +114,7 @@ public class GEANT4Environment {
         double positionY = sphericalSection.getOrigin().getY();
         double positionZ = sphericalSection.getOrigin().getZ();
 
-        for (Component component : material) {
+        for (MaterialComponent component : material) {
           this.materialLines.add("/source/mat/addElement " + component.getNuclide().getName());
           this.materialLines.add("/source/mat/addMultiplier " + String.valueOf(component.getMassFraction()));
         }
@@ -137,7 +137,7 @@ public class GEANT4Environment {
         CylindricalSection cylindricalSection = (CylindricalSection) section;
 
         Material material = cylindricalSection.getMaterial();
-        double density = material.getDensity();
+        double density = material.getDensity().getValue();
         double innerRadius = cylindricalSection.getInnerRadius();
         double outerRadius = cylindricalSection.getOuterRadius();
         double halfZ = cylindricalSection.getDepth()/2.;
@@ -149,7 +149,7 @@ public class GEANT4Environment {
         double positionY = cylindricalSection.getOrigin().getY();
         double positionZ = cylindricalSection.getOrigin().getZ();
 
-        for (Component component : material) {
+        for (MaterialComponent component : material) {
           this.materialLines.add("/source/mat/addElement " + component.getNuclide().getName());
           this.materialLines.add("/source/mat/addMultiplier " + String.valueOf(component.getMassFraction()));
         }
@@ -171,7 +171,7 @@ public class GEANT4Environment {
         ConicalSection conicalSection = (ConicalSection) section;
 
         Material material = conicalSection.getMaterial();
-        double density = material.getDensity();
+        double density = material.getDensity().getValue();
         double innerRadiusMinusDz = conicalSection.getInnerRadiusMinusDz();
         double outerRadiusMinusDz = conicalSection.getOuterRadiusMinusDz();
         double innerRadiusPlusDz = conicalSection.getInnerRadiusPlusDz();
@@ -185,7 +185,7 @@ public class GEANT4Environment {
         double positionY = conicalSection.getOrigin().getY();
         double positionZ = conicalSection.getOrigin().getZ();
 
-        for (Component component : material) {
+        for (MaterialComponent component : material) {
           this.materialLines.add("/source/mat/addElement " + component.getNuclide().getName());
           this.materialLines.add("/source/mat/addMultiplier " + String.valueOf(component.getMassFraction()));
         }

@@ -36,19 +36,19 @@ final class VersorImpl implements Versor, Serializable
   }
 
   @Override
-  public double getI()
+  public double getX()
   {
     return i_;
   }
 
   @Override
-  public double getJ()
+  public double getY()
   {
     return j_;
   }
 
   @Override
-  public double getK()
+  public double getZ()
   {
     return k_;
   }
@@ -71,7 +71,7 @@ final class VersorImpl implements Versor, Serializable
     if (!(obj instanceof Versor))
       return false;
     Versor v = (Versor) obj;
-    return u_ == v.getU() && i_ == v.getI() && j_ == v.getJ() && k_ == v.getK();
+    return u_ == v.getU() && i_ == v.getX() && j_ == v.getY() && k_ == v.getZ();
   }
 
 }

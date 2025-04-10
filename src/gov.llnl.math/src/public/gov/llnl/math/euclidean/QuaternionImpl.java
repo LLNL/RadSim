@@ -19,19 +19,19 @@ public final class QuaternionImpl implements Quaternion
   }
 
   @Override
-  public double getI()
+  public double getX()
   {
     return i_;
   }
 
   @Override
-  public double getJ()
+  public double getY()
   {
     return j_;
   }
 
   @Override
-  public double getK()
+  public double getZ()
   {
     return k_;
   }

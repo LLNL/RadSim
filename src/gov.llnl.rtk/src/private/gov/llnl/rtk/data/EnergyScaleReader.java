@@ -7,8 +7,6 @@
 package gov.llnl.rtk.data;
 
 import gov.llnl.rtk.RtkPackage;
-import gov.llnl.rtk.data.EnergyScale;
-import gov.llnl.rtk.data.EnergyScaleFactory;
 import gov.llnl.utility.annotation.Internal;
 import gov.llnl.utility.io.ReaderException;
 import gov.llnl.utility.xml.bind.ObjectReader;

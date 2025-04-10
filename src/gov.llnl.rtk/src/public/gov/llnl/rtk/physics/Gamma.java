@@ -12,5 +12,5 @@ package gov.llnl.rtk.physics;
  */
 public interface Gamma extends Photon
 {
-  
+
 }

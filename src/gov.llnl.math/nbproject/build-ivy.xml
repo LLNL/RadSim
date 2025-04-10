@@ -4,7 +4,7 @@
     <property file="${user.properties.file}"/>
     <property file="nbproject/project.properties"/>
     <property file="nbproject/configs/${config}.properties"/>
-    <property name="ivy.install.version" value="2.4.0"/>
+    <property name="ivy.install.version" value="2.5.3"/>
     <property name="ivy.jar.dir" value="${build.dir}/ivy"/>
     <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
     <property name="dep.dir" value="lib"/>
@@ -15,6 +15,7 @@
 
   <target depends="-init-ivy" name="download-ivy" unless="have.ivy">
     <mkdir dir="${ivy.jar.dir}"/>
+    <echo message="Ant java version ${ant.java.version}"/>
     <echo message="installing ivy..."/>
     <get src="${ivy.dist}"
          dest="${ivy.jar.file}" usetimestamp="true"/>

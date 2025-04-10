@@ -30,7 +30,7 @@ import org.xml.sax.Attributes;
  *
  *   public ElementHandlerMap getHandlers() throws ReaderException
  *   {
- *     ReaderBuilder&lt;Foo&gt; 
+ *     ReaderBuilder&lt;Foo&gt;
  *     builder=this.newBuilder();
  *     builder.element("bar").reader(new BarReader()).call(Foo::setBar);
  *     return builder.getHandlers();
@@ -69,8 +69,8 @@ public abstract class ObjectReader<Component>
    * @param attributes Holds the attributes to use in creating this object
    * @return the object produced by this element, or null if the object is to be
    * produced at a later stage
-   * @throws ReaderException on anyReader failure in the start method. This includes
- incorrect or missing attributes.
+   * @throws ReaderException on anyReader failure in the start method. This
+   * includes incorrect or missing attributes.
    */
   @Override
   public Component start(ReaderContext context, Attributes attributes) throws ReaderException
@@ -442,12 +442,12 @@ public abstract class ObjectReader<Component>
       DomBuilder type = builder.getRoot()
               .element("xs:complexType")
               .attr("name", this.getSchemaType());
-      
+
       // As many elements as we need.
       DomBuilder group = type.element("xs:choice")
               .attr("minOccurs", "0")
               .attr("maxOccurs", "unbounded");
-      
+
       // Override the schema entirely so that we don't have conflicts with 
       // existing element definitions.
       group.element("xs:any").attr("processContents", "skip");

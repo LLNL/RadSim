@@ -27,10 +27,12 @@ public class AnyEncoding implements ProtoEncoding
 
   AnyEncoding()
   {
+    field1.name = "type";
     field1.setter = (BiConsumer) (Object a, Object b) -> ((Object[]) a)[0] = b;
     field1.encoding = Type.String;
     field1.getter = (Function) (Object a) -> a;
     field1.id = 1;
+    field2.name = "contents";
     field2.setter = (BiConsumer) (Object a, Object b) -> ((Object[]) a)[1] = b;
     field2.getter = (Function) (Object a) -> a;
     field2.id = 2;
@@ -44,6 +46,7 @@ public class AnyEncoding implements ProtoEncoding
       throw new ProtoException("bad wire type", bs.position());
 
     ProtoField field3 = new ProtoField();
+    field3.name = "field";
     field3.setter = field.setter;
     Object[] ref = new Object[2];
 

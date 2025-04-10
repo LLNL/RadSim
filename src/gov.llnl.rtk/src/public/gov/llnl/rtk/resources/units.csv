@@ -3,6 +3,14 @@
 mass:g,0.001
 mass:kg,1
 
+area:mm2,0.000001
+area:cm2,0.0001
+area:m2,1
+
+volume:mm3,0.000000001
+volume:cm3,0.000001
+volume:m3,1
+
 # Activity
 activity:TBq,1e12
 activity:GBq,1e9
@@ -14,6 +22,7 @@ activity:Ci,3.7e10
 activity:mCi,3.7e7
 activity:uCi,3.7e4
 activity:nCi,3.7e1
+activity:c/s,1
 
 # Specific Activity
 specific_activity:uCi/g,3.7e7
@@ -32,7 +41,11 @@ areal_density:kg/m2,1
 # Length
 length:cm,0.01
 length:m,1
+length:km,1000
 length:mm,0.001
+length:in,0.0254
+length:ft,0.3048
+length:yd,0.9144
 
 # Time
 time:s,1
@@ -44,8 +57,16 @@ time:y,31557600
 time:yr,31557600
 
 # Flux
-flux:c/m^2/s,1
-flux:c/cm^2/s,10000
+flux:c/m2/s,1
+flux:c/cm2/s,10000
 
-dose:Sv/hr,0.0002777777777777778
-dose:Sv/s,1
+dose_rate:Sv/hr,0.0002777777777777778
+dose_rate:Sv/s,1
+
+energy:J,1
+energy:keV,1.60218e-16
+energy:MeV,1.60218e-13
+energy:eV,1.60218e-19
+
+cross_section:m2/kg,1
+cross_section:cm2/g,0.1

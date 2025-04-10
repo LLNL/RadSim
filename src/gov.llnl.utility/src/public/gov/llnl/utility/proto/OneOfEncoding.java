@@ -14,6 +14,7 @@ import java.io.ByteArrayOutputStream;
  * All types must derive from a common base.
  * 
  * @author nelson85
+ * @param <T>
  */
 public class OneOfEncoding<T> extends MessageEncoding<T>
 {
@@ -31,7 +32,8 @@ public class OneOfEncoding<T> extends MessageEncoding<T>
 
   public void add(int code, Class<? extends T> cls, MessageEncoding<? extends T> encoding)
   {
-    builder.field("c" + code, code, () -> new ClassField(cls)).encoding(encoding)
+    builder.field("c" + code, code, () -> new ClassField(cls))
+            .encoding(encoding)
             .as(o->o, (o,v)->((Object[])o)[0]=v);
   }
 

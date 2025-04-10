@@ -1,13 +1,17 @@
 package gov.llnl.rtk.physics;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
 /**
  *
  * @author nelson85
  */
 public class EmissionCalculator
 {
+  private static final long serialVersionUID = 0xA341_0000_0004_0000L;
+  
   DecayLibrary decayLibrary;
 
   /**
@@ -20,15 +24,17 @@ public class EmissionCalculator
     this.decayLibrary = library;
   }
 
-  public DecayLibrary getDecayLibrary() {
+  public DecayLibrary getDecayLibrary()
+  {
     return this.decayLibrary;
   }
+
   /**
    *
    * @param sl
    * @return
    */
-  public Emissions calculate(List<Source> sl)
+  public Emissions apply(List<Source> sl)
   {
     EmissionsImpl out = new EmissionsImpl();
     for (Source entry : sl)
@@ -40,10 +46,41 @@ public class EmissionCalculator
       }
     }
 
-    // FIXME do we need to convert electron capture to xrays?
+    Collections.sort(out.emissions, EmissionCalculator::compareEmission);
 
+    // FIXME do we need to convert electron capture to xrays?
     return out;
 
+  }
+
+  /**
+   * Used to ensure the transitions are in energy order.
+   *
+   * Not all emissions have energy so we sort secondarily by intensity.
+   *
+   * @param e1
+   * @param e2
+   * @return
+   */
+  static int compareEmission(Emission e1, Emission e2)
+  {
+    boolean b1 = e1 instanceof EnergyEmission;
+    boolean b2 = e2 instanceof EnergyEmission;
+    if (b1 && b2)
+    {
+      return Double.compare(
+              ((EnergyEmission) e1).getEnergy().get(),
+              ((EnergyEmission) e2).getEnergy().get());
+    }
+    if (!b1 && !b2)
+    {
+      return Double.compare(
+              ((EnergyEmission) e1).getIntensity().get(),
+              ((EnergyEmission) e2).getIntensity().get());
+    }
+    if (!b1)
+      return -1;
+    return 1;
   }
 
   static void add(EmissionsImpl out, Emissions el, double f)
@@ -58,12 +95,15 @@ public class EmissionCalculator
       map.put(e, e2);
     }
 
-    for (EmissionCorrelation c : el.getCorrelations())
+    if (el.getCorrelations() != null)
     {
-      out.coincidence.add(new EmissionCorrelationImpl(
-              map.get(c.getPrimary()),
-              map.get(c.getSecondary()),
-              c.getProbability()));
+      for (EmissionCorrelation c : el.getCorrelations())
+      {
+        out.coincidence.add(new EmissionCorrelationImpl(
+                map.get(c.getPrimary()),
+                map.get(c.getSecondary()),
+                c.getProbability()));
+      }
     }
 
     // now link coincident data

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author nelson85
  */
 @Internal
-public class CompositionImpl extends ArrayList<Component> implements Composition, Serializable
+public class CompositionImpl extends ArrayList<MaterialComponent> implements Composition, Serializable
 {
   private static final long serialVersionUID = UUIDUtilities.createLong("CompositionImpl");
   private final String name;
@@ -39,9 +39,9 @@ public class CompositionImpl extends ArrayList<Component> implements Composition
   
   //ArrayList<EntryImpl> content = new ArrayList<>();
   // FIXME: check for uniqueness
-  public ComponentImpl add(Nuclide nuc, double doseFraction, double activity)
+  public MaterialComponentImpl add(Nuclide nuc, double doseFraction, Quantity activity)
   {
-    ComponentImpl entry = new ComponentImpl();
+    MaterialComponentImpl entry = new MaterialComponentImpl();
     entry.nuclide = nuc;
     entry.doseFraction = doseFraction;
     entry.activity = activity;
@@ -56,7 +56,7 @@ public class CompositionImpl extends ArrayList<Component> implements Composition
       return this.name;
     StringBuilder builder = new StringBuilder();
     boolean first = true;
-    for (Component entry : this)
+    for (MaterialComponent entry : this)
     {
       if (!first)
       {
@@ -70,9 +70,9 @@ public class CompositionImpl extends ArrayList<Component> implements Composition
 
   public void scale(double d)
   {
-    for (Component entry : this)
+    for (MaterialComponent entry : this)
     {
-      ((ComponentImpl) entry).activity *= d;
+      ((MaterialComponentImpl) entry).activity = new ScaledQuantity(((MaterialComponentImpl) entry).activity, d);
     }
   }
 

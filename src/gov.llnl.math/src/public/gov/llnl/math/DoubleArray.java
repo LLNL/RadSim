@@ -1527,7 +1527,7 @@ public class DoubleArray
       m1 += vector[i] * vector[i];
     }
     m0 /= n;
-    return Math.sqrt(1 / (n - 1) * (m0 - n * m0 * m0));
+    return Math.sqrt(1.0 / (n - 1) * (m1 - n * m0 * m0));
   }
 
   /**

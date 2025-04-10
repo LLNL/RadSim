@@ -12,7 +12,7 @@ package gov.llnl.rtk.physics;
  */
 public interface Positron extends EnergyEmission
 {
-  
+
   Quantity getLogFT();
 
   String getForbiddenness();

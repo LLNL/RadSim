@@ -22,7 +22,7 @@ public class MultiLogLogInterp implements MultiInterpolator
   private final double[] xv;
   private final double[][] yv;
 
-  MultiLogLogInterp(double[] x, double[] 
+  public MultiLogLogInterp(double[] x, double[] 
   
     ... y)
   {

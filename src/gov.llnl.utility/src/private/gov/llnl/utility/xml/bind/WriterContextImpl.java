@@ -192,16 +192,14 @@ public class WriterContextImpl implements WriterContext
 
   @Override
   public <Type> DomBuilder write(
-          ObjectWriter<Type> writer,
-          String elementName,
-          Type object)
+          ObjectWriter<Type> writer, PackageResource pkg, String elementName, Type object)
           throws WriterException
   {
     if (currentContext == null)
       throw new RuntimeException("writer called on without a document");
 
     int options = writer.getOptions();
-    ContextEntry entry = pushContext(writer, object, elementName);
+    ContextEntry entry = pushContext(writer, object, elementName, pkg);
     String ref = checkReference(object, options);
     if (ref != null)
     {
@@ -225,9 +223,10 @@ public class WriterContextImpl implements WriterContext
     return entry.domBuilder;
   }
 
-  <Type> void writeContent(String elementName, Type value) throws WriterException
+  <Type> void writeContent(PackageResource pkg, String elementName, Type value) throws WriterException
   {
-    PackageResource pkg = current().pkg;
+    if (pkg == null)
+      pkg = current().pkg;
     DomBuilder element = newElement(pkg, elementName);
     pushContext(element, null, elementName, pkg);
     addContents(value);
@@ -241,12 +240,13 @@ public class WriterContextImpl implements WriterContext
   }
 
 //<editor-fold desc="context stack">
-  ContextEntry pushContext(ObjectWriter writer, Object object, String elementName) throws WriterException
+  ContextEntry pushContext(ObjectWriter writer, Object object, String elementName, PackageResource pkg) throws WriterException
   {
     writer.setContext(this);
 
     // Get the element name and package
-    PackageResource pkg = this.currentContext.pkg;
+    if (pkg == null)
+      pkg = this.currentContext.pkg;
     if (elementName == null)
     {
       elementName = writer.getElementName();
@@ -493,6 +493,9 @@ public class WriterContextImpl implements WriterContext
       if (ref == null)
       {
         ref = this.domBuilder.toElement().getAttribute("id");
+        // If the id hasn't be set, then set it automatically
+        if (ref.isBlank())
+          ref = Integer.toHexString(object.hashCode());
         setId(ref);
       }
     }

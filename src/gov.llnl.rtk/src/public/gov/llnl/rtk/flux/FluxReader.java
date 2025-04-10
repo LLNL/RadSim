@@ -7,7 +7,6 @@
 package gov.llnl.rtk.flux;
 
 import gov.llnl.rtk.RtkPackage;
-import gov.llnl.rtk.flux.Flux;
 import gov.llnl.rtk.physics.SourceModelReader;
 import gov.llnl.utility.Expandable;
 import gov.llnl.utility.io.ReaderException;
@@ -41,7 +40,8 @@ public class FluxReader extends ObjectReader<Flux>
   {
     ReaderBuilder<FluxBinned> builder = this.newBuilder(FluxBinned.class);
     builder.section(new AttributesSection());
-    builder.element("model").reader(new SourceModelReader()).call((p, v) -> p.setAttribute("model", v));
+    builder.element("model").reader(new SourceModelReader())
+            .call((p, v) -> p.setAttribute(FluxAttributes.MODEL, v));
     builder.element("gammaLines")
             .callContext(FluxReader::setGammaLines, double[][].class);
     builder.element("gammaGroups")
@@ -51,9 +51,9 @@ public class FluxReader extends ObjectReader<Flux>
     return builder.getHandlers();
   }
 
-  private static void setGammaLines(ReaderContext context, FluxBinned flux, double[][] lines)
+  private static void setGammaLines(ReaderContext context, FluxBinned flux, double[][] values)
   {
-    for (double[] v : lines)
+    for (double[] v : values)
     {
       switch (v.length)
       {
@@ -75,23 +75,23 @@ public class FluxReader extends ObjectReader<Flux>
   /**
    * Used by the loader.
    *
-   * @param lines
+   * @param values
    */
-  private static void setGammaGroups(ReaderContext context, FluxBinned flux, double[][] lines)
+  private static void setGammaGroups(ReaderContext context, FluxBinned flux, double[][] values)
   {
-    for (int i = 0; i < lines.length - 1; ++i)
-      flux.addPhotonGroup(new FluxGroupBin(lines[i][0], lines[i + 1][0], lines[i][1]));
+    for (int i = 0; i < values.length - 1; ++i)
+      flux.addPhotonGroup(new FluxGroupBin(values[i][0], values[i + 1][0], values[i][1]));
   }
 
   /**
    * Used by the loader
    *
-   * @param lines
+   * @param values
    */
-  private static void setNeutronGroups(ReaderContext context, FluxBinned flux, double[][] lines)
+  private static void setNeutronGroups(ReaderContext context, FluxBinned flux, double[][] values)
   {
-    for (int i = 0; i < lines.length - 1; ++i)
-      flux.addNeutronGroup(new FluxGroupBin(lines[i][0], lines[i + 1][0], lines[i][1]));
+    for (int i = 0; i < values.length - 1; ++i)
+      flux.addNeutronGroup(new FluxGroupBin(values[i][0], values[i + 1][0], values[i][1]));
   }
 
   class AttributesSection extends Section

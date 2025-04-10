@@ -6,6 +6,7 @@
  */
 package gov.llnl.utility.xml.bind;
 
+import gov.llnl.utility.PackageResource;
 import gov.llnl.utility.io.ReaderException;
 import gov.llnl.utility.io.WriterException;
 import java.net.URI;
@@ -204,6 +205,18 @@ strictfp public class SchemaManagerNGTest
     public EntityResolver getEntityResolver()
     {
       return null;
+    }
+
+    @Override
+    public void registerPackage(PackageResource pkg)
+    {
+      throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public PackageResource findPackage(String name)
+    {
+      throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public class TestReaderFactory implements SchemaManager.ReaderFactory

@@ -16,8 +16,8 @@ public class FluxLineZAD implements FluxLine
 {
   final double energy;
   final double intensity;
-  final double z;
-  final double ad;
+  private final double z;
+  private final double ad;
 
   /**
    * Create a new FluxLineStep.
@@ -69,4 +69,19 @@ public class FluxLineZAD implements FluxLine
             && this.intensity == line.intensity;
   }
 
+  /**
+   * @return the z
+   */
+  public double getZ()
+  {
+    return z;
+  }
+
+  /**
+   * @return the ad
+   */
+  public double getAD()
+  {
+    return ad;
+  }
 }

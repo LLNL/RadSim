@@ -18,7 +18,7 @@ import java.util.Collection;
  */
 @ReaderInfo(CompositionReader.class)
 @WriterInfo(CompositionWriter.class)
-public interface Composition extends Collection<Component>, Serializable
+public interface Composition extends Collection<MaterialComponent>, Serializable
 {
 
   /**
@@ -43,9 +43,9 @@ public interface Composition extends Collection<Component>, Serializable
     if (composition.size() != this.size())
       return false;
 
-    for (Component c : this)
+    for (MaterialComponent c : this)
     {
-      Component c2 = composition.getComponent(c.getNuclide());
+      MaterialComponent c2 = composition.getComponent(c.getNuclide());
       if (c2 == null)
         return false;
       if (c.getActivity() != c2.getActivity())
@@ -67,9 +67,9 @@ public interface Composition extends Collection<Component>, Serializable
    * @param nuclide
    * @return
    */
-  default Component getComponent(Nuclide nuclide)
+  default MaterialComponent getComponent(Nuclide nuclide)
   {
-    for (Component component : this)
+    for (MaterialComponent component : this)
     {
       if (component.getNuclide() == nuclide)
         return component;

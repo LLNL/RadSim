@@ -11,7 +11,6 @@ import gov.llnl.rtk.data.EnergyScale;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Set;
 import java.util.function.DoubleUnaryOperator;
@@ -51,7 +50,7 @@ public class FluxUtilities
   {
     try
     {
-      double[] es = spectrum.getGammaScale().getEdges();
+      double[] es = spectrum.getPhotonScale().getEdges();
       double[][] ex = extract(spectrum);
       double[] C = ex[0];  // Continuum
       double[] L = ex[1];  // Lines
@@ -100,12 +99,12 @@ public class FluxUtilities
    * @return a new binned spectrum.
    */
   public static FluxBinned toBinned(FluxSpectrum spectrum, EnergyScale scale,
-          List<FluxLine> lines)
+          List<? extends FluxLine> lines)
   {
     try
     {
-      double[] es = spectrum.getGammaScale().getEdges();
-      double[] counts = spectrum.getGammaCounts();
+      double[] es = spectrum.getPhotonScale().getEdges();
+      double[] counts = spectrum.getPhotonCounts();
       double[] C = counts.clone(); // assume all counts are continuum.
       int n = C.length;
 
@@ -293,13 +292,13 @@ public class FluxUtilities
    */
   public static double[][] extract(FluxSpectrum spectrum)
   {
-    double[] counts = spectrum.getGammaCounts();
+    double[] counts = spectrum.getPhotonCounts();
     int n = counts.length;
     double[] C = new double[n];  // continuum
     double[] L = new double[n];  // line intensity
     double[] S = new double[n];  // step
     int i1 = n - 1;
-    double[] es = spectrum.getGammaScale().getEdges();
+    double[] es = spectrum.getPhotonScale().getEdges();
     while (i1 > 3)
     {
       double deltaE0 = es[i1 + 1] - es[i1];
@@ -390,7 +389,9 @@ public class FluxUtilities
   }
 
   /**
-   * Convert a flux to a spectrum.This loses all line information.
+   * Convert a flux to a spectrum.
+   *
+   * This loses all line information.
    *
    * Distribution in the groups depends on the original representation.
    *
@@ -687,7 +688,7 @@ public class FluxUtilities
       double i0 = last.getIntensity();
       double i1 = line.getIntensity();
       double s0 = last.getStep();
-      double s1 = last.getStep();
+      double s1 = line.getStep();
       double e = (e0 * i0 + e1 * i1) / (i0 + i1);
       last = new FluxLineStep(e, i0 + i1, s0 + s1);
     }
@@ -737,6 +738,13 @@ public class FluxUtilities
     return flux3;
   }
 
+  /** Remove lines that are insignificant.
+   * 
+   * 
+   * @param binned
+   * @param significance
+   * @return 
+   */
   public static FluxBinned chop(FluxBinned binned, double significance)
   {
     FluxBinned out = new FluxBinned();
@@ -761,7 +769,7 @@ public class FluxUtilities
         }
 
         double counts = line.intensity;
-        if (counts < density * significance)
+        if (counts < Math.sqrt(density) * significance)
         {
           gcounts += counts;
         }

@@ -186,7 +186,7 @@ public class ReaderProcessor extends AbstractProcessor
       }
       TypeMirror t2 = ((DeclaredType) t).getTypeArguments().get(0);
       TypeMirror t3 = getClassAnnotation(element, Reader.Declaration.class, "cls");
-      if (!types.isAssignable(t3, t2))
+      if (t3 != null && !types.isAssignable(t3, t2))
         mesg.printMessage(Diagnostic.Kind.ERROR,
                 String.format("cls and template type mismatch at %s (%s,%s,%s,%s)", typeElement, t0, t, t2, t3), typeElement);
     }

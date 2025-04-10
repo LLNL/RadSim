@@ -6,10 +6,14 @@
  */
 package gov.llnl.utility.proto;
 
+import gov.llnl.utility.PathUtilities;
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -171,6 +175,25 @@ public abstract class MessageEncoding<T> implements ProtoEncoding<T>
     return parseContents(context, ByteSource.wrap(contents));
   }
 
+  public T parseFile(Path file) throws IOException, ProtoException
+  {
+    {
+      try (InputStream is = Files.newInputStream(file))
+      {
+        BufferedInputStream bs;
+        if (PathUtilities.isGzip(file))
+        {
+          GZIPInputStream gis = new GZIPInputStream(is);
+          bs = new BufferedInputStream(gis);
+        }
+        else
+          bs = new BufferedInputStream(is);
+        return this.parseStream(bs);
+      }
+    }
+
+  }
+
   /**
    * Parse a stream into an object using an empty context.
    *
@@ -196,7 +219,7 @@ public abstract class MessageEncoding<T> implements ProtoEncoding<T>
   public T parseStreamGZ(InputStream stream) throws ProtoException
   {
     ProtoContext context = new ProtoContext();
-    try ( GZIPInputStream gis = new GZIPInputStream(stream))
+    try (GZIPInputStream gis = new GZIPInputStream(stream))
     {
       return parseContents(context, ByteSource.wrap(gis));
     }
@@ -214,7 +237,7 @@ public abstract class MessageEncoding<T> implements ProtoEncoding<T>
 
   public void saveStreamGZ(OutputStream os, T t) throws IOException, ProtoException
   {
-    try ( GZIPOutputStream gos = new GZIPOutputStream(os))
+    try (GZIPOutputStream gos = new GZIPOutputStream(os))
     {
       byte[] bytes = this.toBytes(t);
       gos.write(bytes);
@@ -240,7 +263,7 @@ public abstract class MessageEncoding<T> implements ProtoEncoding<T>
     {
       if (field.id == -1)
         continue;
-      if ((field.optional!= null)
+      if ((field.optional != null)
               && (!field.optional.test(obj)))
         continue;
 

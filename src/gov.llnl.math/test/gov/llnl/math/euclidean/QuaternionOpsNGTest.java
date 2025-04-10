@@ -37,9 +37,9 @@ public class QuaternionOpsNGTest
     Quaternion result = QuaternionOps.multiply(q1, q2);
     assertEquals(result.getClass(), expResult.getClass());
     assertEquals(result.getU(), expResult.getU());
-    assertEquals(result.getI(), expResult.getI());
-    assertEquals(result.getJ(), expResult.getJ());
-    assertEquals(result.getK(), expResult.getK());
+    assertEquals(result.getX(), expResult.getX());
+    assertEquals(result.getY(), expResult.getY());
+    assertEquals(result.getZ(), expResult.getZ());
   }
 
   /**
@@ -72,9 +72,9 @@ public class QuaternionOpsNGTest
     Quaternion result = QuaternionOps.multiply(q1, q2);
     assertEquals(result.getClass(), expResult.getClass());
     assertEquals(result.getU(), expResult.getU());
-    assertEquals(result.getI(), expResult.getI());
-    assertEquals(result.getJ(), expResult.getJ());
-    assertEquals(result.getK(), expResult.getK());
+    assertEquals(result.getX(), expResult.getX());
+    assertEquals(result.getY(), expResult.getY());
+    assertEquals(result.getZ(), expResult.getZ());
   }
   
 }

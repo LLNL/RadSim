@@ -6,6 +6,7 @@
  */
 package gov.llnl.utility.xml.bind;
 
+import gov.llnl.utility.PackageResource;
 import gov.llnl.utility.io.WriterException;
 import gov.llnl.utility.xml.DomBuilder;
 import gov.llnl.utility.xml.bind.ObjectWriter.WriterAttributes;
@@ -61,6 +62,7 @@ public interface WriterContext
    */
   <Type> DomBuilder write(
           ObjectWriter<Type> writer,
+          PackageResource pkg,
           String elementName,
           Type object)
           throws WriterException;

@@ -1,6 +1,6 @@
-/* 
- * Copyright (c) 2016, Lawrence Livermore National Security, LLC.
- * All rights reserved.
+/*
+ * Copyright 2019, Lawrence Livermore National Security, LLC. 
+ * All rights reserved
  * 
  * Terms and conditions are given in "Notice" file.
  */
@@ -10,8 +10,9 @@ package gov.llnl.rtk.physics;
  *
  * @author nelson85
  */
-public class Geometry
+public interface Geometry
 {
+
   public enum Type
   {
     SPHERICAL,
@@ -23,71 +24,40 @@ public class Geometry
     BACKGROUND,
     MIXED
   }
-  private Type type;
-  private double extent1;
-  private double extent2;
-
-  public Geometry()
-  {
-  }
-
-  private Geometry(Type type, double e1, double e2)
-  {
-    this.type = type;
-    this.extent1 = e1;
-    this.extent2 = e2;
-  }
 
   public static Geometry newSpherical()
   {
-    return new Geometry(Type.SPHERICAL, 0, 0);
+    return new SphericalGeometry();
   }
 
-  /**
-   * @return the type
-   */
-  public Type getType()
+  public static Geometry of(Type type, Quantity extent1, Quantity extent2)
   {
-    return type;
-  }
-
-  /**
-   * @param type the type to set
-   */
-  public void setType(Type type)
-  {
-    this.type = type;
+    switch (type)
+    {
+      case SPHERICAL:
+        return newSpherical();
+      default:
+        throw new UnsupportedOperationException();
+    }
   }
 
   /**
    * @return the extent1
    */
-  public double getExtent1()
-  {
-    return extent1;
-  }
-
-  /**
-   * @param extent1 the extent1 to set
-   */
-  public void setExtent1(double extent1)
-  {
-    this.extent1 = extent1;
-  }
+  Quantity getExtent1();
 
   /**
    * @return the extent2
    */
-  public double getExtent2()
-  {
-    return extent2;
-  }
+  Quantity getExtent2();
 
   /**
-   * @param extent2 the extent2 to set
+   * @return the type
    */
-  public void setExtent2(double extent2)
-  {
-    this.extent2 = extent2;
-  }
+  Type getType();
+
+  Quantity computeVolume(Quantity inner, Quantity thickness);
+  
+  Quantity computeThickness(Quantity volume, Quantity inner);
+
 }

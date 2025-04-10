@@ -12,7 +12,9 @@ import gov.llnl.utility.xml.bind.ObjectReader;
 import gov.llnl.utility.xml.bind.Schema;
 import gov.llnl.utility.xml.bind.Schema.Include;
 import gov.llnl.utility.xml.bind.Schema.Using;
+import gov.llnl.utility.xml.bind.SchemaManager;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -34,6 +36,7 @@ import java.util.stream.Collectors;
  */
 public abstract class PackageResource implements Singletons.Singleton
 {
+  private final     Schema schema;
 
   private final String namespaceURI;
   private final URI schemaURI;
@@ -50,9 +53,16 @@ public abstract class PackageResource implements Singletons.Singleton
    */
   public PackageResource()
   {
-    Schema schema = getClass().getAnnotation(Schema.class);
+    this(null);
+  }
+  
+  protected PackageResource(Schema  schema)
+  {
     try
     {
+      if (schema == null)
+        schema = getClass().getAnnotation(Schema.class); 
+      this.schema = schema;
       this.namespaceURI = schema.namespace();
       this.schemaURI = new URI(schema.schema());
       this.schemaURL = null;
@@ -71,11 +81,53 @@ public abstract class PackageResource implements Singletons.Singleton
       {
         this.logger.log(Level.WARNING, "Unable to locate resource {0}", schemaURI);
       }
+      else
+      {
+        SchemaManager.getInstance().registerPackage(this);
+      }
     }
     catch (URISyntaxException | MalformedURLException ex)
     {
       throw new RuntimeException("SchemaURI must be valid uri " + schema.schema());
     }
+  }
+
+  public static PackageResource generic(String namespaceStr, String prefixStr, String resource)
+  {
+    Schema schema = new Schema()
+    {
+      @Override
+      public String namespace()
+      {
+        return namespaceStr;
+      }
+
+      /**
+       * Schema is the resource name uri for this class.
+       */
+      @Override
+      public String schema()
+      {
+        return resource;
+      }
+
+      /**
+       * Prefix is the preferred namespace prefix for elements.
+       */
+      @Override
+      public String prefix()
+      {
+        return prefixStr;
+      }
+
+      @Override
+      public Class<? extends Annotation> annotationType()
+      {
+        return Schema.class;
+      }
+    };
+    return new PackageResource(schema) {};
+  
   }
 
   /**
@@ -103,7 +155,7 @@ public abstract class PackageResource implements Singletons.Singleton
 
   public Schema getSchema()
   {
-    return this.getClass().getAnnotation(Schema.class);
+    return schema;
   }
 
   /**
@@ -153,7 +205,7 @@ public abstract class PackageResource implements Singletons.Singleton
             .collect(Collectors.toList());
   }
 
-    /**
+  /**
    * Get the list of packages this package depends on.
    *
    * @return a list of dependencies.

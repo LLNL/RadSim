@@ -166,6 +166,6 @@ public interface Expandable
     Map<String, Serializable> attr = ai.getAttributes();
     if (attr == null)
       return;
-    getAttributes().putAll(ai.getAttributes());
+    getAttributes().putAll(attr);
   }
 }

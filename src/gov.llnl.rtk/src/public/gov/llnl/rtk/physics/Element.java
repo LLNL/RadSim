@@ -18,9 +18,20 @@ public interface Element
 
   @Override
   String toString();
+  
+  /** 
+   * Get the nominal density of the element in its pure form.
+   * 
+   * @return 
+   */
+  Quantity getDensity();
 
   /**
    * @return the molarMass is natural occurring, otherwise 0.
    */
   double getMolarMass();
+  
+  // Break down the element into its isotopes
+  Material toMaterial();
+  
 }

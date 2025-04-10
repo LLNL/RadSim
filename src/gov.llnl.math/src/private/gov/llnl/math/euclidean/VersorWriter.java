@@ -25,9 +25,9 @@ public class VersorWriter extends ObjectWriter<Versor>
   @Override
   public void attributes(WriterAttributes attributes, Versor object) throws WriterException
   {
-    double i = object.getI();
-    double j = object.getJ();
-    double k = object.getK();
+    double i = object.getX();
+    double j = object.getY();
+    double k = object.getZ();
     double r = Math.sqrt(i * i + j * j + k * k);
     double angle = 2 * Math.atan2(r, object.getU());
 

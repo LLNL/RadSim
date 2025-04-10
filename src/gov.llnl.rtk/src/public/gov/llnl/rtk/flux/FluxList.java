@@ -7,6 +7,7 @@
 package gov.llnl.rtk.flux;
 
 import gov.llnl.utility.xml.bind.ReaderInfo;
+import gov.llnl.utility.xml.bind.WriterInfo;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -16,6 +17,7 @@ import java.util.Collection;
  * @author nelson85
  */
 @ReaderInfo(FluxListReader.class)
+@WriterInfo(FluxListWriter.class)
 public class FluxList
         extends ArrayList<Flux>
 {

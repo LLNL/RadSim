@@ -92,8 +92,8 @@ public class FloatEncodingImplNGTest
       System.out.print(String.format("%02x ", b & 0xff));
     }
     System.out.println();
-    assertEquals(a.i, 12345.0f);
-    assertEquals(a.j, 12345.0f);
+    assertEquals(a.i, 12345.0f, 1e-8f);
+    assertEquals(a.j, 12345.0f, 1e-8f);
   }
   
   @Test

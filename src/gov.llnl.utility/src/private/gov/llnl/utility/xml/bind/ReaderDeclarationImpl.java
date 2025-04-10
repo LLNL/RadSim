@@ -133,6 +133,14 @@ public abstract class ReaderDeclarationImpl implements Reader.Declaration
       return base.schema();
     return Reader.Declaration.NULL;
   }
+  
+  @Override
+  public String xslt()
+  {
+    if (base != null)
+      return base.xslt();
+    return Reader.Declaration.NULL;
+  }
 
   static Option[] NO_OPTIONS =
   {

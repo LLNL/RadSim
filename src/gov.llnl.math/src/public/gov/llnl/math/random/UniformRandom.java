@@ -22,6 +22,12 @@ public class UniformRandom extends RandomFactory implements Serializable
     super(getDefaultGenerator());
   }
 
+  public double draw(double min, double max)
+  {
+    double range = max - min;
+    return getGenerator().nextDouble() * range + min;
+  }
+
   public UniformRandom(RandomGenerator random)
   {
     super(random);
@@ -47,5 +53,5 @@ public class UniformRandom extends RandomFactory implements Serializable
     {
       return getGenerator().nextDouble() * range + min;
     }
-  }  
+  }
 }

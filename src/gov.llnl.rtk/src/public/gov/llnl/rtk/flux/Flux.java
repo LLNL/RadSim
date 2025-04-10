@@ -6,6 +6,11 @@
  */
 package gov.llnl.rtk.flux;
 
+import gov.llnl.rtk.data.EnergyScale;
+import gov.llnl.rtk.data.EnergyScaleFactory;
+import gov.llnl.utility.Expandable;
+import gov.llnl.utility.xml.bind.ReaderInfo;
+import gov.llnl.utility.xml.bind.WriterInfo;
 import java.util.List;
 
 /**
@@ -16,7 +21,9 @@ import java.util.List;
  *
  * @author nelson85
  */
-public interface Flux
+@ReaderInfo(FluxReader.class)
+@WriterInfo(FluxWriter.class)
+public interface Flux extends Expandable
 {
 
   // FIXME figure out how to represent time and flux geometry.
@@ -56,4 +63,27 @@ public interface Flux
    * @return
    */
   public FluxEvaluator newNeutronEvaluator();
+
+  default public EnergyScale getPhotonGroupsScale()
+  {
+    return toScale(this.getPhotonGroups());
+  }
+
+  default public EnergyScale getNeutronGroupsScale()
+  {
+    return toScale(this.getNeutronGroups());
+  }
+
+  private static EnergyScale toScale(List<? extends FluxGroup> grp)
+  {
+    double[] scale = new double[grp.size() + 1];
+    int i = 0;
+    for (FluxGroup group : grp)
+    {
+      scale[i] = group.getEnergyLower();
+      scale[++i] = group.getEnergyUpper();
+    }
+    return EnergyScaleFactory.newScale(scale);
+
+  }
 }

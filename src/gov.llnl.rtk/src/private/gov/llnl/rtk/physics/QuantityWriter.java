@@ -16,22 +16,38 @@ import gov.llnl.utility.xml.bind.ObjectWriter;
  */
 public class QuantityWriter extends ObjectWriter<Quantity>
 {
+
+  final String target;
+
   public QuantityWriter()
   {
     super(Options.NONE, "quantity", RtkPackage.getInstance());
+    target = null;
+  }
+
+  public QuantityWriter(String target)
+  {
+    super(Options.NONE, "quantity", RtkPackage.getInstance());
+    this.target = target;
   }
 
   @Override
   public void attributes(WriterAttributes attributes, Quantity object) throws WriterException
   {
-    if (object.units != null)
-      attributes.add("units", object.units);
+    if (target != null)
+      object = object.to(target);
+    if (object.getUnits() != null)
+      attributes.add("units", object.getUnits().getSymbol());
+    if (object.hasUncertainty())
+      attributes.add("unc", object.getUncertainty());
   }
 
   @Override
   public void contents(Quantity object) throws WriterException
   {
-    this.addContents(Double.toString(object.value));
+    if (target != null)
+      object = object.to(target);
+    this.addContents(Double.toString(object.getValue()));
   }
 
 }

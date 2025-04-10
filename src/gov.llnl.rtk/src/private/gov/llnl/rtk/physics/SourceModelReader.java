@@ -20,25 +20,27 @@ import org.xml.sax.Attributes;
  */
 @Internal
 
-@Reader.Declaration(pkg = RtkPackage.class, name = "sourceModel", cls = SphericalModel.class,
+@Reader.Declaration(pkg = RtkPackage.class, name = "sourceModel", cls = SourceModelImpl.class,
         order = Reader.Order.SEQUENCE, referenceable = true)
 @Reader.Attribute(name = "title", type = String.class)
-public class SourceModelReader extends ObjectReader<SphericalModel>
+public class SourceModelReader extends ObjectReader<SourceModelImpl>
 {
 
   @Override
-  public SphericalModel start(ReaderContext context, Attributes attributes) throws ReaderException
+  public SourceModelImpl start(ReaderContext context, Attributes attributes) throws ReaderException
   {
-    return new SphericalModel();
+    SourceModelImpl out = new SourceModelImpl();
+    out.setTitle(attributes.getValue("title"));
+    return out;
   }
 
   @Override
   public ElementHandlerMap getHandlers(ReaderContext context) throws ReaderException
   {
-    ReaderBuilder<SphericalModel> builder = this.newBuilder();
+    ReaderBuilder<SourceModelImpl> builder = this.newBuilder();
     builder.element("geometry")
             .reader(new GeometryReader())
-            .call(SphericalModel::setGeometry);
+            .call(SourceModelImpl::setGeometry);
     builder.element("layer")
             .reader(new LayerReader())
             .call((p,v)->p.addLayer(v))

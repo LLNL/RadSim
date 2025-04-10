@@ -219,15 +219,16 @@ public class VersorNGTest
 //    assertEquals(result.getJ(), 0.22094238269039454);
 //    assertEquals(result.getK(), 0.22094238269039454);
 //  }
+
   @Test
   public void testInv()
   {
     Versor instance = Versor.of(Vector3.AXIS_X, Math.PI / 2);
     Versor result = instance.inv();
     assertEquals(result.getU(), 0.7071067811865476);
-    assertEquals(result.getI(), -0.7071067811865475);
-    assertEquals(result.getJ(), 0.0, 1e-10);
-    assertEquals(result.getK(), 0.0, 1e-10);
+    assertEquals(result.getX(), -0.7071067811865475);
+    assertEquals(result.getY(), 0.0, 1e-10);
+    assertEquals(result.getZ(), 0.0, 1e-10);
   }
 
   @Test

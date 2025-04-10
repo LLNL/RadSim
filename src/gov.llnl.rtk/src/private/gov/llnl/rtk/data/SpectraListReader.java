@@ -6,9 +6,6 @@
  */
 package gov.llnl.rtk.data;
 
-import gov.llnl.rtk.data.EnergyScale;
-import gov.llnl.rtk.data.SpectraList;
-import gov.llnl.rtk.data.Spectrum;
 import gov.llnl.utility.io.ReaderException;
 import gov.llnl.utility.xml.bind.ObjectReader;
 import gov.llnl.utility.xml.bind.ReaderContext;

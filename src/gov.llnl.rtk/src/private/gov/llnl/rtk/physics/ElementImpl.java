@@ -7,17 +7,19 @@
 package gov.llnl.rtk.physics;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ElementImpl implements Element, Serializable
 {
   private final String symbol;
-  private final int z;
+  int z;
   double molarMass;
+  Quantity density;
+  public ArrayList<MaterialComponentImpl> abundance = new ArrayList<>();
 
-  ElementImpl(String symbol, int z)
+  ElementImpl(String symbol)
   {
     this.symbol = symbol;
-    this.z = z;
   }
 
   @Override
@@ -44,12 +46,18 @@ public class ElementImpl implements Element, Serializable
     return molarMass;
   }
 
-  /**
-   * @param molarMass the molarMass to set
-   */
-  public void setMolarMass(double molarMass)
+  @Override
+  public Quantity getDensity()
   {
-    this.molarMass = molarMass;
+    return this.density;
   }
+
+  @Override
+  public Material toMaterial()
+  {
+    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  }
+
+
 
 }

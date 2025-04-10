@@ -14,13 +14,13 @@ public class QuaternionOps
 {
   public static Quaternion multiply(Quaternion q1, Quaternion q2)
   {
-    double q1i = q1.getI();
-    double q1j = q1.getJ();
-    double q1k = q1.getK();
+    double q1i = q1.getX();
+    double q1j = q1.getY();
+    double q1k = q1.getZ();
     double q1u = q1.getU();
-    double q2i = q2.getI();
-    double q2j = q2.getJ();
-    double q2k = q2.getK();
+    double q2i = q2.getX();
+    double q2j = q2.getY();
+    double q2k = q2.getZ();
     double q2u = q2.getU();
     return Quaternion.of(
             q1u * q2u - q1i * q2i - q1j * q2j - q1k * q2k,
@@ -32,9 +32,9 @@ public class QuaternionOps
 
   public static Quaternion multiply(Quaternion q1, Vector3 q2)
   {
-    double q1i = q1.getI();
-    double q1j = q1.getJ();
-    double q1k = q1.getK();
+    double q1i = q1.getX();
+    double q1j = q1.getY();
+    double q1k = q1.getZ();
     double q1u = q1.getU();
     double x = q2.getX();
     double y = q2.getY();

@@ -30,7 +30,7 @@ public class VersorImplNGTest
     double angle = 1.0;
     VersorImpl instance = (VersorImpl) Versor.of(axis, angle);
     double expResult = 0.12813186485189226;
-    double result = instance.getI();
+    double result = instance.getX();
     assertEquals(result, expResult, 0.0);
   }
 
@@ -46,7 +46,7 @@ public class VersorImplNGTest
     double k = 1.0;
     VersorImpl instance = new VersorImpl(u, i, j, k);
     double expResult = 1.0;
-    double result = instance.getJ();
+    double result = instance.getY();
     assertEquals(result, expResult, 0.0);
   }
 
@@ -62,7 +62,7 @@ public class VersorImplNGTest
     double k = 1.0;
     VersorImpl instance = new VersorImpl(u, i, j, k);
     double expResult = 1.0;
-    double result = instance.getK();
+    double result = instance.getZ();
     assertEquals(result, expResult, 0.0);
   }
 

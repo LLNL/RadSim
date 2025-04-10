@@ -119,7 +119,7 @@ public class FluxSpectrumNGTest
     {
       1, 2, 3, 4, 6
     });
-    EnergyScale result = instance.getGammaScale();
+    EnergyScale result = instance.getPhotonScale();
     assertEquals(result, expResult);
   }
 
@@ -131,7 +131,7 @@ public class FluxSpectrumNGTest
     {
       10, 8, 5, 3
     };
-    double[] result = instance.getGammaCounts();
+    double[] result = instance.getPhotonCounts();
     assertTrue(Arrays.equals(result, expResult));
   }
 

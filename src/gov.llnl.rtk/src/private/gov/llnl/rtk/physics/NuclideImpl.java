@@ -19,26 +19,19 @@ import java.util.Objects;
 public class NuclideImpl implements Nuclide, Serializable
 {
   private static final long serialVersionUID = UUIDUtilities.createLong("NuclideImpl");
-  private final String name;
-  private final Element element;
-  private int atomicNumber;
-  private int massNumber;
-  private double halfLife;
-  private double atomicMass;
-  private int isomerNumber;
-  private int zaid;
-  public int id;
+  final String name;
+  final Element element;
+  int atomicNumber;
+  int massNumber;
+  double halfLife;
+  double atomicMass;
+  int isomerNumber;
+  int id;
 
-  NuclideImpl(String name)
+  NuclideImpl(String name, Element element)
   {
     this.name = name;
-    this.element = Elements.get(name);
-  }
-  
-  @Override
-  public int getZaid()
-  {
-    return this.zaid;
+    this.element = element;
   }
 
   @Override
@@ -96,37 +89,36 @@ public class NuclideImpl implements Nuclide, Serializable
   }
 
   //<editor-fold desc="loader">
-  void setHalfLife(double v)
-  {
-    this.halfLife = v;
-  }
-
-  void setAtomicMass(double v)
-  {
-    this.atomicMass = v;
-  }
-
-  void setIsomerNumber(int v)
-  {
-    this.isomerNumber = v;
-  }
-
-  void setMassNumber(int v)
-  {
-    this.massNumber = v;
-  }
-
-  void setAtomicNumber(int v)
-  {
-    this.atomicNumber = v;
-  }
-
-  void setId(int id)
-  {
-    this.id = id;
-  }
+//  void setHalfLife(double v)
+//  {
+//    this.halfLife = v;
+//  }
+//
+//  void setAtomicMass(double v)
+//  {
+//    this.atomicMass = v;
+//  }
+//
+//  void setIsomerNumber(int v)
+//  {
+//    this.isomerNumber = v;
+//  }
+//
+//  void setMassNumber(int v)
+//  {
+//    this.massNumber = v;
+//  }
+//
+//  void setAtomicNumber(int v)
+//  {
+//    this.atomicNumber = v;
+//  }
+//
+//  void setId(int id)
+//  {
+//    this.id = id;
+//  }
   //</editor-fold>
-
   @Override
   public boolean equals(Object o)
   {

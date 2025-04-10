@@ -37,7 +37,7 @@ public class SpectrumWriter<T extends Spectrum> extends ObjectWriter<T>
             .getProperty(SpectrumAttributes.WRITER_EXCLUDE, Predicate.class, null);
     WriterBuilder wb = newBuilder();
     if (!object.getAttributes().isEmpty())
-      wb.element("attributes").writer(new SpectrumAttributesWriter()).put(object);
+      wb.element("attributes").writer(new AttributesWriter()).put(object);
     if (exclude == null || !exclude.test("title"))
       wb.element("title").putString(object.getTitle());
     if (exclude == null || !exclude.test("realTime"))

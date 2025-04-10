@@ -10,37 +10,35 @@ import gov.llnl.utility.ReflectionUtilities;
 
 /**
  * Library holding all elements.
- * 
+ *
  * This is a singleton.
- * 
+ *
  * @author nelson85
  */
 public interface Elements
 {
   /**
-   * Get a element by name.
+   * Get a element by symbol.
    *
-   * @return
+   * This accepts elemental symbols and named nuclides.   
+   * The first character of the symbol should be capitalized.
+   * The second character may be either case.
+   * 
+   * @return the element from the symbol or null if no such element is found.
    */
   static Element get(String name)
   {
-    return MANAGER.getElement(name);
+    return NuclidesImpl.INSTANCE.getElement(name);
   }
 
+  /**
+   * 
+   * @param z
+   * @return 
+   */
   static Element getElement(int z)
   {
-    return MANAGER.getElement(z);
+    return NuclidesImpl.INSTANCE.getElement(z);
   }
 
-//<editor-fold desc="internal" defaultstate="collapsed">
-  interface ElementManager
-  {
-    Element getElement(String name);
-
-    Element getElement(int z);
-  }
-
-  ElementManager MANAGER
-          = ReflectionUtilities.getConstructor("gov.llnl.rtk.physics.ElementManagerImpl", ElementManager.class).get();
-//</editor-fold>
 }

@@ -11,7 +11,7 @@ package gov.llnl.rtk.physics;
  * @author cheung27
  */
 public interface EnergyEmission extends Emission
-{  
+{
   /**
    * Get the emission energy.
    *

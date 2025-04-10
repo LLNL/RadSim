@@ -1,6 +1,6 @@
 package gov.llnl.rtk.mcnp;
 
-import gov.llnl.rtk.physics.Component;
+import gov.llnl.rtk.physics.MaterialComponent;
 import gov.llnl.rtk.physics.Material;
 import gov.llnl.rtk.physics.Nuclide;
 
@@ -24,7 +24,7 @@ public class MCNP_Material {
 
     public MCNP_Material(String name, Material material) {
         this(name);
-        for (Component component : material) {
+        for (MaterialComponent component : material) {
             Nuclide nuclide = component.getNuclide();
             this.addIsotope(new MCNP_Isotope(nuclide.getName(), nuclide.getAtomicNumber(), nuclide.getMassNumber()), -component.getMassFraction());
         }

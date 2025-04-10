@@ -26,7 +26,7 @@ public interface Photon extends EnergyEmission
    */
   @Override
   Quantity getIntensity();
-  
+
   // FIXME consider adding the inherent width of the line.  
   // For reactions this would be based on the reaction.
   // For decay gammas the doppler broadening and the relative mass of the emmited 

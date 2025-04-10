@@ -8,7 +8,7 @@
 import gov.llnl.rtk.physics.Geometry;
 import gov.llnl.rtk.physics.LayerImpl;
 import gov.llnl.rtk.physics.MaterialImpl;
-import gov.llnl.rtk.physics.SphericalModel;
+import gov.llnl.rtk.physics.SourceModelImpl;
 import gov.llnl.rtk.physics.Units;
 import gov.llnl.utility.io.WriterException;
 import gov.llnl.utility.xml.bind.DocumentWriter;

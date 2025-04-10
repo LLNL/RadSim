@@ -118,7 +118,7 @@ public interface Versor extends Quaternion
       return Vector3.of(v.getX(), v.getY(), v.getZ());
     Quaternion q = QuaternionOps.multiply(this, v);
     Quaternion q2 = QuaternionOps.multiply(q, this.inv());
-    return Vector3.of(q2.getI(), q2.getJ(), q2.getK());
+    return Vector3.of(q2.getX(), q2.getY(), q2.getZ());
   }
 
   default Vector3 invRotate(Vector3 v)
@@ -127,18 +127,18 @@ public interface Versor extends Quaternion
       return Vector3.of(v.getX(), v.getY(), v.getZ());
     Quaternion q = QuaternionOps.multiply(this.inv(), v);
     Quaternion q2 = QuaternionOps.multiply(q, this);
-    return Vector3.of(q2.getI(), q2.getJ(), q2.getK());
+    return Vector3.of(q2.getX(), q2.getY(), q2.getZ());
   }
 
   default Versor multiply(Versor v)
   {
-    double q1i = this.getI();
-    double q1j = this.getJ();
-    double q1k = this.getK();
+    double q1i = this.getX();
+    double q1j = this.getY();
+    double q1k = this.getZ();
     double q1u = this.getU();
-    double q2i = v.getI();
-    double q2j = v.getJ();
-    double q2k = v.getK();
+    double q2i = v.getX();
+    double q2j = v.getY();
+    double q2k = v.getZ();
     double q2u = v.getU();
     return Versor.fromQuaternion(
             q1u * q2u - q1i * q2i - q1j * q2j - q1k * q2k,
@@ -151,9 +151,9 @@ public interface Versor extends Quaternion
   {
     long p = POWERS_OF_10[dig];
     double w = this.getU();
-    double x = this.getI();
-    double y = this.getJ();
-    double z = this.getK();
+    double x = this.getX();
+    double y = this.getY();
+    double z = this.getZ();
     double aw = (long) (Math.abs(w) * p + 0.5);
     double ax = (long) (Math.abs(x) * p + 0.5);
     double ay = (long) (Math.abs(y) * p + 0.5);

@@ -25,11 +25,12 @@ import org.xml.sax.Attributes;
 @Reader.Attribute(name = "label", type = String.class)
 public class LayerReader extends ObjectReader<LayerImpl>
 {
+  static final Geometry DEFAULT_GEOMETRY = Geometry.newSpherical();
 
   @Override
   public LayerImpl start(ReaderContext context, Attributes attributes) throws ReaderException
   {
-    LayerImpl out = new LayerImpl();
+    LayerImpl out = new LayerImpl(DEFAULT_GEOMETRY, null);
     out.setLabel(attributes.getValue("label"));
     return out;
   }
@@ -39,8 +40,8 @@ public class LayerReader extends ObjectReader<LayerImpl>
   {
     ReaderBuilder<LayerImpl> builder = this.newBuilder();
     builder.element("thickness")
-            .reader(new Units.UnitReader(PhysicalProperty.LENGTH))
-            .call(LayerImpl::setThickness);
+            .reader(new QuantityReader(PhysicalProperty.LENGTH))
+            .call((p,v)->p.setThickness(v));
     builder.element("geometry")
             .reader(new GeometryReader())
             .call(LayerImpl::setGeometry).optional();
@@ -49,6 +50,5 @@ public class LayerReader extends ObjectReader<LayerImpl>
             .call(LayerImpl::setMaterial);
     return builder.getHandlers();
   }
-
 
 }

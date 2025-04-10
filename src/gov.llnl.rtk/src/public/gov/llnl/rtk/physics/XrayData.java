@@ -9,11 +9,17 @@ package gov.llnl.rtk.physics;
 import java.util.List;
 
 /**
- *
+ * All xray data associated with a given element.
+ * 
  * @author nelson85
  */
 public interface XrayData
 {
+  /**
+   * Get the element associated with the xray.
+   *
+   * @return
+   */
   Element getElement();
 
   /**
@@ -23,6 +29,12 @@ public interface XrayData
    */
   List<XrayEdge> getEdges();
 
+  /**
+   * Search the edges by name.
+   *
+   * @param name
+   * @return the named edge or null if not found.
+   */
   default XrayEdge findEdge(String name)
   {
     for (XrayEdge edge : getEdges())

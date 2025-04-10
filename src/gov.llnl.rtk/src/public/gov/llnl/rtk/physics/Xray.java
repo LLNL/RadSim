@@ -7,10 +7,16 @@
 package gov.llnl.rtk.physics;
 
 /**
+ * Photon emission associates with the transition of electrons in orbitals.
  *
  * @author nelson85
  */
-public interface Xray extends EnergyEmission
+public interface Xray extends Photon
 {
+  /**
+   * Get the name for this xray.
+   *
+   * @return a string.
+   */
   public String getName();
 }

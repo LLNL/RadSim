@@ -10,16 +10,16 @@ package gov.llnl.rtk.physics;
  *
  * @author nelson85
  */
-public interface ElectronCapture extends Emission
+public interface ElectronCapture extends EnergyEmission
 {
 
   /**
    * Get the forbiddenness for this emission.
-   * 
+   *
    * It is not clear if this applies only to the B+.
-   * 
+   *
    * @return the forbiddenness
-   */
+   */ 
   String getForbiddenness();
 
   /**

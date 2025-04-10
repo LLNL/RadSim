@@ -17,22 +17,59 @@ import org.xml.sax.Attributes;
  *
  * @author nelson85
  */
-@Reader.Declaration(pkg = RtkPackage.class, name = "quantity", 
+@Reader.Declaration(pkg = RtkPackage.class, name = "quantity",
         contents = Reader.Contents.TEXT, cls = Quantity.class)
 @Reader.Attribute(name = "units", type = String.class)
+@Reader.Attribute(name = "unc", type = Double.class, required = false)
 public class QuantityReader extends ObjectReader<Quantity>
 {
- 
+  public final String target;
+  private final PhysicalProperty requires;
+
+  public QuantityReader()
+  {
+    target = null;
+    requires = null;
+  }
+
+  public QuantityReader(String target)
+  {
+    this.target = target;
+    requires = null;
+  }
+
+  public QuantityReader(PhysicalProperty require)
+  {
+    this.target = null;
+    this.requires = require;
+  }
+
   @Override
   public Quantity start(ReaderContext context, Attributes attributes) throws ReaderException
   {
-    context.setState(attributes.getValue("units"));
+    State s = new State();
+    s.units = attributes.getValue("units");
+    if (s.units == null)
+      s.units = target;
+    String unc = attributes.getValue("unc");
+    if (unc != null)
+      s.uncertainty = Double.parseDouble(unc.strip());
+    context.setState(s);
     return null;
   }
 
   @Override
   public Quantity contents(ReaderContext context, String textContents) throws ReaderException
   {
-    return Quantity.of(Double.parseDouble(textContents.trim()), (String)context.getState());
+    State s = (State) context.getState();
+    Quantity out = Quantity.of(Double.parseDouble(textContents.strip()), Units.get(s.units), s.uncertainty, true);
+    out.require(requires);
+    return out;
+  }
+
+  static class State
+  {
+    String units;
+    double uncertainty;
   }
 }

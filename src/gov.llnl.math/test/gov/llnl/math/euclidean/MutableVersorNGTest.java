@@ -42,7 +42,7 @@ public class MutableVersorNGTest
     MutableVersor instance = new MutableVersor();
     instance.assign(0, 1, 0, 0);
     double expResult = 1.0;
-    double result = instance.getI();
+    double result = instance.getX();
     assertEquals(result, expResult, 0.0);
   }
 
@@ -55,7 +55,7 @@ public class MutableVersorNGTest
     MutableVersor instance = new MutableVersor();
     instance.assign(0, 0, 1, 0);
     double expResult = 1.0;
-    double result = instance.getJ();
+    double result = instance.getY();
     assertEquals(result, expResult, 0.0);
   }
 
@@ -68,7 +68,7 @@ public class MutableVersorNGTest
     MutableVersor instance = new MutableVersor();
     instance.assign(0, 0, 0, 1);
     double expResult = 1.0;
-    double result = instance.getK();
+    double result = instance.getZ();
     assertEquals(result, expResult, 0.0);
   }
 
@@ -142,9 +142,9 @@ public class MutableVersorNGTest
   public void testNormalize()
   {
     MutableVersor instance = new MutableVersor();
-    instance.i = 1;
-    instance.j = 1;
-    instance.k = 1;
+    instance.x = 1;
+    instance.y = 1;
+    instance.z = 1;
     instance.u = 1;
     instance.normalize();
     assertEquals(instance.u, 0.5);
@@ -160,9 +160,9 @@ public class MutableVersorNGTest
     MutableVersor instance = new MutableVersor();
     instance.assign(1, 0, 0, 0);
     instance.multiplyAssign(q);
-    assertEquals(instance.i, -1.0);
-    assertEquals(instance.j, 0.0);
-    assertEquals(instance.k, 0.0);
+    assertEquals(instance.x, -1.0);
+    assertEquals(instance.y, 0.0);
+    assertEquals(instance.z, 0.0);
     assertEquals(instance.u, 0.0);
   }
 

@@ -140,5 +140,18 @@ public class FluxGroupBin implements FluxGroup, Serializable
             && this.energyLower == flux.energyLower
             && this.energyUpper == flux.energyUpper;
   }
+   
+  @Override
+  public double getEnergyAverage()
+  {
+    return (this.energyUpper + this.energyLower)/2;
+  }
+  
+  @Override
+  public double getEnergyWidth()
+  {
+    return this.energyUpper - this.energyLower;
+  }
+
 
 }

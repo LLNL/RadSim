@@ -2,6 +2,11 @@
 <xs:schema elementFormDefault="qualified" xmlns:math="http://math.llnl.gov" math:version="1.0" xmlns:rtk="http://rtk.llnl.gov" rtk:version="1.0" targetNamespace="http://rtk.llnl.gov" xmlns:util="http://utility.llnl.gov" util:version="1.0" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://math.llnl.gov" schemaLocation="http://math.llnl.gov/schema/math.xsd"/>
   <xs:import namespace="http://utility.llnl.gov" schemaLocation="http://utility.llnl.gov/schema/utility.xsd"/>
+  <xs:complexType name="AttributesReader-type">
+    <xs:choice maxOccurs="unbounded">
+      <xs:any minOccurs="0" namespace="##any"/>
+    </xs:choice>
+  </xs:complexType>
   <xs:complexType name="ChannelEnergyPairReader-type">
     <xs:attributeGroup ref="util:object-attribs"/>
     <xs:attribute name="channel" type="xs:double" use="required"/>
@@ -12,18 +17,9 @@
     <xs:attribute name="lower" type="xs:double" use="required"/>
     <xs:attribute name="upper" type="xs:double" use="required"/>
   </xs:complexType>
-  <xs:complexType name="ComponentReader-type">
-    <xs:all minOccurs="0">
-      <xs:element minOccurs="0" name="doseFraction" type="util:double-attr"/>
-      <xs:element minOccurs="0" name="massFraction" type="util:double-attr"/>
-      <xs:element minOccurs="0" name="activity" type="rtk:Units-UnitReader-type"/>
-    </xs:all>
-    <xs:attributeGroup ref="util:object-attribs"/>
-    <xs:anyAttribute namespace="##any" processContents="skip"/>
-  </xs:complexType>
   <xs:complexType name="CompositionReader-type">
     <xs:choice maxOccurs="unbounded" minOccurs="0">
-      <xs:element minOccurs="0" name="entry" type="rtk:ComponentReader-type"/>
+      <xs:element minOccurs="0" name="entry" type="rtk:MaterialComponentReader-type"/>
     </xs:choice>
     <xs:attributeGroup ref="util:object-attribs"/>
     <xs:attribute name="name" type="xs:string"/>
@@ -96,6 +92,7 @@
   </xs:complexType>
   <xs:complexType name="DoubleSpectrumReader-type">
     <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element minOccurs="0" name="attributes" type="rtk:AttributesReader-type"/>
       <xs:element name="attributes" type="rtk:SpectrumReader-AttributesSection-type"/>
       <xs:element name="title" type="xs:string"/>
       <xs:element name="realTime" type="util:double-attr"/>
@@ -200,15 +197,15 @@
   </xs:complexType>
   <xs:complexType name="GeometryReader-type">
     <xs:all minOccurs="0">
-      <xs:element minOccurs="0" name="extent1" type="rtk:Units-UnitReader-type"/>
-      <xs:element minOccurs="0" name="extent2" type="rtk:Units-UnitReader-type"/>
+      <xs:element minOccurs="0" name="extent1" type="rtk:QuantityReader-type"/>
+      <xs:element minOccurs="0" name="extent2" type="rtk:QuantityReader-type"/>
     </xs:all>
     <xs:attributeGroup ref="util:object-attribs"/>
     <xs:attribute name="type" type="xs:string"/>
   </xs:complexType>
   <xs:complexType name="LayerReader-type">
     <xs:sequence minOccurs="0">
-      <xs:element name="thickness" type="rtk:Units-UnitReader-type"/>
+      <xs:element name="thickness" type="rtk:QuantityReader-type"/>
       <xs:element minOccurs="0" name="geometry" type="rtk:GeometryReader-type"/>
       <xs:element name="material" type="rtk:MaterialReader-type"/>
     </xs:sequence>
@@ -237,11 +234,24 @@
     </xs:choice>
     <xs:attributeGroup ref="util:object-attribs"/>
   </xs:complexType>
+  <xs:complexType name="MaterialComponentReader-type">
+    <xs:all minOccurs="0">
+      <xs:element minOccurs="0" name="doseFraction" type="util:double-attr"/>
+      <xs:element minOccurs="0" name="atomFraction" type="util:double-attr"/>
+      <xs:element minOccurs="0" name="massFraction" type="util:double-attr"/>
+      <xs:element minOccurs="0" name="activity" type="rtk:QuantityReader-type"/>
+    </xs:all>
+    <xs:attributeGroup ref="util:object-attribs"/>
+    <xs:anyAttribute namespace="##any" processContents="skip"/>
+  </xs:complexType>
   <xs:complexType name="MaterialReader-type">
     <xs:sequence minOccurs="0">
-      <xs:element minOccurs="0" name="age" type="rtk:Units-UnitReader-type"/>
-      <xs:element name="density" type="rtk:Units-UnitReader-type"/>
-      <xs:element maxOccurs="unbounded" name="component" type="rtk:ComponentReader-type"/>
+      <xs:element minOccurs="0" name="title" type="xs:string"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+      <xs:element minOccurs="0" name="age" type="rtk:QuantityReader-type"/>
+      <xs:element name="density" type="rtk:QuantityReader-type"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="component" type="rtk:MaterialComponentReader-type"/>
     </xs:sequence>
     <xs:attributeGroup ref="util:object-attribs"/>
   </xs:complexType>
@@ -330,6 +340,7 @@
   <xs:complexType name="QuantityReader-type">
     <xs:simpleContent>
       <xs:extension base="xs:string">
+        <xs:attribute name="unc" type="xs:double"/>
         <xs:attribute name="units" type="xs:string"/>
       </xs:extension>
     </xs:simpleContent>
@@ -468,13 +479,6 @@
     </xs:choice>
     <xs:attributeGroup ref="util:object-attribs"/>
   </xs:complexType>
-  <xs:complexType name="Units-UnitReader-type">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:attribute name="units" type="xs:string" use="required"/>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
   <xs:complexType name="WeightedCentroidFitterReader-type">
     <xs:all minOccurs="0">
       <xs:element minOccurs="0" name="biasCoefficients" type="util:string-attr"/>
@@ -486,7 +490,7 @@
   <xs:element name="calibrator" type="rtk:DetectorCalibratorReader-type" util:class="gov.llnl.rtk.calibration.DetectorCalibrator"/>
   <xs:element name="channelEnergyPair" type="rtk:ChannelEnergyPairReader-type" util:class="gov.llnl.rtk.calibration.ChannelEnergyPair"/>
   <xs:element name="channelRegionOfInterest" type="rtk:ChannelRegionOfInterestReader-type" util:class="gov.llnl.rtk.data.ChannelRegionOfInterest"/>
-  <xs:element name="component" type="rtk:ComponentReader-type" util:class="gov.llnl.rtk.physics.Component"/>
+  <xs:element name="component" type="rtk:MaterialComponentReader-type" util:class="gov.llnl.rtk.physics.MaterialComponent"/>
   <xs:element name="composition" type="rtk:CompositionReader-type" util:class="gov.llnl.rtk.physics.Composition"/>
   <xs:element name="controlMapping" type="rtk:ControlMapping-Reader-type" util:class="gov.llnl.rtk.calibration.ControlMapping"/>
   <xs:element name="coordinate" type="rtk:CoordinateGeoReader-type" util:class="gov.llnl.rtk.geo.CoordinateGeo"/>
@@ -521,7 +525,8 @@
   <xs:element name="layer" type="rtk:LayerReader-type" util:class="gov.llnl.rtk.physics.LayerImpl"/>
   <xs:element name="liveTimeRangeCheck" type="rtk:LiveTimeRangeCheck-Reader-type" util:class="gov.llnl.rtk.quality.LiveTimeRangeCheck"/>
   <xs:element name="lowEnergyCheck" type="rtk:LowEnergyCheck-Reader-type" util:class="gov.llnl.rtk.quality.LowEnergyCheck"/>
-  <xs:element name="material" type="rtk:MaterialReader-type" util:class="gov.llnl.rtk.physics.MaterialImpl"/>
+  <xs:element name="material" type="rtk:MaterialReader-type" util:class="gov.llnl.rtk.physics.Material"/>
+  <xs:element name="model" type="xs:string" util:class="java.lang.String"/>
   <xs:element name="neutronDose" type="rtk:QuantityReader-type" util:class="gov.llnl.rtk.physics.Quantity"/>
   <xs:element name="neutronFlux" type="rtk:QuantityReader-type" util:class="gov.llnl.rtk.physics.Quantity"/>
   <xs:element name="neutronLeakage" type="rtk:QuantityReader-type" util:class="gov.llnl.rtk.physics.Quantity"/>
@@ -550,7 +555,7 @@
   <xs:element name="singlePeakGainStabilizer" type="rtk:SinglePeakGainStabilizerReader-type" util:class="gov.llnl.rtk.calibration.SinglePeakGainStabilizer"/>
   <xs:element name="smallFace" type="rtk:SensorFaceSmallReader-type" util:class="gov.llnl.rtk.view.SensorFaceSmall"/>
   <xs:element name="smoothingSpectralFilter" type="rtk:SmoothingSpectralFilterReader-type" util:class="gov.llnl.rtk.filter.SmoothingSpectralFilter"/>
-  <xs:element name="sourceModel" type="rtk:SourceModelReader-type" util:class="gov.llnl.rtk.physics.SphericalModel"/>
+  <xs:element name="sourceModel" type="rtk:SourceModelReader-type" util:class="gov.llnl.rtk.physics.SourceModelImpl"/>
   <xs:element name="spectraList" type="rtk:DoubleSpectraListReader-type" util:class="gov.llnl.rtk.data.DoubleSpectraList"/>
   <xs:element name="spectraListFilter" type="rtk:SpectraListFilter-Reader-type" util:class="gov.llnl.rtk.data.SpectraListFilter"/>
   <xs:element name="spectrum" type="rtk:DoubleSpectrumReader-type" util:class="gov.llnl.rtk.data.DoubleSpectrum"/>

@@ -34,8 +34,8 @@ public class CompositionWriter extends ObjectWriter<Composition>
   public void contents(Composition object) throws WriterException
   {
     WriterBuilder wb = newBuilder();
-    WriteObject<Component> wo = wb.element("entry").writer(new ComponentWriter());
-    for (Component entry : object)
+    WriteObject<MaterialComponent> wo = wb.element("entry").writer(new MaterialComponentWriter());
+    for (MaterialComponent entry : object)
       wo.put(entry);
   }
 

@@ -11,7 +11,6 @@ import gov.llnl.utility.UtilityPackage;
 import gov.llnl.utility.io.ReaderException;
 import gov.llnl.utility.xml.DomBuilder;
 import gov.llnl.utility.xml.bind.ObjectReader;
-import gov.llnl.utility.xml.bind.ObjectStringReader;
 import gov.llnl.utility.xml.bind.Reader;
 import gov.llnl.utility.xml.bind.ReaderContext;
 import gov.llnl.utility.xml.bind.SchemaBuilder;

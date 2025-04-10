@@ -9,7 +9,6 @@ package gov.llnl.rtk.view;
 import gov.llnl.math.euclidean.Vector3;
 import gov.llnl.math.euclidean.Vector3Ops;
 import gov.llnl.math.euclidean.Versor;
-import gov.llnl.rtk.view.SensorFace;
 import gov.llnl.utility.xml.bind.ReaderInfo;
 
 @ReaderInfo(SensorFaceRectangularReader.class)
@@ -84,6 +83,7 @@ public class SensorFaceRectangular implements SensorFace
     return width * height;
   }
 
+  @Override
   public String toString()
   {
     return String.format("SensorFaceRectangular(%.2f,%.2f, %s)", this.width, this.height, origin.toString());

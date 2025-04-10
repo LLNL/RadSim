@@ -29,13 +29,14 @@ public class EmissionScaled
 
   public static class ScaledAlpha implements Alpha
   {
-    Alpha parent;
-    double scalar;
+    private static final long serialVersionUID = 0xA341_0000_0051_0000L;
+    private final Alpha parent;
+    private final ScaledQuantity intensity;
 
     private ScaledAlpha(Alpha e, double f)
     {
       this.parent = e;
-      this.scalar = f;
+      this.intensity = new ScaledQuantity(e.getIntensity(), f);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return parent.getIntensity().scaled(scalar);
+      return intensity;
     }
 
     @Override
@@ -66,13 +67,14 @@ public class EmissionScaled
 
   public static class ScaledBeta implements Beta
   {
-    Beta parent;
-    double scalar;
+    private static final long serialVersionUID = 0xA341_0000_0052_0000L;
+    private final Beta parent;
+    private final ScaledQuantity intensity;
 
     private ScaledBeta(Beta e, double f)
     {
       this.parent = e;
-      this.scalar = f;
+      this.intensity = new ScaledQuantity(e.getIntensity(), f);
     }
 
     @Override
@@ -84,7 +86,7 @@ public class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return parent.getIntensity().scaled(scalar);
+      return intensity;
     }
 
     @Override
@@ -109,13 +111,14 @@ public class EmissionScaled
 
   private static class ScaledPositron implements Positron
   {
-    Positron parent;
-    double scalar;
+    private static final long serialVersionUID = 0xA341_0000_0053_0000L;
+    private final Positron parent;
+    private final ScaledQuantity intensity;
 
     public ScaledPositron(Positron e, double f)
     {
       this.parent = e;
-      this.scalar = f;
+      this.intensity = new ScaledQuantity(e.getIntensity(), f);
     }
 
     @Override
@@ -127,7 +130,7 @@ public class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return parent.getIntensity().scaled(scalar);
+      return intensity;
     }
 
     @Override
@@ -149,21 +152,28 @@ public class EmissionScaled
     }
   }
 
-  private static class ScaledCapture implements ElectronCapture
+  public static class ScaledCapture implements ElectronCapture
   {
+    private static final long serialVersionUID = 0xA341_0000_0054_0000L;
     private final ElectronCapture parent;
-    private final double scalar;
+    private final ScaledQuantity intensity;
 
     public ScaledCapture(ElectronCapture e, double f)
     {
       this.parent = e;
-      this.scalar = f;
+      this.intensity = new ScaledQuantity(e.getIntensity(), f);
     }
 
     @Override
+    public Quantity getEnergy()
+    {
+      return parent.getEnergy();
+    }    
+    
+    @Override
     public Quantity getIntensity()
     {
-      return parent.getIntensity().scaled(scalar);
+      return intensity;
     }
 
     @Override
@@ -188,13 +198,14 @@ public class EmissionScaled
 
   private static class ScaledGamma implements Gamma
   {
+    private static final long serialVersionUID = 0xA341_0000_0055_0000L;
     private final Gamma parent;
-    private final double scalar;
+    private final ScaledQuantity intensity;
 
     public ScaledGamma(Gamma e, double f)
     {
       this.parent = e;
-      this.scalar = f;
+      this.intensity = new ScaledQuantity(e.getIntensity(), f);
     }
 
     @Override
@@ -206,7 +217,7 @@ public class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return parent.getIntensity().scaled(scalar);
+      return intensity;
     }
 
     @Override
@@ -218,13 +229,14 @@ public class EmissionScaled
 
   private static class ScaledXray implements Xray
   {
+    private static final long serialVersionUID = 0xA341_0000_0056_0000L;
     private final Xray parent;
-    private final double scalar;
+    private final ScaledQuantity intensity;
 
     public ScaledXray(Xray e, double f)
     {
       this.parent = e;
-      this.scalar = f;
+      this.intensity = new ScaledQuantity(e.getIntensity(), f);
     }
 
     @Override
@@ -232,6 +244,7 @@ public class EmissionScaled
     {
       return parent.getName();
     }
+
     @Override
     public Quantity getEnergy()
     {
@@ -241,7 +254,7 @@ public class EmissionScaled
     @Override
     public Quantity getIntensity()
     {
-      return parent.getIntensity().scaled(scalar);
+      return intensity;
     }
 
     @Override

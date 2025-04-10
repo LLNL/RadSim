@@ -113,10 +113,10 @@ public abstract class PolymorphicReader<T> extends ObjectReader<T>
   final public ElementHandlerMap getHandlers(ReaderContext context) throws ReaderException
   {
     ReaderBuilder<T> rb = newBuilder();
-    rb.readers((Class<T>)getObjectClass(), getReaders())
-            .callContext((c,o,v)->c.setState(v));
+    rb.readers((Class<T>) getObjectClass(), getReaders())
+            .callContext((c, o, v) -> c.setState(v));
     return rb.getHandlers();
   }
- 
+
 //</editor-fold>
 }

@@ -22,21 +22,21 @@ final class VersorInv implements Versor, Serializable
   }
 
   @Override
-  public double getI()
+  public double getX()
   {
-    return -versor_.getI();
+    return -versor_.getX();
   }
 
   @Override
-  public double getJ()
+  public double getY()
   {
-    return -versor_.getJ();
+    return -versor_.getY();
   }
 
   @Override
-  public double getK()
+  public double getZ()
   {
-    return -versor_.getK();
+    return -versor_.getZ();
   }
 
   @Override

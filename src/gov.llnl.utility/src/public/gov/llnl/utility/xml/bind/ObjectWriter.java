@@ -23,6 +23,7 @@ public abstract class ObjectWriter<Type>
   public static final String DOUBLE_FORMAT = "java.lang.Double#format";
   public static final String INTEGER_FORMAT = "java.lang.Integer#format";
   public static final String DATE_FORMAT = "java.util.Date#format";
+  public static final String DOUBLE_ARRAY_COMPACT = "double[]#compact";
 
   final private String elementName;
   final private PackageResource pkg;
@@ -219,6 +220,14 @@ public abstract class ObjectWriter<Type>
      * @return a writer contents for pushing contents.
      */
     WriterContents element(String name);
+    
+    /**
+     * Name the element to be placed in the document. This is optional.
+     *
+     * @param name
+     * @return a writer contents for pushing contents.
+     */
+    WriterContents element(PackageResource pkg, String name);
 
     /**
      * Apply a writer to the next set of contents.

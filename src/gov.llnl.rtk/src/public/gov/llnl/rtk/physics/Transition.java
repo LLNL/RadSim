@@ -8,7 +8,7 @@ package gov.llnl.rtk.physics;
 
 /**
  * Represents a conversion from a nuclide to others.
- * 
+ *
  * @author nelson85
  */
 public interface Transition extends Emissions

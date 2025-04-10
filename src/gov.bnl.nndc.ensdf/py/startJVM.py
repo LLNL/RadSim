@@ -29,9 +29,9 @@ def javaClasspath():
             'gov.llnl.utility',
             'gov.llnl.math',
             'gov.llnl.rtk',
-            'gov.llnl.rtk.decay',
             'gov.bnl.nndc.ensdf',
-            'gov.nist.xray',
+            'gov.nist.physics.xray',
+            'gov.sandia.gadras.decay',
     ):
         path = glob.glob(os.path.join(DEVEL, repo, 'dist', '*.jar'))
         if not path:
@@ -54,7 +54,6 @@ jarFiles = javaClasspath()
 try:
     if not jpype.isJVMStarted():
         jpype.startJVM(jpype.getDefaultJVMPath(),
-                        # "-Xint", "-Xdebug", "-Xnoagent", "-Xrunjdwp:transport=dt_socket,server=y,address=12999,suspend=n",
                        '-Djava.class.path=%s' % jarFiles, convertStrings=False)
 except:
     print("This project only works with the proper Java bin and JAVA_HOME environment variable.")

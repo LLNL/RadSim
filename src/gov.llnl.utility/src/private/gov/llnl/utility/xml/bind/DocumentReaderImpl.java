@@ -33,6 +33,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -81,6 +82,11 @@ public class DocumentReaderImpl<Component> implements DocumentReader<Component>
 
     PackageResource pkg = reader.getPackage();
     Reader.Declaration attr = reader.getClass().getAnnotation(Reader.Declaration.class);
+    if (!attr.xslt().equals(Reader.Declaration.NULL))
+    {
+      this.properties.put(XSLT_SOURCE, attr.xslt());
+    }
+    
     if (!attr.schema().equals(Reader.Declaration.NULL))
     {
       this.properties.put(SCHEMA_SOURCE, attr.schema());
@@ -126,7 +132,7 @@ public class DocumentReaderImpl<Component> implements DocumentReader<Component>
     ReaderBuilderImpl.HandlerList hl = new ReaderBuilderImpl.HandlerList();
     ReaderHandler rootHandler;
     String namespaceURI = null;
-        BiConsumer<Object, Object> complete = (p,v)->
+    BiConsumer<Object, Object> complete = (p, v) ->
     {
       lastContext = readerContext.getChildContext();
     };
@@ -146,7 +152,7 @@ public class DocumentReaderImpl<Component> implements DocumentReader<Component>
               complete, AnyReader.of(cls));
     }
     hl.add(rootHandler);
-        ElementContextImpl handlerContext = new ElementContextImpl(null, null, namespaceURI, "", null);
+    ElementContextImpl handlerContext = new ElementContextImpl(null, null, namespaceURI, "", null);
     handlerContext.handlerMap = ElementHandlerMapImpl.newInstance("#", hl);
 
     handlerContext.currentHandler = new ElementHandlerImpl(null, null, null, null);
@@ -183,7 +189,7 @@ public class DocumentReaderImpl<Component> implements DocumentReader<Component>
   {
     ReaderContextImpl newContext = (ReaderContextImpl) createContext();
     newContext.setFile(file.toUri());
-    try ( InputStream fs = Files.newInputStream(file))
+    try (InputStream fs = Files.newInputStream(file))
     {
       InputStream fs2 = fs;
       UtilityPackage.LOGGER.log(Level.FINE, "File {0}", file);
@@ -207,7 +213,7 @@ public class DocumentReaderImpl<Component> implements DocumentReader<Component>
       newContext.setFile(url.toURI());
       URLConnection connection = url.openConnection();
       connection.setUseCaches(false);
-      try ( InputStream is = connection.getInputStream())
+      try (InputStream is = connection.getInputStream())
       {
         InputStream is2 = is;
         if (url.getFile().endsWith(".gz"))
@@ -334,26 +340,42 @@ public class DocumentReaderImpl<Component> implements DocumentReader<Component>
         try
         {
           // Parse the xslt into a Path
-          Path xsltPath;
+          URI xsltPath = null;
           Object xslt = this.getProperty(XSLT_SOURCE);
           if (xslt instanceof String)
           {
-            xsltPath = Paths.get((String) xslt);
+            if (((String) xslt).matches("[A-z]+://.*"))
+              xsltPath = new URI((String) xslt);
+            else
+              xsltPath = Paths.get((String) xslt).toUri();
           }
           else if (xslt instanceof Path)
           {
-            xsltPath = (Path) xslt;
+            xsltPath = ((Path) xslt).toUri();
+          }
+          else if (xslt instanceof URI)
+          {
+            xsltPath = ((URI) xslt);
           }
           else
           {
             throw new ReaderException("Unknown xslt type");
           }
 
+          // Special target for "java" schema which needs to use the class loader
+          if ("java".equals(xsltPath.getScheme()))
+          {
+            String s = ClassLoader.getSystemClassLoader()
+                    .getResource(xsltPath.getRawPath().substring(1))
+                    .toExternalForm();
+            xsltPath = new URI(s);
+          }
+
           // Use the reader to parse the input into a source for the xslt transform
           SAXSource source = new SAXSource(inputSource);
 
           // Create an XSLT transform using the xslt document
-          StreamSource styleSource = new StreamSource(xsltPath.toFile());
+          StreamSource styleSource = new StreamSource(xsltPath.toURL().openStream());
           TransformerFactory transformerFactory = TransformerFactory.newInstance();
           Transformer transformer = transformerFactory.newTransformer(styleSource);
 
@@ -371,6 +393,10 @@ public class DocumentReaderImpl<Component> implements DocumentReader<Component>
         catch (TransformerException ex)
         {
           throw new ReaderException(ex);
+        }
+        catch (URISyntaxException ex)
+        {
+          throw new ReaderException("Bad uri");
         }
       }
       else

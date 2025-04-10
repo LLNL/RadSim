@@ -6,16 +6,18 @@
  */
 package gov.llnl.rtk.physics;
 
+import java.io.Serializable;
+
 /**
  *
  * @author nelson85
  */
-public interface Emission
+public interface Emission extends Serializable
 {
-  /** 
+  /**
    * Get the process that produced this emission.
-   * 
-   * @return 
+   *
+   * @return
    */
   Transition getOrigin();
 

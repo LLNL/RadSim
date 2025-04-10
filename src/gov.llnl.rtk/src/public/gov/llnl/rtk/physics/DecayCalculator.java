@@ -9,6 +9,7 @@ import gov.llnl.utility.TemporalUtilities;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -42,10 +43,16 @@ public class DecayCalculator
   //    perhaps induced transitions
   DecayLibrary decayLibrary;
   HashMap<Source, Integer> indices = new HashMap<>();
+  Nuclide unaccounted = new Unaccounted();
 
   public transient Matrix initial = null;
   public transient Matrix transitions = null;
   public transient Matrix u = null;
+
+  public boolean warn = false;
+  private Collection<Nuclide> excludes;
+  private List<Nuclide> keep;
+  private boolean normalize = false;
 
   /**
    * Set the physics library to use for this process.
@@ -56,6 +63,63 @@ public class DecayCalculator
   {
     this.decayLibrary = library;
   }
+
+  /**
+   * Excludes the calculator from considering daughters of a set of nuclides
+   * unless they are explicitly set in the source list.
+   *
+   * This is to prevent double counting of long lived decay chains.
+   *
+   * @param nuclides
+   */
+  public void setExcludes(Collection<Nuclide> nuclides)
+  {
+    this.excludes = nuclides;
+  }
+
+  public void setNormalize(boolean b)
+  {
+    this.normalize = b;
+  }
+  
+  public Material age(Material m)
+  {
+    // Get the time in SI units
+    double time = m.getAge().get();
+    
+    List<Source> sources = new ArrayList<>();
+    
+    // Copy over any existing properties
+    MaterialImpl m2 = new MaterialImpl();
+    m2.age = Quantity.of(0, "s");
+    m2.comment = m.getComment();
+    m2.density = m.getDensity();
+    m2.label = m.getLabel();
+    
+    // Collect the radioactive parts as atom fractions
+    for (MaterialComponent mc : m)
+    {
+      Nuclide nuclide = mc.getNuclide();
+      if (Double.isFinite(nuclide.getHalfLife()))
+        sources.add(Source.fromAtoms(mc.getNuclide(),mc.getAtomFraction()));
+      else
+        m2.addEntry(mc);
+    }
+    
+    // Age the substance
+    List<Source> parts = this.age(sources, time);
+    
+    // Copy back in the portions
+    for (Source s: parts)
+    {
+      m2.addEntry(new MaterialComponentImpl(s.getNuclide(), 0, s.getAtoms(), null));
+    }
+    
+    // Correct the fractions
+    m2.normalize();
+    return m2;
+  }
+  
 
   /**
    * Compute the result of aging a source.
@@ -86,9 +150,24 @@ public class DecayCalculator
     return age(sourceInput, TemporalUtilities.toSeconds(time));
   }
 
+  /**
+   * Age material for a specified time.
+   *
+   * @param sources is a list of sources to age.
+   * @param time in seconds.
+   * @return
+   */
   public List<Source> age(List<Source> sources, double time)
   {
     List<Source> working = convertSources(sources);
+    List<Source> out = new ArrayList<>();
+    if (sources.isEmpty())
+      return out;
+
+    double initialAtoms = working.stream().mapToDouble(p -> p.getAtoms()).sum();
+
+    if (this.normalize && sources.size() > 1)
+      throw new IllegalStateException("Normalization cannot be applied to multipls sources");
 
     // Convert to a matrix problem
     int n = working.size();
@@ -96,6 +175,7 @@ public class DecayCalculator
     Matrix initial = MatrixFactory.newMatrix(n, 1);
     this.transitions = transitions;
     this.initial = initial;
+//    MatrixOps.dump(System.out, transitions);
 
     for (Source s : working)
     {
@@ -111,12 +191,25 @@ public class DecayCalculator
     Matrix a = MatrixOps.multiply(u, initial);
 
     // Propogate the result back to the source list.
-    List<Source> out = new ArrayList<>();
+    double finalAtoms = 0;
+    double factor = 1;
+    if (normalize)
+    {
+      factor = sources.get(0).getAtoms() / a.get(1, 0);
+    }
+
     for (Source source : working)
     {
       int index = indices.get(source);
-      out.add(Source.fromAtoms(source.getNuclide(), a.get(index,0)));
+      double atoms = a.get(index, 0);
+      finalAtoms += atoms;
+      if (source.getNuclide() == this.unaccounted)
+        continue;
+
+      out.add(Source.fromAtoms(source.getNuclide(), factor * atoms));
     }
+    if (Math.abs(initialAtoms - finalAtoms) > 1e-8 * initialAtoms)
+        throw new RuntimeException("Atom balance failed");
     return out;
   }
 
@@ -124,7 +217,8 @@ public class DecayCalculator
    * Compute transient equilibrium state.
    *
    * @param source
-   * @return
+   * @return the decay produces relative to the parent excluding daughters with
+   * longer half lives than the parent.
    */
   public List<Source> transientEquilibrium(Source source)
   {
@@ -148,6 +242,15 @@ public class DecayCalculator
   }
 
 //<editor-fold desc="internal" defaultstate="collapsed">
+  /**
+   * Support for transient equilibrium.
+   *
+   * @param output
+   * @param transition
+   * @param NA
+   * @param lambdaA
+   * @param source
+   */
   void updateTE(List<Source> output, DecayTransition transition, double NA, double lambdaA, Source source)
   {
     Nuclide nuclide = transition.getChild();
@@ -198,9 +301,18 @@ public class DecayCalculator
     for (DecayTransition ts : decayLibrary.getTransitionsFrom(source.getNuclide()))
     {
       // Skip fission for now.
-      if (ts.getChild() == null)
+      Nuclide daughter = ts.getChild();
+      if (daughter == null)
         continue;
-      traceChildren(out, Source.of(ts.getChild()));
+
+      // Skip items on the excludes list
+      if (this.excludes != null && this.excludes.contains(daughter) && !this.keep.contains(daughter))
+        continue;
+      if(source.getNuclide().equals(ts.getChild()))
+      {
+        throw new IllegalStateException("Circular transition "+source.getNuclide()); 
+      }
+      traceChildren(out, new SourceImpl(daughter));
     }
     return out;
   }
@@ -273,7 +385,6 @@ public class DecayCalculator
     Matrix mn = MatrixOps.add(p1, p2);
     Matrix md = MatrixOps.subtract(p1, p2);
     Matrix r = solve(md, mn);
-//    Matrix r = MatrixOps.divideLeft(md, mn);
 
     // Post correction
     if (v > 0)
@@ -336,8 +447,8 @@ public class DecayCalculator
         double v = a.get(j, i);
         if (v == 0)
           continue;
-        roa.addScaledRows(j, i, -v/d);
-        rob.addScaledRows(j, i, -v/d);
+        roa.addScaledRows(j, i, -v / d);
+        rob.addScaledRows(j, i, -v / d);
       }
       if (d != 1.0)
       {
@@ -371,6 +482,8 @@ public class DecayCalculator
   List<Source> convertSources(List<Source> sourceInput)
   {
     List<Source> sources = new ArrayList<>();
+    sources.add(new SourceImpl(unaccounted));
+    this.keep = sourceInput.stream().map(p -> p.getNuclide()).collect(Collectors.toList());
 
     // Find all the children of the source
     for (Source source : sourceInput)
@@ -388,6 +501,13 @@ public class DecayCalculator
     return sources;
   }
 
+  /**
+   * Convert a source list into a transition matrix that we can process with
+   * matrix exponential.
+   *
+   * @param sources
+   * @return
+   */
   Matrix computeTransitionMatrix(List<? extends Source> sources)
   {
     // Convert to a matrix problem
@@ -396,8 +516,19 @@ public class DecayCalculator
     for (Source s : sources)
     {
       int index = indices.get(s);
-      if (s.getNuclide().isStable() || decayLibrary.getTransitionsFrom(s.getNuclide()) == null && s.getNuclide().getHalfLife() > 1E20)
+
+      // Stable nuclides require no transitions from and should have 0 on the 
+      // diagonal term.
+      if (s.getNuclide().isStable()
+              || decayLibrary.getTransitionsFrom(s.getNuclide()) == null
+              && s.getNuclide().getHalfLife() > 1E20)
+      {
         continue;
+      }
+
+      // Tally up all of the decay modes 
+      //   We will renormalize in the case of missing transitions
+      // FIXME consider whether it is better to go to the unaccounted
       double lambda = s.getNuclide().getDecayConstant();
       double bt = 0;
       for (DecayTransition ts : decayLibrary.getTransitionsFrom(s.getNuclide()))
@@ -411,7 +542,7 @@ public class DecayCalculator
       // We don't let atoms get lost currently, so the sum of the branching
       // ratio must be 1.  We can losen this restriction by adding an
       // unaccounted for nuclide.
-      if (bt != 1.0)
+      if (warn && bt != 1.0)
       {
         System.out.println("Warning " + s.getNuclide() + " BR=" + bt + " " + s.getNuclide().getHalfLife());
         for (DecayTransition ts : decayLibrary.getTransitionsFrom(s.getNuclide()))
@@ -421,15 +552,41 @@ public class DecayCalculator
       transitions.set(index, index, -lambda);
       for (DecayTransition ts : decayLibrary.getTransitionsFrom(s.getNuclide()))
       {
-        if (ts.getChild() == null)
+        double coef = lambda * ts.getBranchingRatio() / bt;
+        Nuclide daughter = ts.getChild();
+
+        // If there are no daughters listed than we just go the unaccounted.
+        //   This happens if there is a spontaneous fission record.
+        if (daughter == null)
+        {
+          // We have an unassigned daughter for a transition such as spontaneous fissile.
+          transitions.set(0, index, transitions.get(0, index) + coef);
           continue;
-        Source s2 = findNuclide(sources, ts.getChild());
-        transitions.set(indices.get(s2), index, lambda * ts.getBranchingRatio() / bt);
+        }
+
+        // Excluding contributions for a specific daughter
+        if (excludes != null && excludes.contains(daughter))
+        {
+          // We don't want this product tallied in the ouput.
+          transitions.set(0, index, transitions.get(0, index) + coef);
+          continue;
+        }
+
+        // All other enter transition as requested
+        Source s2 = findNuclide(sources, daughter);
+        int index2 = indices.get(s2);
+        transitions.set(index2, index, transitions.get(index2, index) + coef);
       }
     }
     return transitions;
   }
 
+  /**
+   * Reduce the source list by eliminating shared daughters.
+   *
+   * @param source
+   * @return
+   */
   static List<? extends Source> compact(List<? extends Source> source)
   {
     // Copy the list
@@ -459,11 +616,25 @@ public class DecayCalculator
     return out;
   }
 
+  /**
+   * Check if a nuclide is present in the source list.
+   *
+   * @param sources
+   * @param n
+   * @return
+   */
   static boolean containsNuclide(List<Source> sources, Nuclide n)
   {
     return sources.stream().anyMatch(p -> p.getNuclide().getName().equals(n.getName()));
   }
 
+  /**
+   * Find the source associated with this nuclide.
+   *
+   * @param sources
+   * @param n
+   * @return
+   */
   static Source findNuclide(List<? extends Source> sources, Nuclide n)
   {
     Optional<? extends Source> nuclide = sources.stream().filter(p -> p.getNuclide().getName().equals(n.getName())).findFirst();
@@ -472,6 +643,20 @@ public class DecayCalculator
       throw new NoSuchElementException("Unable to find nuclide " + n);
     }
     return nuclide.get();
+  }
+
+  /**
+   * Special nuclide used to keep mass balances correct when we have processes
+   * or nuclides excluded.
+   *
+   */
+  class Unaccounted extends NuclideImpl
+  {
+    public Unaccounted()
+    {
+      super("unaccounted", null);
+      this.halfLife = Double.POSITIVE_INFINITY;
+    }
   }
 //</editor-fold>
 }

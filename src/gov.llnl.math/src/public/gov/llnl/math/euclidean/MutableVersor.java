@@ -12,22 +12,22 @@ public class MutableVersor implements Versor, Serializable
 {
   private static final long serialVersionUID = -1798111508634035503L;
   public double u;
-  public double i, j, k;
+  public double x, y, z;
 
   public MutableVersor(Versor v)
   {
     u = v.getU();
-    i = v.getI();
-    j = v.getJ();
-    k = v.getK();
+    x = v.getX();
+    y = v.getY();
+    z = v.getZ();
   }
 
   public MutableVersor()
   {
     u = 1;
-    i = 0;
-    j = 0;
-    k = 0;
+    x = 0;
+    y = 0;
+    z = 0;
   }
 
   @Override
@@ -37,21 +37,21 @@ public class MutableVersor implements Versor, Serializable
   }
 
   @Override
-  public double getI()
+  public double getX()
   {
-    return i;
+    return x;
   }
 
   @Override
-  public double getJ()
+  public double getY()
   {
-    return j;
+    return y;
   }
 
   @Override
-  public double getK()
+  public double getZ()
   {
-    return k;
+    return z;
   }
 
   /**
@@ -73,14 +73,14 @@ public class MutableVersor implements Versor, Serializable
 
     // Store in the rotation
     u = c1 * c2 * c3 + s1 * s2 * s3;
-    i = s1 * c2 * c3 - c1 * s2 * s3;
-    j = c1 * s2 * c3 + s1 * c2 * s3;
-    k = c1 * c2 * s3 - s1 * s2 * c3;
-    double s = Math.sqrt(u * u + i * i + j * j + k * k);
+    x = s1 * c2 * c3 - c1 * s2 * s3;
+    y = c1 * s2 * c3 + s1 * c2 * s3;
+    z = c1 * c2 * s3 - s1 * s2 * c3;
+    double s = Math.sqrt(u * u + x * x + y * y + z * z);
     u /= s;
-    i /= s;
-    j /= s;
-    k /= s;
+    x /= s;
+    y /= s;
+    z /= s;
   }
 
 //  public void toEuler(MutableVector3 v)
@@ -99,24 +99,24 @@ public class MutableVersor implements Versor, Serializable
   public void assign(Versor v)
   {
     this.u = v.getU();
-    this.i = v.getI();
-    this.j = v.getJ();
-    this.k = v.getK();
+    this.x = v.getX();
+    this.y = v.getY();
+    this.z = v.getZ();
   }
 
   public void assign(double w, double i, double j, double k)
   {
     this.u = w;
-    this.i = i;
-    this.j = j;
-    this.k = k;
+    this.x = i;
+    this.y = j;
+    this.z = k;
     this.normalize();
   }
 
   @Override
   public String toString()
   {
-    return String.format("Versor(%.8f, %.8f, %.8f, %.8f)", u, i, j, k);
+    return String.format("Versor(%.8f, %.8f, %.8f, %.8f)", u, x, y, z);
   }
 
   /**
@@ -129,9 +129,9 @@ public class MutableVersor implements Versor, Serializable
   public void addAssign(Quaternion q)
   {
     this.u += q.getU();
-    this.i += q.getI();
-    this.j += q.getJ();
-    this.k += q.getK();
+    this.x += q.getX();
+    this.y += q.getY();
+    this.z += q.getZ();
     normalize();
   }
 
@@ -140,46 +140,48 @@ public class MutableVersor implements Versor, Serializable
    */
   public void normalize()
   {
-    double s = Math.sqrt(u * u + i * i + j * j + k * k);
+    double s = Math.sqrt(u * u + x * x + y * y + z * z);
     if (s == 0)
       return;
+    if (u<0) 
+      s = -s;
     u /= s;
-    i /= s;
-    j /= s;
-    k /= s;
+    x /= s;
+    y /= s;
+    z /= s;
   }
 
   public void multiplyAssign(Quaternion q)
   {
-    double q1i = i;
-    double q1j = j;
-    double q1k = k;
+    double q1i = x;
+    double q1j = y;
+    double q1k = z;
     double q1u = u;
-    double q2i = q.getI();
-    double q2j = q.getJ();
-    double q2k = q.getK();
+    double q2i = q.getX();
+    double q2j = q.getY();
+    double q2k = q.getZ();
     double q2u = q.getU();
     u = q1u * q2u - q1i * q2i - q1j * q2j - q1k * q2k;
-    i = q1u * q2i + q1i * q2u + q1j * q2k - q1k * q2j;
-    j = q1u * q2j + q1j * q2u + q1k * q2i - q1i * q2k;
-    k = q1u * q2k + q1k * q2u + q1i * q2j - q1j * q2i;
+    x = q1u * q2i + q1i * q2u + q1j * q2k - q1k * q2j;
+    y = q1u * q2j + q1j * q2u + q1k * q2i - q1i * q2k;
+    z = q1u * q2k + q1k * q2u + q1i * q2j - q1j * q2i;
     normalize();
   }
 
   public void multiplyInvAssign(Quaternion q)
   {
-    double q1i = i;
-    double q1j = j;
-    double q1k = k;
+    double q1i = x;
+    double q1j = y;
+    double q1k = z;
     double q1u = u;
-    double q2i = -q.getI();
-    double q2j = -q.getJ();
-    double q2k = -q.getK();
+    double q2i = -q.getX();
+    double q2j = -q.getY();
+    double q2k = -q.getZ();
     double q2u = q.getU();
     u = q1u * q2u - q1i * q2i - q1j * q2j - q1k * q2k;
-    i = q1u * q2i + q1i * q2u + q1j * q2k - q1k * q2j;
-    j = q1u * q2j + q1j * q2u + q1k * q2i - q1i * q2k;
-    k = q1u * q2k + q1k * q2u + q1i * q2j - q1j * q2i;
+    x = q1u * q2i + q1i * q2u + q1j * q2k - q1k * q2j;
+    y = q1u * q2j + q1j * q2u + q1k * q2i - q1i * q2k;
+    z = q1u * q2k + q1k * q2u + q1i * q2j - q1j * q2i;
     normalize();
   }
 
@@ -187,14 +189,14 @@ public class MutableVersor implements Versor, Serializable
   {
     return new double[]
     {
-      u, i, j, k
+      u, x, y, z
     };
   }
 
   public void negateAssign()
   {
-    this.i *= -1;
-    this.j *= -1;
-    this.k *= -1;
+    this.x *= -1;
+    this.y *= -1;
+    this.z *= -1;
   }
 }
